@@ -11,6 +11,7 @@
     "lint": "python3 .scripts/check-frontmatter.py slides.md theme/example.md",
     "dev": "slidev slides.md --open",
     "start": "slidev slides.md",
+    "dev:flat": "VITE_FLAT_CLICKS=1 slidev slides.md",
     "dev:theme": "slidev theme/example.md --open",
     "build": "slidev build slides.md",
     "build:theme": "slidev build theme/example.md --out ../.temp/dist-theme",

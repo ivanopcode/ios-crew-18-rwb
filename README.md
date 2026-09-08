@@ -34,6 +34,7 @@ npm run dev:theme    # витрина всех раскладок темы
 | --- | --- | --- |
 | `npm run dev` | dev-сервер с hot reload | `localhost:3030` |
 | `npm run dev:theme` | dev-сервер витрины темы | `localhost:3030` |
+| `npm run dev:flat` | режим репетиции: всё содержимое слайда сразу, без пошаговых `v-click` | `localhost:3030` |
 | `npm run lint` | проверка frontmatter (см. ниже) | stdout |
 | `npm run build` | статическая сборка | `dist/` |
 | `npm run build:offline` | сборка с относительными путями | `.temp/dist-offline/` |

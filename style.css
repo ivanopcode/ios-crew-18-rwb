@@ -1,0 +1,6 @@
+/* Rehearsal mode (see setup/main.ts): no step-by-step reveal, whole slide at once. */
+html.flat-clicks .slidev-vclick-hidden {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
