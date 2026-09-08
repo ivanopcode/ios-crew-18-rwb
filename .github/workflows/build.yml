@@ -23,6 +23,9 @@ jobs:
 
       - run: npm ci
 
+      - name: Lint frontmatter
+        run: npm run lint
+
       - name: Build static SPA
         run: npm run build
 

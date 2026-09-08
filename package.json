@@ -1,24 +1,28 @@
 {
   "name": "ios-crew-18-rwb",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "iOS Crew #18 & RWB — presentation as code (Slidev)",
+  "description": "iOS Crew #18 & RWB — presentation as code (Slidev, rwb-tech theme)",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "dev": "slidev --open",
-    "start": "slidev",
-    "build": "slidev build",
-    "export": "slidev export --output .temp/export/ios-crew-18-rwb.pdf",
-    "export:pptx": "slidev export --format pptx --output .temp/export/ios-crew-18-rwb.pptx",
-    "notes": "slidev export-notes --output .temp/export/notes.pdf"
+    "lint": "python3 .scripts/check-frontmatter.py slides.md theme/example.md",
+    "dev": "slidev slides.md --open",
+    "start": "slidev slides.md",
+    "dev:theme": "slidev theme/example.md --open",
+    "build": "slidev build slides.md",
+    "build:theme": "slidev build theme/example.md --out ../.temp/dist-theme",
+    "export": "slidev export slides.md --output .temp/export/ios-crew-18-rwb.pdf",
+    "export:pptx": "slidev export slides.md --format pptx --output .temp/export/ios-crew-18-rwb.pptx",
+    "notes": "slidev export-notes slides.md --output .temp/export/notes.pdf",
+    "build:offline": "slidev build slides.md --base ./ --out .temp/dist-offline"
   },
   "dependencies": {
     "@slidev/cli": "^52.19.1",
-    "@slidev/theme-default": "^0.25.0",
-    "@slidev/theme-seriph": "^0.25.0",
+    "@slidev/types": "^52.19.1",
+    "unocss": "^66.0.0",
     "vue": "^3.5.13"
   }
 }

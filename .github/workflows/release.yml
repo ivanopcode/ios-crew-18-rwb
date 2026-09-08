@@ -1,0 +1,88 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing tag to build and release'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish release assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Resolve tag
+        id: meta
+        run: echo "tag=${{ inputs.tag || github.ref_name }}" >> "$GITHUB_OUTPUT"
+
+      - run: npm ci
+
+      - name: Lint frontmatter
+        run: npm run lint
+
+      # Relative asset base + hash routing, so the archive runs off any plain
+      # static server without a history-fallback rule.
+      - name: Build static deck
+        run: npm run build:offline
+
+      - name: Package HTML archive
+        run: |
+          cp docs/HOW_TO_RUN.md .temp/dist-offline/HOW_TO_RUN.md
+          mkdir -p .temp/release
+          (cd .temp/dist-offline && zip -qr "$GITHUB_WORKSPACE/.temp/release/ios-crew-18-rwb-${{ steps.meta.outputs.tag }}-html.zip" .)
+
+      - name: Install headless Chromium
+        run: npm install --no-save playwright-chromium
+
+      - name: Export PDF
+        run: npx slidev export slides.md --output ".temp/release/ios-crew-18-rwb-${{ steps.meta.outputs.tag }}.pdf"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          cat > .temp/notes.md <<'NOTES'
+          Сборка доклада «Локальные модели для разработки под iOS на Apple Silicon».
+
+          | Файл | Что это |
+          | --- | --- |
+          | `*-html.zip` | статическая сборка Slidev — распаковать и поднять локальный сервер |
+          | `*.pdf` | тот же дек в PDF, открывается чем угодно |
+
+          HTML двойным кликом не открывается: браузер блокирует ES-модули с `file://`.
+          Распакуйте архив и выполните в папке:
+
+          ```bash
+          python3 -m http.server 8080
+          ```
+
+          Затем откройте http://localhost:8080 — полная инструкция в `HOW_TO_RUN.md` внутри архива.
+          NOTES
+          gh release create "$TAG" \
+            --title "$TAG" \
+            --notes-file .temp/notes.md \
+            .temp/release/*.zip \
+            .temp/release/*.pdf
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-assets
+          path: .temp/release/*
+          retention-days: 90
+          if-no-files-found: error

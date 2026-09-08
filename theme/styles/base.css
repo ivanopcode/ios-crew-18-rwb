@@ -1,0 +1,41 @@
+/* RWB tech theme — design tokens. Всё, чего нет здесь, наследуется из Slidev по умолчанию. */
+:root {
+  --rwb-bg: #0B0D12; --rwb-code: #121924; --rwb-node: #181D28; --rwb-hl: #20304A;
+  --rwb-txt: #EDEDF0; --rwb-sec: #A3A8B1; --rwb-dim: #4D525C; --rwb-rule: #2A2F3A;
+  /* бренд RWB: сирень — модель/веса, оранжевый — цена, лайм — проверка/успех; глубокий фиолетовый — только плашка */
+  --rwb-lilac: #BF97F1; --rwb-orange: #FE5F00; --rwb-lime: #94E330; --rwb-deep: #7F30E3;
+  /* функциональные, вне бренда */
+  --rwb-err: #E07A74; --rwb-ph: #D0A461; --rwb-fill-lilac: #2E2547; --rwb-fill-neutral: #262A33;
+}
+
+/* Базовая типографика для канваса 980×552 (1 px ≈ 1 pt нашей pptx-системы) */
+.slidev-layout {
+  background: var(--rwb-bg); color: var(--rwb-txt);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 19px; line-height: 1.35;
+  --uno: px-16 py-10;
+}
+.slidev-layout h1 { font-size: 30px; font-weight: 700; line-height: 1.15; margin: 0 0 18px 0; letter-spacing: -0.005em; }
+.slidev-layout h2 { font-size: 21px; font-weight: 700; margin: 0 0 8px 0; }
+.slidev-layout h3 { font-size: 17px; font-weight: 700; margin: 0 0 6px 0; color: var(--rwb-sec); }
+.slidev-layout p { margin: 0 0 12px 0; }
+.slidev-layout ul, .slidev-layout ol { margin: 0 0 12px 0; padding-left: 1.1em; }
+.slidev-layout li { margin: 0 0 8px 0; }
+.slidev-layout li::marker { color: var(--rwb-sec); }
+.slidev-layout strong { font-weight: 700; color: var(--rwb-txt); }
+.slidev-layout a { color: var(--rwb-lilac); text-decoration: none; border-bottom: 1px solid var(--rwb-rule); }
+.slidev-layout hr { border: 0; border-top: 1px solid var(--rwb-rule); margin: 14px 0; }
+.slidev-layout code:not(pre code) { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.92em; color: var(--rwb-txt); background: var(--rwb-code); padding: 0 0.3em; border-radius: 3px; }
+
+/* Таблицы — только как evidence: тонкие линейки, сиреневая шапка, без заливок */
+.slidev-layout table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 0 0 12px 0; }
+.slidev-layout th { text-align: left; color: var(--rwb-lilac); font-weight: 700; font-size: 13.5px; padding: 6px 8px; border-bottom: 1px solid var(--rwb-rule); }
+.slidev-layout td { padding: 6px 8px; border-bottom: 1px solid var(--rwb-rule); vertical-align: middle; }
+.slidev-layout tr:last-child td { border-bottom: 0; }
+
+/* Вторичный текст и служебные классы */
+.slidev-layout .sec { color: var(--rwb-sec); } .slidev-layout .dim { color: var(--rwb-dim); }
+.slidev-layout .lilac { color: var(--rwb-lilac); } .slidev-layout .orange { color: var(--rwb-orange); }
+.slidev-layout .lime { color: var(--rwb-lime); } .slidev-layout .err { color: var(--rwb-err); }
+.slidev-layout .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+.slidev-layout .small { font-size: 15px; } .slidev-layout .lead { font-size: 21px; }
+.slidev-layout .rule { border-top: 1px solid var(--rwb-rule); margin: 14px 0; }
