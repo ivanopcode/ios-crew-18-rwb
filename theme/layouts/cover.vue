@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ event?: string, who?: string, role?: string, contacts?: string, logo?: boolean, motif?: 'arrow' | 'check' | 'plus' | 'none' }>()
+withDefaults(defineProps<{ event?: string, who?: string, role?: string, contacts?: string, logo?: boolean, motif?: 'arrow' | 'check' | 'plus' | 'none' }>(), { logo: true })
 </script>
 <template>
   <div class="slidev-layout rwb-cover">

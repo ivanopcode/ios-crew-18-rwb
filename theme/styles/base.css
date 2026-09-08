@@ -9,7 +9,11 @@
 }
 
 /* Базовая типографика для канваса 980×552 (1 px ≈ 1 pt нашей pptx-системы) */
+/* Без базовой темы Slidev высоту раскладке никто не задаёт: без height фон
+   обрывается по контенту и снизу проступает дефолтный тёмно-серый. */
+.slidev-page, .slidev-layout { background: var(--rwb-bg); }
 .slidev-layout {
+  height: 100%; box-sizing: border-box;
   background: var(--rwb-bg); color: var(--rwb-txt);
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 19px; line-height: 1.35;
   --uno: px-16 py-10;
