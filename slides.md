@@ -741,12 +741,12 @@ tag: '03 · КАК ЗАПУСТИТЬ И НЕ ОБМАНУТЬСЯ'
 
 # Запускаем: llama.cpp и Pi — три вставки
 
-<div class="grid gap-x-6" style="grid-template-columns: 1.15fr 1fr">
-<div>
+<div class="grid gap-x-5" style="grid-template-columns: 1fr 1fr">
+<div style="min-width: 0">
 
 ```bash
 brew install cmake && \
-git clone https://github.com/ggml-org/llama.cpp.git && \
+git clone https://github.com/ggml-org/llama.cpp && \
 cd llama.cpp && cmake -B build -DGGML_METAL=ON && \
 cmake --build build -j 4 --target llama-server
 ```
@@ -756,17 +756,23 @@ cmake --build build -j 4 --target llama-server
   -hf unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_M --no-mmproj \
   --alias qwen-local --host 127.0.0.1 --port 8080 \
   -c 8192 -np 1 --no-kv-unified --cache-ram 0 \
-  --jinja --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0
+  --jinja --reasoning on --reasoning-format deepseek \
+  --reasoning-preserve --reasoning-budget -1 \
+  --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0
 ```
 
 </div>
-<div>
+<div style="min-width: 0">
 
 ```json
 { "providers": { "llama-local": {
     "baseUrl": "http://127.0.0.1:8080/v1",
-    "api": "openai-completions",
-    "apiKey": "local",
+    "api": "openai-completions", "apiKey": "local",
+    "compat": {
+      "supportsReasoningEffort": true,
+      "thinkingFormat": "reasoning_effort",
+      "supportsDeveloperRole": false,
+      "maxTokensField": "max_tokens" },
     "models": [{
       "id": "qwen-local",
       "name": "Qwen3.8-27B UD-Q4_K_M",
@@ -776,13 +782,15 @@ cmake --build build -j 4 --target llama-server
 } } }
 ```
 
-<p class="small sec">→ <code>~/.pi/agent/models.json</code>. Ключ любой непустой — сервер на loopback без авторизации. На 64–128 GB: <code>-c 65536 -np 4</code>, четыре слота по 16K.</p>
+<p class="small sec">→ <code>~/.pi/agent/models.json</code>. Ключ любой непустой. Рассуждения: сервер отдаёт их в <code>reasoning_content</code> и сохраняет между ходами; Pi передаёт <code>reasoning_effort</code>. На 64–128 GB: <code>-c 65536 -np 4</code>.</p>
 
 </div>
 </div>
 
 <!--
 Три блока, каждый копируется и вставляется целиком. Первый собирает движок под Metal — команды связаны через && и выполнятся по очереди. Второй поднимает сервер: веса скачаются при первом запуске, так что это надо сделать до демо; один контекст на 8K — стартовый профиль для машины с ограниченной памятью, на 64–128 гигабайтах даём четыре слота по 16K. Третий — конфиг Pi: провайдер на localhost, ключ любой непустой, лимит контекста на сессию по профилю сервера.
+
+Про рассуждения. На сервере: --reasoning on включает thinking-режим Qwen; --reasoning-format deepseek выносит рассуждения в отдельное поле reasoning_content, чтобы агентская среда не считала их ответом; --reasoning-preserve сохраняет цепочку рассуждений между ходами — иначе шаблон выкидывает предыдущее thinking, и модель на каждом вызове инструмента думает заново: это и время, и повторный prefill; --reasoning-budget -1 — без лимита на рассуждения. В Pi: thinkingFormat reasoning_effort — среда передаёт reasoning_effort в запросе, и его можно менять по задаче; supportsDeveloperRole false — llama.cpp ждёт system, не developer.
 
 Проверяем: /health отдаёт 200. Запускаем pi, выбираем qwen-local — и переходим к первому демо.
 -->

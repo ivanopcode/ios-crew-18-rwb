@@ -29,6 +29,16 @@ final run. Slide numbers refer to the current `slides.md`.
   model of any size 22 in 04.25 and 54 now, gap 13 → 3–6). Index versions change
   between releases; re-check the numbers the week of the talk.
 
+- **Reasoning preserve on Qwen3.8.** The server line passes `--reasoning on
+  --reasoning-format deepseek --reasoning-preserve --reasoning-budget -1`.
+  `--reasoning-preserve` only works when the GGUF chat template declares
+  `supports_preserve_reasoning`; check the llama-server startup log on the pinned
+  engine commit and confirm `reasoning_content` comes back in multi-turn tool calls.
+- **Pi compat block.** `compat.thinkingFormat: "reasoning_effort"`,
+  `supportsReasoningEffort: true`, `supportsDeveloperRole: false`,
+  `maxTokensField: "max_tokens"` — from pi's docs/models.md; verify the installed pi
+  version honours them and that `reasoning_effort` shows up in the server log.
+
 ## Needs a decision
 
 - **Token-burn meme.** Embed the "how fast tokens go" meme or just reference it? Not in
