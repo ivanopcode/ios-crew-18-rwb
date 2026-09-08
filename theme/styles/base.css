@@ -18,7 +18,9 @@
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 19px; line-height: 1.35;
   --uno: px-16 py-10;
 }
-.slidev-layout h1 { font-size: 30px; font-weight: 700; line-height: 1.15; margin: 0 0 18px 0; letter-spacing: -0.005em; }
+.slidev-layout h1 { font-size: 28px; font-weight: 700; line-height: 1.15; margin: 0 0 18px 0; letter-spacing: -0.005em; text-wrap: balance; }
+/* Без висячих одиночных слов в последней строке абзаца */
+.slidev-layout p, .slidev-layout li { text-wrap: pretty; }
 .slidev-layout h2 { font-size: 21px; font-weight: 700; margin: 0 0 8px 0; }
 .slidev-layout h3 { font-size: 17px; font-weight: 700; margin: 0 0 6px 0; color: var(--rwb-sec); }
 .slidev-layout p { margin: 0 0 12px 0; }

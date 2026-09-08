@@ -14,6 +14,6 @@ defineProps<{ tag?: string, question?: string, expect?: string, where?: string, 
       </div>
       <div class="cfg"><slot /></div>
     </div>
-    <SourceNote :text="source || 'Запись ≤ 90 секунд до checkpoint · таймстемпы реальные · ускорение подписано в кадре'" />
+    <SourceNote v-if="source" :text="source" />
   </div>
 </template>

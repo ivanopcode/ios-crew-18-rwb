@@ -8,8 +8,9 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Context size per agent.** The memory slides show weights at 16.5 GB and contexts as
   relative bars. Measure the actual KV size for Qwen3.8-27B at 8K / 16K / 64K from the
   `llama-server` startup log and put the numbers on the slide.
-- **Aggregate throughput.** "10 t/s single session, ~100 t/s across ten contexts" is an
-  estimate. Measure on the demo machine with `-np 4` and `-np 8` and replace.
+- **Aggregate throughput.** "10 t/s single session, ~35 t/s across eight contexts (×3–4)"
+  is an estimate from memory-bandwidth-bound decode. Measure on the demo machine with
+  `-np 4` and `-np 8` and replace.
 - **Quantization sizes.** Only UD-Q4_K_M (16.5 GB) and UD-Q6_K (22 GB) are published;
   BF16 / Q8_0 / Q3 / Q2 sizes are derived from bit width. Check against the unsloth
   repo before the talk.
@@ -20,16 +21,27 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Admin rights.** Check whether building llama.cpp and downloading the Qwen GGUF
   require administrator rights on a corporate Mac (Homebrew, network policy).
 
+- **Pi `models.json`.** The provider block on the "Подключаем агентскую среду" slide is
+  written from memory of pi-coding-agent's format (`providers.<name>.{baseUrl, api,
+  apiKey, models[]}`). Verify against the installed pi version before the demo.
+- **Intelligence Index chart.** Scores come from artificialanalysis.ai on 2026-09-09
+  (Qwen3.8-27B 34, Muse Glimmer 18, Mistral Medium 3.5 15, gpt-oss-120b 12; best open
+  model of any size 22 in 04.25 and 54 now, gap 13 → 3–6). Index versions change
+  between releases; re-check the numbers the week of the talk.
+
 ## Needs a decision
 
 - **Token-burn meme.** Embed the "how fast tokens go" meme or just reference it? Not in
   the deck now.
 - **"Junior → middle inference engineer" line.** Currently only in speaker notes for the
   "loops are a bug" slide. Keep, soften, or drop.
-- **Relux code sample.** The slide shows a simplified schema (closed action enum,
-  exhaustive switch). Replace with real swift-relux API, or keep the schema and say so.
+- **Relux code sample.** Now three click-swapped blocks condensed from relux-sample
+  (`Notes.Business.Effect/Action`, `Notes.Business.State`, `Notes.Module`). Check the
+  condensation reads right to a Relux user.
 - **Demo 4 scope.** Project from scratch with a cloud orchestrator is marked as an
   experiment. Decide whether to record it or show a table of expected measurements.
 - **Bazel.** Mentioned "with an asterisk" — leave as a spoken aside or cut.
-- **Deck length.** 45 slides including 4 section openers and 4 demo bumpers. Confirm it
-  fits the slot with demo recordings.
+- **Deck length.** 49 slides including 4 section openers and 4 demo bumpers. Confirm it
+  fits the slot with live demos.
+- **Slide transitions.** Disabled (`transition: none`) for rehearsal; only in-slide
+  clicks animate. Decide whether to re-enable a cut/fade for the talk.
