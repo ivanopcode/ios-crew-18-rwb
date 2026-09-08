@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ num?: string, sub?: string, motif?: 'arrow' | 'check' | 'plus' | 'none' }>()
+defineProps<{ num?: string, sub?: string, motif?: 'arrow' | 'check' | 'plus' | 'cross' | 'tick' | 'smile' | 'none' }>()
 </script>
 <template>
   <div class="slidev-layout rwb-section">
