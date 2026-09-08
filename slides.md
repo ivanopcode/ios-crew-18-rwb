@@ -735,19 +735,19 @@ tag: '03 · КАК ЗАПУСТИТЬ И НЕ ОБМАНУТЬСЯ'
 -->
 
 ---
-layout: code-side
+layout: default
 tag: '03 · КАК ЗАПУСТИТЬ И НЕ ОБМАНУТЬСЯ'
 ---
 
-::title::
-# Запускаем: llama.cpp с нуля
+# Запускаем: llama.cpp и Pi — три вставки
 
-::default::
+<div class="grid gap-x-6" style="grid-template-columns: 1.15fr 1fr">
+<div>
+
 ```bash
 brew install cmake && \
 git clone https://github.com/ggml-org/llama.cpp.git && \
-cd llama.cpp && \
-cmake -B build -DGGML_METAL=ON && \
+cd llama.cpp && cmake -B build -DGGML_METAL=ON && \
 cmake --build build -j 4 --target llama-server
 ```
 
@@ -759,62 +759,32 @@ cmake --build build -j 4 --target llama-server
   --jinja --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0
 ```
 
-::side::
-## Два блока — две вставки
+</div>
+<div>
 
-- Первый собирает движок под Metal
-- Второй поднимает сервер; веса скачаются при первом запуске
-- `-c 8192 -np 1` — один контекст на 8K для машины с ограниченной памятью
-- На 64–128 GB: `-c 65536 -np 4` — четыре слота по 16K
-- `--jinja` — chat template из GGUF
-
-<!--
-Два блока, каждый копируется и вставляется в терминал целиком — команды связаны через && и выполнятся по очереди.
-
-Первый собирает движок под Metal. Второй поднимает сервер: веса скачаются при первом запуске, так что это надо сделать до демо. Один контекст на 8K — стартовый профиль для машины с ограниченной памятью. На 64–128 гигабайтах даём четыре слота по 16K. Jinja — chat template берётся из GGUF. Сэмплинг — рекомендация Qwen для режима с рассуждениями.
-
-Проверяем: /health отдаёт 200, короткий ответ через chat completions приходит. Дальше — агентская среда.
--->
-
----
-layout: code-side
-tag: '03 · КАК ЗАПУСТИТЬ И НЕ ОБМАНУТЬСЯ'
----
-
-::title::
-# Подключаем агентскую среду: Pi
-
-::default::
 ```json
-{
-  "providers": {
-    "llama-local": {
-      "baseUrl": "http://127.0.0.1:8080/v1",
-      "api": "openai-completions",
-      "apiKey": "local",
-      "models": [{
-        "id": "qwen-local",
-        "name": "Qwen3.8-27B UD-Q4_K_M",
-        "reasoning": true,
-        "input": ["text"],
-        "contextWindow": 8192,
-        "maxTokens": 2048
-      }]
-    }
-  }
-}
+{ "providers": { "llama-local": {
+    "baseUrl": "http://127.0.0.1:8080/v1",
+    "api": "openai-completions",
+    "apiKey": "local",
+    "models": [{
+      "id": "qwen-local",
+      "name": "Qwen3.8-27B UD-Q4_K_M",
+      "reasoning": true, "input": ["text"],
+      "contextWindow": 8192, "maxTokens": 2048
+    }]
+} } }
 ```
 
-::side::
-## `~/.pi/agent/models.json`
+<p class="small sec">→ <code>~/.pi/agent/models.json</code>. Ключ любой непустой — сервер на loopback без авторизации. На 64–128 GB: <code>-c 65536 -np 4</code>, четыре слота по 16K.</p>
 
-- Провайдер — совместимый chat completions на localhost
-- Ключ любой непустой: сервер на loopback без авторизации
-- `contextWindow` — на одну сессию, по профилю: 8 192 или 16 384
-- Дальше: `pi`, выбираем `qwen-local`, здороваемся
+</div>
+</div>
 
 <!--
-Конфиг агентской среды. Я использую Pi. Провайдер — совместимый chat completions на localhost, ключ любой непустой, потому что сервер на loopback без авторизации. Лимит контекста — на одну сессию, по профилю сервера. Запускаем pi, выбираем qwen-local — и переходим к первому демо.
+Три блока, каждый копируется и вставляется целиком. Первый собирает движок под Metal — команды связаны через && и выполнятся по очереди. Второй поднимает сервер: веса скачаются при первом запуске, так что это надо сделать до демо; один контекст на 8K — стартовый профиль для машины с ограниченной памятью, на 64–128 гигабайтах даём четыре слота по 16K. Третий — конфиг Pi: провайдер на localhost, ключ любой непустой, лимит контекста на сессию по профилю сервера.
+
+Проверяем: /health отдаёт 200. Запускаем pi, выбираем qwen-local — и переходим к первому демо.
 -->
 
 ---
@@ -1153,10 +1123,10 @@ tag: '04 · ГРАФ ЗАДАЧ'
 
 <svg width="852" height="236" viewBox="0 0 852 236" aria-hidden="true">
   <defs><marker id="arr-graph" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--rwb-sec)" /></marker></defs>
-  <rect x="0" y="90" width="150" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="75" y="114" text-anchor="middle" fill="var(--rwb-txt)">Epic</text>
-  <text x="75" y="132" text-anchor="middle" fill="var(--rwb-sec)">закрепление заметок</text>
-  <line x1="150" y1="118" x2="196" y2="118" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-graph)" />
+  <rect x="0" y="90" width="172" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
+  <text x="86" y="114" text-anchor="middle" fill="var(--rwb-txt)">Epic</text>
+  <text x="86" y="132" text-anchor="middle" fill="var(--rwb-sec)">закрепление заметок</text>
+  <line x1="172" y1="118" x2="196" y2="118" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-graph)" />
   <rect x="200" y="74" width="176" height="88" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
   <text x="288" y="98" text-anchor="middle" fill="var(--rwb-txt)">Контракт</text>
   <text x="288" y="118" text-anchor="middle" fill="var(--rwb-sec)">isPinned · действие</text>
@@ -1189,56 +1159,49 @@ layout: default
 tag: '04 · ГРАФ ЗАДАЧ'
 ---
 
-# Фича как граф: реальный эпик
+# Фича как граф: реальный пример
 
-<svg width="852" height="270" viewBox="0 0 852 270" aria-hidden="true">
-  <defs><marker id="arr-real" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--rwb-sec)" /></marker></defs>
-  <rect x="0" y="0" width="150" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="75" y="27" text-anchor="middle" fill="var(--rwb-txt)">threat model</text>
-  <rect x="0" y="64" width="150" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="75" y="91" text-anchor="middle" fill="var(--rwb-txt)">schema v6</text>
-  <rect x="0" y="180" width="150" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="75" y="207" text-anchor="middle" fill="var(--rwb-txt)">schema v7</text>
-  <line x1="75" y1="44" x2="75" y2="60" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <line x1="75" y1="108" x2="75" y2="176" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <rect x="210" y="34" width="160" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="290" y="61" text-anchor="middle" fill="var(--rwb-txt)">Go driver · Curator</text>
-  <rect x="210" y="94" width="160" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="290" y="121" text-anchor="middle" fill="var(--rwb-txt)">Go driver · csk</text>
-  <path d="M150,86 L180,86 L180,56 L206,56" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <path d="M150,86 L180,86 L180,116 L206,116" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <rect x="430" y="64" width="160" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="510" y="91" text-anchor="middle" fill="var(--rwb-txt)">interop v6</text>
-  <path d="M370,56 L400,56 L400,86 L426,86" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <path d="M370,116 L400,116 L400,86 L426,86" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <rect x="210" y="150" width="160" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="290" y="177" text-anchor="middle" fill="var(--rwb-txt)">ext repos · Curator</text>
-  <rect x="210" y="210" width="160" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="290" y="237" text-anchor="middle" fill="var(--rwb-txt)">ext repos · csk</text>
-  <path d="M150,202 L180,202 L180,172 L206,172" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <path d="M150,202 L180,202 L180,232 L206,232" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <line x1="510" y1="108" x2="510" y2="176" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <rect x="430" y="180" width="160" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="510" y="207" text-anchor="middle" fill="var(--rwb-txt)">interop v7</text>
-  <path d="M370,172 L400,172 L400,202 L426,202" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <path d="M370,232 L400,232 L400,202 L426,202" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <rect x="650" y="180" width="202" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="751" y="207" text-anchor="middle" fill="var(--rwb-txt)">Linux validation</text>
-  <line x1="590" y1="202" x2="646" y2="202" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <rect x="650" y="0" width="202" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="751" y="27" text-anchor="middle" fill="var(--rwb-txt)">language driver protocol</text>
-  <rect x="650" y="64" width="202" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="751" y="91" text-anchor="middle" fill="var(--rwb-txt)">Swift · Rust · Kotlin drivers</text>
-  <line x1="751" y1="44" x2="751" y2="60" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-real)" />
-  <text x="0" y="262" fill="var(--rwb-lime)">■</text><text x="20" y="262" fill="var(--rwb-sec)">готово</text>
-  <text x="90" y="262" fill="var(--rwb-lilac)">■</text><text x="110" y="262" fill="var(--rwb-sec)">в работе</text>
-  <text x="196" y="262" fill="var(--rwb-dim)">■</text><text x="216" y="262" fill="var(--rwb-sec)">ждёт</text>
+<svg width="852" height="250" viewBox="0 0 852 250" aria-hidden="true">
+  <defs><marker id="arr-hg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--rwb-sec)" /></marker></defs>
+  <rect x="0" y="96" width="176" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
+  <text x="88" y="120" text-anchor="middle" fill="var(--rwb-txt)">Ход соперника</text>
+  <text x="88" y="138" text-anchor="middle" fill="var(--rwb-sec)">story · SharePlay</text>
+  <path d="M176,110 L206,110 L206,22 L236,22" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
+  <path d="M176,118 L206,118 L206,80 L236,80" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
+  <path d="M176,126 L206,126 L206,138 L236,138" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
+  <path d="M176,134 L206,134 L206,196 L236,196" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
+  <rect x="240" y="0" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
+  <text x="340" y="27" text-anchor="middle" fill="var(--rwb-txt)">автозум на ход соперника</text>
+  <rect x="240" y="58" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
+  <text x="340" y="85" text-anchor="middle" fill="var(--rwb-txt)">баннер «соперник думает»</text>
+  <rect x="240" y="116" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
+  <text x="340" y="143" text-anchor="middle" fill="var(--rwb-txt)">скрыть чужие оверлеи</text>
+  <rect x="240" y="174" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
+  <text x="340" y="201" text-anchor="middle" fill="var(--rwb-txt)">разобрать заикание зума</text>
+  <line x1="440" y1="22" x2="486" y2="22" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
+  <rect x="490" y="0" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" stroke-dasharray="5 4" />
+  <text x="590" y="27" text-anchor="middle" fill="var(--rwb-txt)">лист мипла после зума</text>
+  <line x1="440" y1="80" x2="486" y2="80" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
+  <rect x="490" y="58" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" stroke-dasharray="5 4" />
+  <text x="590" y="85" text-anchor="middle" fill="var(--rwb-txt)">длительность баннера</text>
+  <line x1="440" y1="196" x2="486" y2="196" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
+  <rect x="490" y="174" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" stroke-dasharray="5 4" />
+  <text x="590" y="201" text-anchor="middle" fill="var(--rwb-txt)">дешевле кадр канваса</text>
+  <path d="M690,22 L720,22 L720,110 L746,110" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
+  <path d="M690,80 L720,80 L720,110" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" />
+  <path d="M690,196 L720,196 L720,110" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" />
+  <path d="M440,138 L720,138 L720,110" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" />
+  <rect x="750" y="88" width="102" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" stroke-dasharray="5 4" />
+  <text x="801" y="115" text-anchor="middle" fill="var(--rwb-txt)">приёмка</text>
+  <text x="0" y="244" fill="var(--rwb-lime)">■</text><text x="20" y="244" fill="var(--rwb-sec)">готово</text>
+  <text x="90" y="244" fill="var(--rwb-lilac)">■</text><text x="110" y="244" fill="var(--rwb-sec)">в работе</text>
+  <text x="196" y="244" fill="var(--rwb-dim)">■</text><text x="216" y="244" fill="var(--rwb-sec)">ждёт</text>
 </svg>
 
-<p class="sec">Эпик из реального task-board: 14 историй, две независимые реализации одного протокола, интеграционные узлы ждут обе. Оркестратор видит, что можно запускать прямо сейчас — и на каком слоте.</p>
+<p class="sec">История «ход соперника» из моего pet-проекта Hunter Gatherers: четыре задачи можно запускать сразу и параллельно, три ждут своих предшественников, приёмка ждёт всех. Оркестратор видит это без человека.</p>
 
 <!--
-А так выглядит граф реального эпика с моего task-board — «декларативные компилируемые сборки» в инфраструктуре skills. Четырнадцать историй. Слева — модель угроз и две версии схемы протокола. Дальше — две независимые реализации одного протокола, на Go и на Python, они идут параллельно. Интеграционные узлы ждут обе. Справа — протокол для новых языков и драйверы под Swift, Rust, Kotlin, которые ждут его.
+А так выглядит реальная история из моего pet-проекта — настольная игра Hunter Gatherers с мультиплеером через SharePlay. История «ход соперника»: четыре задачи независимы и стартуют сразу, параллельно — на четырёх слотах. Три задачи ждут предшественников: лист мипла — после автозума, длительность баннера — после самого баннера, удешевление кадра — после того, как разобрано заикание зума. Приёмка ждёт всех.
 
 Зелёное готово, сиреневое в работе, пунктирное ждёт. Оркестратор в каждый момент видит, какие узлы можно запускать прямо сейчас и сколько слотов для этого нужно. Это и есть та самая «программа по разработке программ».
 -->
@@ -1328,7 +1291,9 @@ motif: smile
 
 # Спасибо
 
-<p class="lead">Одна модель на своём Mac, один полный инструментальный цикл, одна задача с критерием принятия. Дальше станет понятно, что ограничивает — и это будет ваша следующая задача.</p>
+<p class="lead">Одна модель на своём Mac, один полный цикл, одна задача с критерием принятия. Дальше станет понятно, что ограничивает.</p>
+
+<p class="sec small">До встречи в сезоне Podlodka AI Crew с 12 октября — там про оркестраторы и рои.</p>
 
 <!--
 Первый шаг доступен сегодня: одна модель на своём Mac, один полный инструментальный цикл, одна задача с критерием принятия. После неё станет понятно, что ограничивает результат — знания о проекте, качество модели, память, скорость или постановка. И это будет ваша следующая инженерная задача.

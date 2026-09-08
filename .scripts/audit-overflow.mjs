@@ -52,10 +52,24 @@ for (let n = 1; n <= total; n++) {
       contentBottom = Math.max(contentBottom, (b.bottom - L.top) / scale)
       widest = Math.max(widest, (b.right - L.left) / scale)
     }
+    // Text that does not fit its frame: Boxes/Stack cells and SVG labels inside rects
+    const tight = []
+    for (const el of lay.querySelectorAll('.rwb-boxes .box, .rwb-stack .label, .rwb-stack .desc')) {
+      if (el.scrollWidth > el.clientWidth + 1) tight.push('box:' + el.textContent.trim().slice(0, 30))
+    }
+    for (const svg of lay.querySelectorAll('svg')) {
+      const rects = [...svg.querySelectorAll('rect')].map(r => ({ x: +r.getAttribute('x'), y: +r.getAttribute('y'), w: +r.getAttribute('width'), h: +r.getAttribute('height') }))
+      for (const tx of svg.querySelectorAll('text')) {
+        let bb; try { bb = tx.getBBox() } catch { continue }
+        const cx = bb.x + bb.width / 2, cy = bb.y + bb.height / 2
+        const host = rects.find(r => cx >= r.x && cx <= r.x + r.w && cy >= r.y && cy <= r.y + r.h && r.w > 0)
+        if (host && bb.width > host.w - 6) tight.push('svg:' + tx.textContent.trim().slice(0, 30))
+      }
+    }
     const hasSource = !!lay.querySelector('.rwb-source')
     const h1 = lay.querySelector('h1')?.textContent?.trim() || lay.querySelector('.statement')?.textContent?.trim().slice(0, 60) || ''
     const layoutName = [...lay.classList].find(c => c.startsWith('rwb-')) || ''
-    return { contentBottom: Math.round(contentBottom), widest: Math.round(widest), hasSource, h1, layoutName }
+    return { contentBottom: Math.round(contentBottom), widest: Math.round(widest), hasSource, h1, layoutName, tight }
   })
   const limit = r?.hasSource ? 498 : 536
   const over = r ? r.contentBottom - limit : 0
@@ -65,7 +79,9 @@ for (let n = 1; n <= total; n++) {
 await browser.close()
 fs.writeFileSync(path.join(out, 'audit.json'), JSON.stringify({ total, errors, rows }, null, 2))
 const bad = rows.filter(r => r.overflow)
+const tightRows = rows.filter(r => r.tight && r.tight.length)
+for (const r of tightRows) console.log(`  #${String(r.n).padStart(2)} text does not fit: ${r.tight.join(' | ')}`)
 console.log(`slides: ${total} · overflowing: ${bad.length} · console errors: ${errors.length}`)
 for (const r of bad) console.log(`  #${String(r.n).padStart(2)} +${r.over}px ${r.layoutName.padEnd(14)} ${r.h1}`)
 for (const e of errors.slice(0, 5)) console.log('  ! ' + e.slice(0, 160))
-process.exit(bad.length || errors.length ? 1 : 0)
+process.exit(bad.length || errors.length || tightRows.length ? 1 : 0)
