@@ -1,0 +1,61 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  html:
+    name: Static HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build static SPA
+        run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: slides-html
+          path: dist/
+          retention-days: 90
+          if-no-files-found: error
+
+  pdf:
+    name: PDF export
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # Headless Chromium is only needed in CI, so it stays out of the lockfile.
+      - name: Install headless Chromium
+        run: npm install --no-save playwright-chromium
+
+      - name: Export PDF
+        run: npm run export
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: slides-pdf
+          path: .temp/export/*.pdf
+          retention-days: 90
+          if-no-files-found: error

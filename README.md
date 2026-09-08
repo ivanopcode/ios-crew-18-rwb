@@ -40,12 +40,58 @@ Overview of all slides: press `o`.
 
 ### Export prerequisites
 
-PDF/PPTX export renders through headless Chromium, which is **not** installed by default:
+PDF/PPTX export renders through headless Chromium, which is **not** in the lockfile:
 
 ```bash
-npm install -D playwright-chromium
+npm install --no-save playwright-chromium
 npm run export
 ```
+
+## Distribution
+
+`npm run build` produces a **fully static SPA** in `dist/` — `index.html`, `404.html`,
+`assets/*` and a Netlify `_redirects` file. Nothing server-side is required to show the
+deck; any static file host will do.
+
+Two constraints come with that:
+
+- **Asset paths are absolute** (`/assets/...`), so opening `dist/index.html` over `file://`
+  does not work. Serve it over HTTP: `npx serve dist`. Hosting under a subpath needs a
+  matching base: `npx slidev build --base /ios-crew-18-rwb/`.
+- **Client-side routing** drives `/1`, `/2`, `/presenter`, so the host must fall back to
+  `index.html` on unknown paths. `404.html` covers GitHub Pages, `_redirects` covers
+  Netlify; nginx/Caddy need a `try_files` rule.
+
+### CI
+
+[`.github/workflows/build.yml`](.github/workflows/build.yml) runs on every push to `main`,
+on pull requests and on demand. It publishes two workflow artifacts:
+
+| Artifact | Contents | Retention |
+| --- | --- | --- |
+| `slides-html` | `dist/` — the static SPA | 90 days |
+| `slides-pdf` | `ios-crew-18-rwb.pdf` | 90 days |
+
+Grab them from the run page, or via CLI:
+
+```bash
+gh run download --name slides-pdf
+gh run download --name slides-html && npx serve dist
+```
+
+This path works on a private repo on the Free plan — no public URL involved.
+
+### Public hosting
+
+[`.github/workflows/pages.yml`](.github/workflows/pages.yml) is wired for GitHub Pages but
+`workflow_dispatch`-only, because **Pages is unavailable for private repositories on the
+Free plan**. To use it: make the repo public (or move to Pro/Team), set
+*Settings → Pages → Source: GitHub Actions*, then run the workflow. It builds with
+`--base /<repo>/` so the assets resolve under the Pages subpath.
+
+For a private URL instead, point Cloudflare Pages / Netlify / Vercel at this repo — all
+three build private repos on their free tiers; Cloudflare Access can put the site behind
+auth without leaving the free plan.
 
 ## Authoring cheatsheet
 

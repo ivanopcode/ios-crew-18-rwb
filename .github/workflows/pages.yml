@@ -1,0 +1,47 @@
+# Manual-only: publishes the deck to GitHub Pages.
+#
+# GitHub Pages is not available for private repositories on the Free plan.
+# Make the repo public, or move to Pro/Team, then enable
+# Settings -> Pages -> Source: GitHub Actions and run this workflow.
+name: Deploy to Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # Pages serves the site from /<repo>/, so the asset base must match.
+      - name: Build static SPA
+        run: npx slidev build --base /${{ github.event.repository.name }}/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

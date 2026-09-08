@@ -1,6 +1,6 @@
 ---
 theme: seriph
-title: iOS Crew #18 & RWB
+title: 'iOS Crew #18 & RWB'
 info: |
   ## iOS Crew #18 & RWB
   Presentation as code — built with Slidev.
@@ -20,7 +20,7 @@ fonts:
   sans: Inter
   mono: JetBrains Mono
 seoMeta:
-  ogTitle: iOS Crew #18 & RWB
+  ogTitle: 'iOS Crew #18 & RWB'
 ---
 
 # iOS Crew #18 & RWB
