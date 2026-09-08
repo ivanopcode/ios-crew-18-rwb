@@ -29,6 +29,8 @@
 .slidev-layout.rwb-demo .cfg .k { color: var(--rwb-sec); font-family: 'JetBrains Mono', monospace; }
 
 .slidev-layout.rwb-end h1 { font-size: 40px; margin-top: 64px; }
+/* Справа сверху стоит мотив (~130 px): текст не должен под него заходить */
+.slidev-layout.rwb-end h1, .slidev-layout.rwb-end p { max-width: 660px; }
 .slidev-layout.rwb-end .contacts { color: var(--rwb-sec); font-size: 17px; margin-top: 18px; }
 .slidev-layout.rwb-end .qrs { display: flex; gap: 40px; margin-top: 40px; }
 .slidev-layout.rwb-end .qr { width: 88px; height: 88px; border: 1px dashed var(--rwb-dim); border-radius: 4px; display: grid; place-items: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--rwb-ph); }

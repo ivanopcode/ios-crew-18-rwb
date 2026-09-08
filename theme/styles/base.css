@@ -43,3 +43,7 @@
 .slidev-layout .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 .slidev-layout .small { font-size: 15px; } .slidev-layout .lead { font-size: 21px; }
 .slidev-layout .rule { border-top: 1px solid var(--rwb-rule); margin: 14px 0; }
+
+/* Inline SVG диаграммы: подписи 13 px mono. Presentation-атрибуты здесь опасны:
+   UnoCSS attributify читает font-size="13" как утилиту и выдаёт 3.25rem. */
+.slidev-layout svg text { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; }

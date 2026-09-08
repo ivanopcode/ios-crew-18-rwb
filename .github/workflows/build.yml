@@ -62,3 +62,20 @@ jobs:
           path: .temp/export/*.pdf
           retention-days: 90
           if-no-files-found: error
+
+      # Every slide is rendered in Chromium and measured: flowing content
+      # must stay above the source line, and the console must be clean.
+      - name: Audit slide overflow
+        run: |
+          npm run build:offline
+          python3 -m http.server 8093 --directory .temp/dist-offline >/dev/null 2>&1 &
+          sleep 1
+          node .scripts/audit-overflow.mjs http://localhost:8093/ .temp/audit slides.md
+
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: slides-audit
+          path: .temp/audit/
+          retention-days: 30
+          if-no-files-found: ignore

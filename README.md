@@ -41,6 +41,7 @@ npm run dev:theme    # витрина всех раскладок темы
 | `npm run export` | PDF | `.temp/export/*.pdf` |
 | `npm run export:pptx` | PPTX (слайды картинками) | `.temp/export/*.pptx` |
 | `npm run notes` | заметки спикера отдельным PDF | `.temp/export/notes.pdf` |
+| `node .scripts/audit-overflow.mjs <url> .temp/audit slides.md` | рендер каждого слайда в Chromium: переполнение, ошибки консоли, скриншоты | `.temp/audit/` |
 
 Экспорт в PDF/PPTX требует headless Chromium, его нет в лок-файле:
 
@@ -61,6 +62,21 @@ title: iOS Crew #18 & RWB               # → обрезается на комм
 Такой дек соберётся без ошибок, но раскладка получит объект вместо текста, а тег
 просто не отрисуется. Значение с `: ` или ` #` внутри надо брать в кавычки.
 Проверка висит гейтом в обоих CI-воркфлоу; локально — `npm run lint`.
+
+## Аудит слайдов
+
+`.scripts/audit-overflow.mjs` открывает каждый слайд в headless Chromium в финальном
+состоянии кликов, меряет нижнюю границу текучего контента относительно строки источника
+и складывает скриншоты в `.temp/audit/`. Локально:
+
+```bash
+npm run build:offline
+python3 -m http.server 8093 --directory .temp/dist-offline &
+node .scripts/audit-overflow.mjs http://localhost:8093/ .temp/audit slides.md
+```
+
+Выход ненулевой, если хоть один слайд переполнен или в консоли есть ошибки. В CI это
+гейт в `build.yml`; скриншоты уезжают артефактом `slides-audit`.
 
 ## Сборка и раздача
 
