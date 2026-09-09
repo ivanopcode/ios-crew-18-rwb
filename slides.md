@@ -3,7 +3,7 @@ routerMode: hash
 theme: ./theme
 title: 'Интегрируем локальные LLM в рабочие процессы разработки'
 info: 'Podlodka iOS Crew #18 · 14.09.2026 · редакция 11'
-transition: none
+transition: fade
 layout: cover
 event: 'PODLODKA iOS CREW #18 · 14.09.2026'
 who: Иван Опарин
@@ -224,6 +224,7 @@ layout: section
 num: '01'
 sub: Термины и базовые понятия
 motif: check
+transition: slide-left
 ---
 
 # Что такое локальная LLM
@@ -293,6 +294,7 @@ layout: section
 num: '02'
 sub: Экономика, контроль и закрытые задачи
 motif: check
+transition: slide-left
 ---
 
 # Зачем локальные модели, если есть облачные
@@ -453,6 +455,7 @@ layout: section
 num: '03'
 sub: Слои под API, память, контексты, квантизация, скорость
 motif: check
+transition: slide-left
 ---
 
 # Как запустить и не обмануться
@@ -821,6 +824,7 @@ layout: section
 num: '04'
 sub: Скоуп, обвязки, архитектура с рельсами, графы
 motif: check
+transition: slide-left
 ---
 
 # Какие задачи отдавать локальной модели
