@@ -12,6 +12,7 @@ import sys
 import pathlib
 
 KEY_RE = re.compile(r'^([A-Za-z_][A-Za-z0-9_-]*):[ \t]+(.+?)[ \t]*$')
+ITEM_RE = re.compile(r'^[ \t]*-[ \t]+(.+?)[ \t]*$')
 BLOCK_START_RE = re.compile(r'^[A-Za-z_][A-Za-z0-9_-]*:')
 SPECIAL = set("'\"|>[{&*!%@")
 
@@ -34,9 +35,11 @@ def offenders(path):
             j += 1
         for k in range(i + 1, min(j, len(lines))):
             m = KEY_RE.match(lines[k])
-            if not m:
+            item = ITEM_RE.match(lines[k])
+            if not m and not item:
                 continue
-            value = m.group(2)
+            key = m.group(1) if m else '-'
+            value = m.group(2) if m else item.group(1)
             if value[0] in SPECIAL:
                 continue
             if ': ' in value:
@@ -47,7 +50,7 @@ def offenders(path):
                 reason = 'ends with ":" — parses as a mapping key'
             else:
                 continue
-            found.append((k + 1, m.group(1), value, reason))
+            found.append((k + 1, key, value, reason))
         i = j + 1
     return found
 

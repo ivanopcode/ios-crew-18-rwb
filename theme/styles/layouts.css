@@ -1,6 +1,7 @@
 /* Раскладки. Одна композиция на слайд, без построений. */
 .slidev-layout.rwb-cover h1 { font-size: 40px; margin-top: 96px; max-width: 24ch; }
-.slidev-layout.rwb-cover .who { margin-top: 28px; color: var(--rwb-sec); font-size: 19px; line-height: 1.3; }
+.slidev-layout.rwb-cover .who { margin-top: 28px; color: var(--rwb-sec); font-size: 19px; line-height: 1.45; }
+.slidev-layout.rwb-cover .who .name { color: var(--rwb-txt); }
 .slidev-layout.rwb-cover .contacts { position: absolute; left: 64px; bottom: 56px; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; color: var(--rwb-sec); }
 
 .slidev-layout.rwb-section { padding-left: 64px; }
