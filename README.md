@@ -44,6 +44,7 @@ npm run dev:theme    # витрина всех раскладок темы
 | `npm run export:pptx` | PPTX (слайды картинками) | `.temp/export/*.pptx` |
 | `npm run notes` | заметки спикера отдельным PDF | `.temp/export/notes.pdf` |
 | `node .scripts/audit-overflow.mjs <url> .temp/audit slides.md` | рендер каждого слайда в Chromium: переполнение, ошибки консоли, скриншоты | `.temp/audit/` |
+| `.scripts/check-recording.sh <файл>` | проверка записи демо: есть ли аудиодорожка и не тишина ли в ней | stdout |
 
 Экспорт в PDF/PPTX требует headless Chromium, его нет в лок-файле:
 
