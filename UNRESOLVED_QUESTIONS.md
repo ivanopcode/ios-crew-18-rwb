@@ -24,10 +24,17 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Pi `models.json`.** The provider block on the "Подключаем агентскую среду" slide is
   written from memory of pi-coding-agent's format (`providers.<name>.{baseUrl, api,
   apiKey, models[]}`). Verify against the installed pi version before the demo.
-- **Intelligence Index chart.** Scores come from artificialanalysis.ai on 2026-09-09
-  (Qwen3.8-27B 34, Muse Glimmer 18, Mistral Medium 3.5 15, gpt-oss-120b 12; best open
-  model of any size 22 in 04.25 and 54 now, gap 13 → 3–6). Index versions change
-  between releases; re-check the numbers the week of the talk.
+- **Intelligence Index chart.** Live figures from artificialanalysis.ai on 2026-09-09:
+  Qwen3.8-27B 34 (dense 27B), Muse Glimmer 18 (dense 30B), gpt-oss-120b 12 (MoE
+  117B/5.1B), GLM-5.3 45 (MoE 753B/40B), Claude Fable 5.1 and GPT-6 Astra 53. An
+  earlier Artificial Analysis article gave 54 for the best open model and a 3–6 point
+  gap — a different index version. Index versions change between releases; re-check
+  the week of the talk and keep one version throughout.
+- **Year-of-work calculation.** ~100 t/s aggregate on M5 Max 64 GB is extrapolated from
+  a published ~30 t/s single-stream figure for a 27B Q4 model (llmcheck.net) times the
+  ×3–4 parallel-context multiplier; API prices $0.24/$0.90 per M from pricepertoken.com;
+  the 20:1 input-to-output ratio is an assumption about agentic loops. Measure the
+  throughput on the demo machine and check the ratio against a real session log.
 
 - **Reasoning preserve on Qwen3.8.** The server line passes `--reasoning on
   --reasoning-format deepseek --reasoning-preserve --reasoning-budget -1`.
@@ -56,7 +63,7 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Demo 4 scope.** Project from scratch with a cloud orchestrator is marked as an
   experiment. Decide whether to record it or show a table of expected measurements.
 - **Bazel.** Mentioned "with an asterisk" — leave as a spoken aside or cut.
-- **Deck length.** 49 slides including 4 section openers and 4 demo bumpers. Confirm it
+- **Deck length.** 50 slides including 4 section openers and 4 demo bumpers. Confirm it
   fits the slot with live demos.
 - **Slide transitions.** Disabled (`transition: none`) for rehearsal; only in-slide
   clicks animate. Decide whether to re-enable a cut/fade for the talk.
