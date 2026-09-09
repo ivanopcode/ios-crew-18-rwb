@@ -26,7 +26,9 @@ final run. Slide numbers refer to the current `slides.md`.
   apiKey, models[]}`). Verify against the installed pi version before the demo.
 - **Intelligence Index chart.** Live figures from artificialanalysis.ai on 2026-09-09:
   Qwen3.8-27B 34 (dense 27B), Muse Glimmer 18 (dense 30B), gpt-oss-120b 12 (MoE
-  117B/5.1B), GLM-5.3 45 (MoE 753B/40B), Claude Fable 5.1 and GPT-6 Astra 53. An
+  117B/5.1B), GLM-5.3 45 (MoE 753B/40B), Claude Opus 5 (max) 51 from its own model page, Claude
+  Fable 5.1 53. Opus 5 is quoted elsewhere at 59 / 61 / 63 and Fable 5.1 at 66 — those
+  are other index versions and effort tiers; do not mix them into this chart. An
   earlier Artificial Analysis article gave 54 for the best open model and a 3–6 point
   gap — a different index version. Index versions change between releases; re-check
   the week of the talk and keep one version throughout.

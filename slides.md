@@ -373,9 +373,9 @@ layout: default
 tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
 ---
 
-# 27B в Mac сильнее лучшей открытой модели год назад
+# То, что влезает в Mac, за год выросло почти втрое
 
-<svg width="852" height="214" viewBox="0 0 852 214" aria-hidden="true">
+<svg width="852" height="250" viewBox="0 0 852 250" aria-hidden="true">
   <text x="0" y="14" fill="var(--rwb-lilac)">ПОМЕЩАЕТСЯ В MAC</text>
   <text x="290" y="42" text-anchor="end" fill="var(--rwb-txt)">Qwen 3.8-27B · dense 27B</text>
   <rect x="310" y="24" width="321" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" />
@@ -386,17 +386,20 @@ tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
   <text x="290" y="110" text-anchor="end" fill="var(--rwb-sec)">gpt-oss-120b · MoE 117B / 5,1B</text>
   <rect x="310" y="92" width="113" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-orange)" stroke-width="1.25" stroke-dasharray="5 4" />
   <text x="433" y="110" fill="var(--rwb-orange)">12</text>
-  <text x="470" y="110" fill="var(--rwb-orange)">← лучшая открытая модель ровно год назад</text>
+  <text x="470" y="110" fill="var(--rwb-orange)">← лучшая открытая под Mac год назад</text>
   <text x="0" y="140" fill="var(--rwb-sec)">В MAC НЕ ПОМЕЩАЕТСЯ</text>
-  <text x="290" y="168" text-anchor="end" fill="var(--rwb-txt)">GLM-5.3 · MoE 753B / 40B</text>
+  <text x="290" y="168" text-anchor="end" fill="var(--rwb-txt)">GLM-5.3 · MoE 753B / 40B · открытая</text>
   <rect x="310" y="150" width="424" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.5" />
   <text x="744" y="168" fill="var(--rwb-lime)">45</text>
-  <text x="290" y="202" text-anchor="end" fill="var(--rwb-txt)">Fable 5.1 · GPT-6 Astra · закрытые</text>
-  <rect x="310" y="184" width="500" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.5" />
-  <text x="820" y="202" fill="var(--rwb-txt)">53</text>
+  <text x="290" y="202" text-anchor="end" fill="var(--rwb-txt)">Claude Opus 5 · закрытая</text>
+  <rect x="310" y="184" width="481" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" />
+  <text x="801" y="202" fill="var(--rwb-sec)">51</text>
+  <text x="290" y="236" text-anchor="end" fill="var(--rwb-txt)">Claude Fable 5.1 · закрытая</text>
+  <rect x="310" y="218" width="500" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-txt)" stroke-width="1.5" />
+  <text x="820" y="236" fill="var(--rwb-txt)">53</text>
 </svg>
 
-<p class="lead">Qwen 3.8-27B на вашем MacBook — <strong>34</strong>: почти втрое больше, чем у лучшей открытой модели ровно год назад.</p>
+<p class="lead">Qwen 3.8-27B на вашем MacBook — <strong>34</strong>: почти втрое больше, чем у лучшей открытой модели под Mac ровно год назад.</p>
 
 <p class="sec">До лучшей открытой сегодня — 11 пунктов, но это MoE на 753 миллиарда, в Mac она не поместится. До фронтира — 19. Artificial Analysis Intelligence Index, сентябрь 2026.</p>
 
