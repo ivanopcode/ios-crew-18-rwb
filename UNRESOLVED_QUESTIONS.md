@@ -35,8 +35,11 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Year-of-work calculation.** ~100 t/s aggregate on M5 Max 64 GB is extrapolated from
   a published ~30 t/s single-stream figure for a 27B Q4 model (llmcheck.net) times the
   ×3–4 parallel-context multiplier; API prices $0.24/$0.90 per M from pricepertoken.com;
-  the 20:1 input-to-output ratio is an assumption about agentic loops. Measure the
-  throughput on the demo machine and check the ratio against a real session log.
+  the 1 500-in / 500-out step shape and the 16K context are assumptions about agentic
+  loops. Hardware payback uses Mac Studio M5 Max at $2 699 ($2 499 for 36 GB plus $200
+  for 64 GB, apple.com); a MacBook Pro M5 Max starts at $3 599 and pays back in ~13
+  months instead of ~10. Measure throughput on the demo machine and check the step
+  shape against a real session log.
 
 - **Reasoning preserve on Qwen3.8.** The server line passes `--reasoning on
   --reasoning-format deepseek --reasoning-preserve --reasoning-budget -1`.
