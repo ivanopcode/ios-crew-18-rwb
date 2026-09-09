@@ -1048,32 +1048,44 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 <svg width="852" height="200" viewBox="0 0 852 200" aria-hidden="true">
   <defs><marker id="arr-relux" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--rwb-sec)" /></marker>
   <marker id="arr-saga" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--rwb-lime)" /></marker></defs>
-  <rect x="0" y="0" width="470" height="40" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="235" y="25" text-anchor="middle" fill="var(--rwb-txt)">Effect → Saga — сервисы и внешний мир, сюда входит энтропия</text>
-  <line x1="90" y1="40" x2="90" y2="56" stroke="var(--rwb-lime)" stroke-width="1.25" marker-end="url(#arr-saga)" />
-  <rect x="0" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="90" y="84" text-anchor="middle" fill="var(--rwb-txt)">Action</text>
-  <text x="90" y="102" text-anchor="middle" fill="var(--rwb-sec)">enum · закрытый набор</text>
-  <line x1="180" y1="88" x2="220" y2="88" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
-  <rect x="224" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="314" y="84" text-anchor="middle" fill="var(--rwb-txt)">Reducer</text>
-  <text x="314" y="102" text-anchor="middle" fill="var(--rwb-sec)">switch без default</text>
-  <line x1="404" y1="88" x2="444" y2="88" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
-  <rect x="448" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="538" y="84" text-anchor="middle" fill="var(--rwb-txt)">State</text>
-  <text x="538" y="102" text-anchor="middle" fill="var(--rwb-sec)">actor · один источник</text>
-  <line x1="628" y1="88" x2="668" y2="88" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
-  <rect x="672" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" />
-  <text x="762" y="84" text-anchor="middle" fill="var(--rwb-txt)">View</text>
-  <text x="762" y="102" text-anchor="middle" fill="var(--rwb-sec)">подписка на state</text>
-  <path d="M762,116 L762,160 L90,160 L90,120" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
-  <text x="426" y="186" text-anchor="middle" fill="var(--rwb-sec)">фичу нельзя добавить иначе, чем через effect + action + reducer + state</text>
+  <g v-click="1">
+    <rect x="0" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
+    <text x="90" y="84" text-anchor="middle" fill="var(--rwb-txt)">Action</text>
+    <text x="90" y="102" text-anchor="middle" fill="var(--rwb-sec)">enum · закрытый набор</text>
+  </g>
+  <g v-click="2">
+    <line x1="180" y1="88" x2="220" y2="88" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
+    <rect x="224" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
+    <text x="314" y="84" text-anchor="middle" fill="var(--rwb-txt)">Reducer</text>
+    <text x="314" y="102" text-anchor="middle" fill="var(--rwb-sec)">switch без default</text>
+  </g>
+  <g v-click="3">
+    <line x1="404" y1="88" x2="444" y2="88" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
+    <rect x="448" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
+    <text x="538" y="84" text-anchor="middle" fill="var(--rwb-txt)">State</text>
+    <text x="538" y="102" text-anchor="middle" fill="var(--rwb-sec)">actor · один источник</text>
+  </g>
+  <g v-click="4">
+    <line x1="628" y1="88" x2="668" y2="88" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
+    <rect x="672" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" />
+    <text x="762" y="84" text-anchor="middle" fill="var(--rwb-txt)">View</text>
+    <text x="762" y="102" text-anchor="middle" fill="var(--rwb-sec)">подписка на state</text>
+    <path d="M762,116 L762,160 L90,160 L90,120" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
+  </g>
+  <g v-click="5">
+    <rect x="0" y="0" width="470" height="40" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
+    <text x="235" y="25" text-anchor="middle" fill="var(--rwb-txt)">Effect → Saga — сервисы и внешний мир, сюда входит энтропия</text>
+    <line x1="90" y1="40" x2="90" y2="56" stroke="var(--rwb-lime)" stroke-width="1.25" marker-end="url(#arr-saga)" />
+    <text x="426" y="186" text-anchor="middle" fill="var(--rwb-sec)">фичу нельзя добавить иначе, чем через effect + action + reducer + state</text>
+  </g>
 </svg>
 
-<p class="lead">Compile-time рельсы: закрытый enum действий, исчерпывающий switch в редьюсере, состояние — actor и единственный источник. Узких мест, где можно ошибиться, — считаные единицы, и все известны заранее.</p>
+<p v-click="6" class="lead">Compile-time рельсы: закрытый enum действий, исчерпывающий switch в редьюсере, состояние — actor и единственный источник. Узких мест, где можно ошибиться, — считаные единицы, и все известны заранее.</p>
 
 <!--
-Схема Relux. Энтропия входит сверху: эффект — это намерение, его принимает сага в сервисном слое, ходит в сеть или в базу и уже по результату диспатчит действие. Действие — закрытый enum. Редьюсер — исчерпывающий switch без default, компилятор заставит обработать каждое. Состояние — actor, единственный источник, view на него подписан. Обратите внимание на порядок: сага стоит над действием, а не после редьюсера.
+Схема Relux, по кликам. Сначала цикл: действие, редьюсер, состояние, view — и обратно к действию. И только потом сверху приходит сага: энтропия входит именно оттуда.
+
+Энтропия входит сверху: эффект — это намерение, его принимает сага в сервисном слое, ходит в сеть или в базу и уже по результату диспатчит действие. Действие — закрытый enum. Редьюсер — исчерпывающий switch без default, компилятор заставит обработать каждое. Состояние — actor, единственный источник, view на него подписан. Обратите внимание на порядок: сага стоит над действием, а не после редьюсера.
 
 В итоге фичу нельзя добавить никак иначе, кроме как создав набор действий, свойства в состоянии, ветки редьюсера и реализацию эффекта. Узких мест, где можно ошибиться вне compile-time, — считаные единицы, и все известны заранее. Это архитектура, которая документирует себя на уровне кода, и у агента нет другого варианта, кроме как следовать ей.
 -->
