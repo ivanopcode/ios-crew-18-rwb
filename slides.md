@@ -204,10 +204,10 @@ tag: ПЛАН
 # Те же четыре вопроса ближе
 
 <div class="grid grid-cols-2 gap-x-10 gap-y-5 mt-2">
-<div><div class="mono lilac">01</div><h2 class="mt-1">Что</h2><ul class="small"><li>Открытые веса, локальный инференс, агент</li><li>Квантизация весов и латентного кэша</li><li>Зацикливание — симптом бага настройки</li></ul></div>
-<div><div class="mono lilac">02</div><h2 class="mt-1">Зачем</h2><ul class="small"><li>Токены дорожают, железо уже куплено</li><li>Понимание того, что скрыто за API</li><li>Задачи, которые нельзя отправить в облако</li></ul></div>
-<div><div class="mono lilac">03</div><h2 class="mt-1">Как</h2><ul class="small"><li>Слои под облачным API</li><li>Веса один раз, контексты — на каждого агента</li><li>Dense и MoE, скорость одной сессии и суммарная</li></ul></div>
-<div><div class="mono lilac">04</div><h2 class="mt-1">Задачи</h2><ul class="small"><li>Закрытый скоуп с проверкой против открытого</li><li>Обвязки: skills, MCP, Tuist вместо Xcode</li><li>Архитектура с compile-time рельсами, граф задач</li></ul></div>
+<div v-click="1"><div class="mono lilac">01</div><h2 class="mt-1">Что</h2><ul class="small"><li>Открытые веса, локальный инференс, агент</li><li>Квантизация весов и латентного кэша</li><li>Зацикливание — симптом бага настройки</li></ul></div>
+<div v-click="2"><div class="mono lilac">02</div><h2 class="mt-1">Зачем</h2><ul class="small"><li>Токены дорожают, железо уже куплено</li><li>Понимание того, что скрыто за API</li><li>Задачи, которые нельзя отправить в облако</li></ul></div>
+<div v-click="3"><div class="mono lilac">03</div><h2 class="mt-1">Как</h2><ul class="small"><li>Слои под облачным API</li><li>Веса один раз, контексты — на каждого агента</li><li>Dense и MoE, скорость одной сессии и суммарная</li></ul></div>
+<div v-click="4"><div class="mono lilac">04</div><h2 class="mt-1">Задачи</h2><ul class="small"><li>Закрытый скоуп с проверкой против открытого</li><li>Обвязки: skills, MCP, Tuist вместо Xcode</li><li>Архитектура с compile-time рельсами, граф задач</li></ul></div>
 </div>
 
 <!--
@@ -377,7 +377,7 @@ tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
 
 # 27B в Mac сильнее лучшей открытой модели прошлого года
 
-<svg width="852" height="210" viewBox="0 0 852 210" aria-hidden="true">
+<svg width="852" height="190" viewBox="0 0 852 190" aria-hidden="true">
   <text x="0" y="14" fill="var(--rwb-sec)">Artificial Analysis Intelligence Index, сентябрь 2026 · открытые модели до 128B</text>
   <rect x="0" y="30" width="544" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" />
   <text x="8" y="48" fill="var(--rwb-txt)">Qwen 3.8-27B · 27B</text>
@@ -392,9 +392,12 @@ tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
   <text x="8" y="150" fill="var(--rwb-txt)">gpt-oss-120b · 117B</text>
   <text x="204" y="150" fill="var(--rwb-sec)">12</text>
   <line x1="352" y1="26" x2="352" y2="164" stroke="var(--rwb-orange)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="360" y="178" fill="var(--rwb-orange)">22 — лучшая открытая модель любого размера в 04.25: DeepSeek V3, 671B</text>
-  <text x="0" y="204" fill="var(--rwb-sec)">лучшая открытая любого размера сегодня — 54; отставание от фронтира сжалось с 13 пунктов до 3–6</text>
+  <text x="360" y="180" fill="var(--rwb-orange)">22 — лучшая открытая модель год назад</text>
 </svg>
+
+<p class="lead">Оранжевая линия — 22 балла: столько набирала <strong>лучшая открытая модель любого размера год назад</strong>, DeepSeek V3 на 671B. То, что сегодня помещается в MacBook, обгоняет её в полтора раза.</p>
+
+<p class="sec">Сегодня лучшая открытая модель любого размера набирает 54 балла, и отставание от лучшей проприетарной сжалось с 13 пунктов до 3–6.</p>
 
 <!--
 Цифры Artificial Analysis на сентябрь. Среди открытых моделей до 128 миллиардов Qwen 3.8-27B — 34 балла. Muse Glimmer — 18, Mistral Medium 3.5 на 128 миллиардов — 15, gpt-oss на 117 — 12.
@@ -480,9 +483,7 @@ tag: '03 · КАК ЗАПУСТИТЬ И НЕ ОБМАНУТЬСЯ'
 ::right::
 ## <span class="lilac">Локально — весь стек</span>
 
-<div v-click>
-<Stack :layers="[['Агентская среда', 'та же обвязка', 'lilac'], ['Протокол', 'completions · responses · messages', 'lilac'], ['Движок', 'исполняет модель, управляет кэшем', 'lilac'], ['Латентный кэш', 'и его квантизация', 'lilac'], ['Веса', 'и их квантизация', 'lilac']]" />
-</div>
+<Stack reveal :layers="[['Агентская среда', 'та же обвязка', 'lilac'], ['Протокол', 'completions · responses · messages', 'lilac'], ['Движок', 'исполняет модель, управляет кэшем', 'lilac'], ['Латентный кэш', 'и его квантизация', 'lilac'], ['Веса', 'и их квантизация', 'lilac']]" />
 
 <!--
 Когда мы пользуемся облачной моделью, мы работаем на двух уровнях: агентская среда и обвязка вокруг неё — skills, MCP-серверы, промпты. Дальше API, и кажется, что на этом всё.
@@ -500,15 +501,21 @@ tag: '03 · КАК ЗАПУСТИТЬ И НЕ ОБМАНУТЬСЯ'
 # Что занимает память
 
 <svg width="852" height="96" viewBox="0 0 852 96" aria-hidden="true">
-  <rect x="0" y="8" width="440" height="60" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="220" y="35" text-anchor="middle" fill="var(--rwb-txt)">Веса модели · 16,5 GB</text>
-  <text x="220" y="54" text-anchor="middle" fill="var(--rwb-sec)">загружаются один раз</text>
-  <rect x="450" y="8" width="200" height="60" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="550" y="35" text-anchor="middle" fill="var(--rwb-txt)">Контекст агента</text>
-  <text x="550" y="54" text-anchor="middle" fill="var(--rwb-sec)">латентный кэш</text>
-  <rect x="660" y="8" width="192" height="60" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="756" y="35" text-anchor="middle" fill="var(--rwb-txt)">macOS · Xcode</text>
-  <text x="756" y="54" text-anchor="middle" fill="var(--rwb-sec)">симулятор</text>
+  <g v-click>
+    <rect x="0" y="8" width="440" height="60" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
+    <text x="220" y="35" text-anchor="middle" fill="var(--rwb-txt)">Веса модели · 16,5 GB</text>
+    <text x="220" y="54" text-anchor="middle" fill="var(--rwb-sec)">загружаются один раз</text>
+  </g>
+  <g v-click>
+    <rect x="450" y="8" width="200" height="60" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
+    <text x="550" y="35" text-anchor="middle" fill="var(--rwb-txt)">Контекст агента</text>
+    <text x="550" y="54" text-anchor="middle" fill="var(--rwb-sec)">латентный кэш</text>
+  </g>
+  <g v-click>
+    <rect x="660" y="8" width="192" height="60" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
+    <text x="756" y="35" text-anchor="middle" fill="var(--rwb-txt)">macOS · тулчейны</text>
+    <text x="756" y="54" text-anchor="middle" fill="var(--rwb-sec)">симулятор</text>
+  </g>
   <text x="0" y="92" fill="var(--rwb-sec)">Unified Memory: всё это должно поместиться, и ещё остаться место</text>
 </svg>
 
@@ -535,31 +542,36 @@ tag: '03 · КАК ЗАПУСТИТЬ И НЕ ОБМАНУТЬСЯ'
 
 # Веса один раз, контексты — на каждого агента
 
-<svg width="852" height="230" viewBox="0 0 852 230" aria-hidden="true">
-  <text x="0" y="14" fill="var(--rwb-sec)">32 GB</text>
-  <rect x="70" y="0" width="330" height="40" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="235" y="25" text-anchor="middle" fill="var(--rwb-txt)">веса 16,5 GB</text>
-  <rect x="406" y="0" width="70" height="40" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="441" y="25" text-anchor="middle" fill="var(--rwb-txt)">×1</text>
-  <rect x="482" y="0" width="180" height="40" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="572" y="25" text-anchor="middle" fill="var(--rwb-sec)">macOS · Xcode</text>
-  <text x="0" y="94" fill="var(--rwb-sec)">64 GB</text>
-  <rect x="70" y="80" width="330" height="40" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="235" y="105" text-anchor="middle" fill="var(--rwb-txt)">веса 16,5 GB</text>
-  <rect x="406" y="80" width="260" height="40" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="536" y="105" text-anchor="middle" fill="var(--rwb-txt)">контексты ×5…8</text>
-  <rect x="672" y="80" width="180" height="40" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="762" y="105" text-anchor="middle" fill="var(--rwb-sec)">macOS · Xcode</text>
-  <text x="0" y="174" fill="var(--rwb-sec)">128 GB</text>
-  <rect x="70" y="160" width="200" height="40" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="170" y="185" text-anchor="middle" fill="var(--rwb-txt)">веса 16,5 GB</text>
-  <rect x="276" y="160" width="440" height="40" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="496" y="185" text-anchor="middle" fill="var(--rwb-txt)">контексты ×10…20 — или одна огромная модель и ×1…2</text>
-  <rect x="722" y="160" width="130" height="40" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="787" y="185" text-anchor="middle" fill="var(--rwb-sec)">macOS</text>
+<svg width="852" height="216" viewBox="0 0 852 216" aria-hidden="true">
+  <text x="0" y="28" fill="var(--rwb-sec)">32 GB</text>
+  <rect x="70" y="0" width="98" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
+  <text x="119" y="28" text-anchor="middle" fill="var(--rwb-txt)">16,5 GB</text>
+  <rect x="168" y="0" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
+  <text x="190" y="28" text-anchor="middle" fill="var(--rwb-txt)">×1</text>
+  <rect x="212" y="0" width="48" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
+  <text x="0" y="92" fill="var(--rwb-sec)">64 GB</text>
+  <rect x="70" y="64" width="98" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
+  <text x="119" y="92" text-anchor="middle" fill="var(--rwb-txt)">16,5 GB</text>
+  <rect x="168" y="64" width="234" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
+  <text x="285" y="92" text-anchor="middle" fill="var(--rwb-txt)">×5…8</text>
+  <rect x="402" y="64" width="48" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
+  <text x="0" y="156" fill="var(--rwb-sec)">128 GB</text>
+  <rect x="70" y="128" width="98" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
+  <text x="119" y="156" text-anchor="middle" fill="var(--rwb-txt)">16,5 GB</text>
+  <rect x="168" y="128" width="614" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
+  <text x="475" y="156" text-anchor="middle" fill="var(--rwb-txt)">×10…20 — или одна огромная модель и ×1…2</text>
+  <rect x="782" y="128" width="48" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
+  <rect x="0" y="196" width="12" height="12" rx="2" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
+  <text x="20" y="206" fill="var(--rwb-sec)">веса 16,5 GB</text>
+  <rect x="134" y="196" width="12" height="12" rx="2" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
+  <text x="154" y="206" fill="var(--rwb-sec)">контексты агентов</text>
+  <rect x="307" y="196" width="12" height="12" rx="2" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="4 3" />
+  <text x="327" y="206" fill="var(--rwb-sec)">macOS + тулчейны</text>
 </svg>
 
-<p class="sec">Контекст — дорогая по резидентству в памяти сущность. Умножение контекстов требует значительно больше памяти, чем сами веса. Управление ими — терра инкогнита и открытое поле для инженера.</p>
+<p class="lead">Длина строки пропорциональна объёму памяти: 64 GB вдвое длиннее 32, 128 — вчетверо. Веса и место под систему одни и те же; растут только контексты.</p>
+
+<p class="sec">Контекст — дорогая по резидентству в памяти сущность. Управление контекстами — терра инкогнита и открытое поле для инженера.</p>
 
 <!--
 Считаем на трёх машинах. 32 гигабайта: веса 16,5, один полный контекст, и остаётся на macOS с Xcode. Этого достаточно, чтобы запустить модель — но это один агент.
@@ -632,18 +644,22 @@ tag: '03 · КАК ЗАПУСТИТЬ И НЕ ОБМАНУТЬСЯ'
 ::default::
 ## <span class="sec">Аудио</span>
 
-- Lossless — студийный мастер
-- 320 kbps — музыка, разницу ищут на дорогой аппаратуре
-- 128 kbps — фон в наушниках
-- 64 kbps — голос в аудиокниге, телефон
+<ul>
+<li v-click="1">Lossless — студийный мастер</li>
+<li v-click="2">320 kbps — музыка, разницу ищут на дорогой аппаратуре</li>
+<li v-click="3">128 kbps — фон в наушниках</li>
+<li v-click="4">64 kbps — голос в аудиокниге, телефон</li>
+</ul>
 
 ::right::
 ## <span class="lilac">Модель</span>
 
-- BF16 — заводское качество
-- Q8, Q6 — рабочая точность
-- Q4 — компромисс, который надо проверить
-- Q2, Q3 — «голос разборчив», но не музыка
+<ul>
+<li v-click="1">BF16 — заводское качество</li>
+<li v-click="2">Q8, Q6 — рабочая точность</li>
+<li v-click="3">Q4 — компромисс, который надо проверить</li>
+<li v-click="4">Q2, Q3 — «голос разборчив», но не музыка</li>
+</ul>
 
 ::bottom::
 <p class="lead">Цель — не максимальное качество и не минимальная память. Цель — равновесие: максимум результата на ваших задачах за минимум ресурса. Его находят тесты и eval'ы, не форумы.</p>
@@ -690,23 +706,24 @@ tag: '03 · КАК ЗАПУСТИТЬ И НЕ ОБМАНУТЬСЯ'
 
 # Память Mac: что дают 24, 32, 64 и 128 GB
 
-<svg width="852" height="70" viewBox="0 0 852 70" aria-hidden="true">
-  <text x="0" y="14" fill="var(--rwb-orange)">24 GB</text>
-  <text x="213" y="14" fill="var(--rwb-txt)">32 GB</text>
-  <text x="426" y="14" fill="var(--rwb-lilac)">64 GB</text>
-  <text x="639" y="14" fill="var(--rwb-lime)">128 GB</text>
-  <rect x="0" y="26" width="207" height="28" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-orange)" stroke-width="1.5" />
-  <rect x="213" y="26" width="207" height="28" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-txt)" stroke-width="1.5" />
-  <rect x="426" y="26" width="207" height="28" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" />
-  <rect x="639" y="26" width="213" height="28" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.5" />
+<svg width="852" height="232" viewBox="0 0 852 232" aria-hidden="true">
+  <text x="0" y="18" fill="var(--rwb-orange)">24 GB</text>
+  <rect x="70" y="0" width="94" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-orange)" stroke-width="1.5" />
+  <text x="176" y="18" fill="var(--rwb-orange)">красная зона</text>
+  <text x="70" y="46" fill="var(--rwb-sec)">один урезанный контекст, всё впритык к Xcode</text>
+  <text x="0" y="76" fill="var(--rwb-txt)">32 GB</text>
+  <rect x="70" y="58" width="125" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-txt)" stroke-width="1.5" />
+  <text x="207" y="76" fill="var(--rwb-txt)">оптимальный старт</text>
+  <text x="70" y="104" fill="var(--rwb-sec)">модель и один полноценный агент</text>
+  <text x="0" y="134" fill="var(--rwb-lilac)">64 GB</text>
+  <rect x="70" y="116" width="250" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" />
+  <text x="332" y="134" fill="var(--rwb-lilac)">sweet spot</text>
+  <text x="70" y="162" fill="var(--rwb-sec)">более точный квант или несколько параллельных агентов</text>
+  <text x="0" y="192" fill="var(--rwb-lime)">128 GB</text>
+  <rect x="70" y="174" width="500" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.5" />
+  <text x="582" y="192" fill="var(--rwb-lime)">зелёная зона</text>
+  <text x="70" y="220" fill="var(--rwb-sec)">десятки контекстов или тяжёлый MoE</text>
 </svg>
-
-<div class="grid grid-cols-4 gap-x-2 mt-1">
-<div><p class="mono orange small">красная зона</p><p class="small sec">Qwen 27B Q4 помещается, но один урезанный контекст и всё впритык к Xcode</p></div>
-<div><p class="mono small">оптимальный старт</p><p class="small sec">модель и один полноценный агент</p></div>
-<div><p class="mono lilac small">sweet spot</p><p class="small sec">более точный квант или несколько параллельных агентов</p></div>
-<div><p class="mono lime small">зелёная зона</p><p class="small sec">десятки контекстов или тяжёлый MoE</p></div>
-</div>
 
 <p class="sec">Границы на сегодня. С новым поколением моделей и движков они сдвинутся.</p>
 
@@ -842,23 +859,27 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 # Закрытый скоуп против открытого
 
 ::default::
-## <span class="lime">Закрытый скоуп — отдаём</span>
+<h2 v-click="1"><span class="lime">Закрытый скоуп — отдаём</span></h2>
 
-- Понятный definition of done
-- Границы известны заранее
-- Есть система проверки: тесты, компилятор, статический анализ, форматтеры
-- Багфикс, фича по документации, реализация контракта
+<ul>
+<li v-click="2">Понятный definition of done</li>
+<li v-click="3">Границы известны заранее</li>
+<li v-click="4">Есть система проверки: тесты, компилятор, статический анализ, форматтеры</li>
+<li v-click="5">Багфикс, фича по документации, реализация контракта</li>
+</ul>
 
 ::right::
-## <span class="orange">Открытый скоуп — пока нет</span>
+<h2 v-click="1"><span class="orange">Открытый скоуп — пока нет</span></h2>
 
-- Фича тянет рефакторинг через бизнес-слой, view, presentation
-- Границы выясняются по ходу
-- Проверка — только глазами ревьюера
-- Сюда сегодня лучше облачную модель, сколько бы она ни стоила
+<ul>
+<li v-click="2">Фича тянет рефакторинг через бизнес-слой, view, presentation</li>
+<li v-click="3">Границы выясняются по ходу</li>
+<li v-click="4">Проверка — только глазами ревьюера</li>
+<li v-click="5">Сюда сегодня лучше облачную модель, сколько бы она ни стоила</li>
+</ul>
 
 ::bottom::
-<p class="lead">Проект с нуля в заданной архитектуре по полной декомпозиции — локальной модели пока сложно. Но оркестратор на облачной модели с локальными исполнителями уже экономит: pet-проекты, экспериментальные направления, не самый важный A/B-тест.</p>
+<p v-click="6" class="lead">Проект с нуля в заданной архитектуре по полной декомпозиции — локальной модели пока сложно. Но оркестратор на облачной модели с локальными исполнителями уже экономит: pet-проекты, экспериментальные направления, не самый важный A/B-тест.</p>
 
 <!--
 Ментальная модель. Задачи с закрытым скоупом: чёткий definition of done, границы известны заранее, есть система валидации — тесты, компилятор, статические анализаторы, форматтеры. Это первый кандидат для локальной модели: багфикс, фича по документации, реализация точного контракта.
@@ -875,11 +896,14 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 
 # Обвязка: научить агента вашему домену
 
-<Boxes :items="['Skills', 'MCP', 'Контексты и промпты', 'Инструменты домена']" :arrows="false" />
+<div class="grid grid-cols-4 gap-x-4 mt-1">
+<div v-click="1"><Boxes :items="['Skills']" :arrows="false" /><p class="small sec">архитектурные паттерны проекта, миграция на Liquid Glass</p></div>
+<div v-click="2"><Boxes :items="['MCP']" :arrows="false" /><p class="small sec">доступ к внутренней инфраструктуре компании</p></div>
+<div v-click="3"><Boxes :items="['Контексты']" :arrows="false" /><p class="small sec">договорённости команд в больших проектах</p></div>
+<div v-click="4"><Boxes :items="['Инструменты домена']" :arrows="false" /><p class="small sec">работа со средой сборки — или отказ от неё</p></div>
+</div>
 
-<p class="lead">Xcode двадцать лет был неподходящей средой для человека — для агента тем более. Отправить его лазить по конфигам Xcode — самая неэффективная трата контекста, которую можно придумать.</p>
-
-<p class="sec">Поэтому всё, что мы годами делали, чтобы абстрагироваться от Xcode — Tuist, XcodeGen, Bazel — становится максимально значимым. Переносим свою компетенцию по этим средам в skills и MCP. Ставка: для локальных моделей эта обвязка точно будет ценна в ближайшие годы.</p>
+<p v-click="5" class="lead">Xcode двадцать лет был неподходящей средой для человека — для агента тем более. Приложение уже можно разрабатывать, не открывая Xcode; следующий шаг — iOS-разработка без Mac. Компетенцию по Tuist, XcodeGen и Bazel переносим в skills и MCP.</p>
 
 <!--
 Обвязка в широком смысле — весь стек от весов до среды, мы его разобрали. В узком смысле — всё вокруг агентской среды: skills, MCP, контексты, которые в том числе учат пользоваться инфраструктурой нашего домена.
@@ -892,6 +916,26 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 -->
 
 ---
+layout: default
+tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
+---
+
+# Контекст дешевеет, обвязка — нет
+
+<div class="grid grid-cols-2 gap-x-10 mt-2">
+<div v-click="1"><h2 class="sec">Куда идёт фронтир</h2><p>Для моделей уровня Fable и Astra ценность контекста постепенно снижается: они сами извлекают нужное из кодовой базы и окружения.</p></div>
+<div v-click="2"><h2 class="lilac">Куда идут локальные</h2><p>Тенденция — что-то вроде <strong>core-LLM</strong>: очень способная модель, но с небольшим знанием о мире, которое она должна получать извне.</p></div>
+</div>
+
+<p v-click="3" class="lead">Десять триллионов параметров не всегда будут под рукой. Поэтому harness'ы и обвязки никуда не денутся — в их построение продолжаем инвестировать.</p>
+
+<!--
+Важная оговорка к предыдущему слайду. Для моделей уровня Fable и Astra ценность обвязки постепенно снижается: это модели такого уровня, что могут извлечь всё необходимое из кодовой базы и окружения сами, без наших подсказок.
+
+Но десять триллионов параметров не всегда будут под рукой. А тенденция локальных моделей — что-то вроде core-LLM: очень способная модель, но которая не держит в себе много знаний о мире и должна получать их извне. Поэтому harness'ы и обвязки никуда не денутся, и ресурсы в их построение мы продолжаем вкладывать.
+-->
+
+---
 layout: two-cols
 tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 ---
@@ -900,6 +944,8 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 # Архитектура: развилка
 
 ::default::
+<div v-click="1">
+
 ## <span class="orange">Проект, которому много лет</span>
 
 - Поколения разработчиков, языков, фреймворков, мёртвый и legacy-код
@@ -907,7 +953,11 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 - Если есть хотя бы базовая модуляризация — ограничиваем агента модулем и верифицируем, что он не вышел за границу
 - Совет перед агентской разработкой: отрефакторить
 
+</div>
+
 ::right::
+<div v-click="2">
+
 ## <span class="lime">Проект с нуля или MVP на рельсы</span>
 
 - Архитектура важна как никогда
@@ -915,8 +965,10 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 - Понятный слой интеграции новой фичи
 - Чем больше вынесено в compile-time, тем лучше справляется агент — тем более локальный
 
+</div>
+
 ::bottom::
-<p class="lead">Без нормальных агентских рельсов все бенефиты агентских систем улетают в трубу. Даже если это приключение на несколько месяцев — его необходимо пройти любому современному проекту. Отнекиваться — очень рискованно.</p>
+<p v-click="3" class="lead">Без нормальных агентских рельсов все бенефиты агентских систем улетают в трубу. Даже если это приключение на несколько месяцев — его необходимо пройти любому современному проекту. Отнекиваться — очень рискованно.</p>
 
 <!--
 Развилка. Проект enterprise-уровня, который писался много лет: поколения разработчиков, языки и фреймворки сменялись, месиво из архитектур, мёртвого кода, legacy. Привнести туда агента — даже фронтирного — и доверить багфикс — нужно десять раз перепроверить. Локального — тем более сложно. Хотя, если есть хотя бы базовая модуляризация и можно ограничить зону ответственности агента модулем и верифицировать, что он не вышел за неё, — локальная модель подходит.
@@ -935,6 +987,8 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 # Гайдлайн — не рельсы
 
 ::default::
+<div v-click="1">
+
 ## <span class="sec">Как обычно растёт MVVM</span>
 
 - Продавался как «простой для людей»
@@ -943,7 +997,11 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 - Разделение держится на дисциплине ревьюера
 - AGENTS.md описывает правила — но это текст, агент может его проигнорировать
 
+</div>
+
 ::right::
+<div v-click="2">
+
 ## <span class="lilac">Что такое рельсы</span>
 
 - Архитектурный паттерн проверяет компилятор
@@ -952,6 +1010,8 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 - У агента нет другого пути, кроме правильного
 - TCA: в сообществе love or hate, правда посередине. Что болело при работе руками, для агента не недостаток — строгость перевешивает
 - Показывать буду на архитектуре попроще — Swift Relux
+
+</div>
 
 <!--
 Пример из жизни любого проекта, который начинался как MVVM. MVVM продавался как архитектура, простая для понимания людьми. Но с ростом всегда вырисовывался один паттерн: жирные вьюмодели. Их делили — интерактор, презентер, ещё слои. Всё это хорошие паттерны разделения, но внутри MVVM это разделение не подразумевает compile-time верификации. Оно держится на когнитивной нагрузке ревьюера и команды.
@@ -1274,8 +1334,8 @@ tag: ФИНАЛ
 
 # Мы сегодня — те, кто писал тогда на перфокартах
 
-<Boxes :items="['Перфокарты и ручной мейнфрейм', 'Операционная система', 'Языки, фреймворки, специализация']" color="sec" />
-<Boxes v-click :items="['Промпт и ручной агентский цикл', 'Агентская операционная система', 'Harness, оркестраторы, автономные циклы']" color="lilac" />
+<Boxes reveal :items="['Перфокарты и ручной мейнфрейм', 'Операционная система', 'Языки, фреймворки, специализация']" color="sec" />
+<Boxes reveal :items="['Промпт и ручной агентский цикл', 'Агентская операционная система', 'Harness, оркестраторы, автономные циклы']" color="lilac" />
 
 <p v-click class="lead">Новая компетенция — проектировать циклы, которые за $50 000 токенов собирают проект от А до Я. За это будут платить программистам.</p>
 

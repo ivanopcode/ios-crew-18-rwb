@@ -1,12 +1,19 @@
 <script setup lang="ts">
-// Вертикальные слои: [label, description, color?]
-defineProps<{ layers: string[][] }>()
+// Вертикальные слои: [label, description, color?]. reveal — по одному слою на клик.
+withDefaults(defineProps<{ layers: string[][], reveal?: boolean }>(), { reveal: false })
 </script>
 <template>
   <div class="rwb-stack">
-    <div v-for="(l, i) in layers" :key="i" class="layer" :class="'tone-' + (l[2] || 'neutral')">
-      <div class="label">{{ l[0] }}</div><div class="desc">{{ l[1] }}</div>
-    </div>
+    <template v-if="reveal">
+      <div v-for="(l, i) in layers" :key="i" v-click class="layer" :class="'tone-' + (l[2] || 'neutral')">
+        <div class="label">{{ l[0] }}</div><div class="desc">{{ l[1] }}</div>
+      </div>
+    </template>
+    <template v-else>
+      <div v-for="(l, i) in layers" :key="i" class="layer" :class="'tone-' + (l[2] || 'neutral')">
+        <div class="label">{{ l[0] }}</div><div class="desc">{{ l[1] }}</div>
+      </div>
+    </template>
   </div>
 </template>
 <style scoped>

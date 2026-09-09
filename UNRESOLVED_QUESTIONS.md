@@ -39,6 +39,11 @@ final run. Slide numbers refer to the current `slides.md`.
   `maxTokensField: "max_tokens"` — from pi's docs/models.md; verify the installed pi
   version honours them and that `reasoning_effort` shows up in the server log.
 
+- **Core-LLM thesis.** The new slide claims context engineering loses value for
+  Fable/Astra-class models while local models trend toward a "core-LLM" with little
+  world knowledge. This is the author's read, not a cited claim — decide whether to
+  soften it or name a source.
+
 ## Needs a decision
 
 - **Token-burn meme.** Embed the "how fast tokens go" meme or just reference it? Not in
@@ -51,7 +56,7 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Demo 4 scope.** Project from scratch with a cloud orchestrator is marked as an
   experiment. Decide whether to record it or show a table of expected measurements.
 - **Bazel.** Mentioned "with an asterisk" — leave as a spoken aside or cut.
-- **Deck length.** 48 slides including 4 section openers and 4 demo bumpers. Confirm it
+- **Deck length.** 49 slides including 4 section openers and 4 demo bumpers. Confirm it
   fits the slot with live demos.
 - **Slide transitions.** Disabled (`transition: none`) for rehearsal; only in-slide
   clicks animate. Decide whether to re-enable a cut/fade for the talk.
