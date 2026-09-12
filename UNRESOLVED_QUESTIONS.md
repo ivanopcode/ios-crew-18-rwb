@@ -68,7 +68,7 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Demo 4 scope.** Project from scratch with a cloud orchestrator is marked as an
   experiment. Decide whether to record it or show a table of expected measurements.
 - **Bazel.** Mentioned "with an asterisk" — leave as a spoken aside or cut.
-- **Deck length.** 48 slides including 4 section openers and 4 demo bumpers. Confirm it
+- **Deck length.** 47 slides including 4 section openers and 4 demo bumpers. Confirm it
   fits the slot with live demos.
 - **Slide transitions.** Disabled (`transition: none`) for rehearsal; only in-slide
   clicks animate. Decide whether to re-enable a cut/fade for the talk.
