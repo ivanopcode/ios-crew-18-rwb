@@ -36,9 +36,10 @@ final run. Slide numbers refer to the current `slides.md`.
   a published ~30 t/s single-stream figure for a 27B Q4 model (llmcheck.net) times the
   ×3–4 parallel-context multiplier; API prices $0.24/$0.90 per M from pricepertoken.com;
   the 1 500-in / 500-out step shape and the 16K context are assumptions about agentic
-  loops. Hardware payback uses Mac Studio M5 Max at $2 699 ($2 499 for 36 GB plus $200
-  for 64 GB, apple.com); a MacBook Pro M5 Max starts at $3 599 and pays back in ~13
-  months instead of ~10. Measure throughput on the demo machine and check the step
+  loops. Hardware payback uses MacBook Pro 14" M5 Max: $3 599 at 36 GB and $4 099 at 48 GB
+  are published, the 64 GB configuration is estimated at ≈ $4 300 by one memory step
+  and needs checking on apple.com. The 36 → 64 GB delta of ≈ $700 is the number the
+  argument actually rests on, since the laptop is bought either way. Measure throughput on the demo machine and check the step
   shape against a real session log.
 
 - **Reasoning preserve on Qwen3.8.** The server line passes `--reasoning on
@@ -56,6 +57,14 @@ final run. Slide numbers refer to the current `slides.md`.
   world knowledge. This is the author's read, not a cited claim — decide whether to
   soften it or name a source.
 
+- **gpt-oss-120b as last year's ceiling.** Artificial Analysis placed it behind
+  DeepSeek R1 and Qwen3 235B but called it the most intelligent model runnable on a
+  single H100 — so the chart says «потолок на одну машину», not «лучшая открытая
+  модель». Dropping the qualifier entirely would make the claim false.
+- **Mac Studio 256 GB.** The heavy-category column offers it as the alternative to
+  cramming a 320–552B model into 128 GB; confirm the configuration exists and its
+  price before the talk.
+
 ## Needs a decision
 
 - **Token-burn meme.** Embed the "how fast tokens go" meme or just reference it? Not in
@@ -68,7 +77,7 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Demo 4 scope.** Project from scratch with a cloud orchestrator is marked as an
   experiment. Decide whether to record it or show a table of expected measurements.
 - **Bazel.** Mentioned "with an asterisk" — leave as a spoken aside or cut.
-- **Deck length.** 47 slides including 4 section openers and 4 demo bumpers. Confirm it
+- **Deck length.** 42 slides including 4 section openers and 4 demo bumpers. Confirm it
   fits the slot with live demos.
 - **Slide transitions.** Disabled (`transition: none`) for rehearsal; only in-slide
   clicks animate. Decide whether to re-enable a cut/fade for the talk.
