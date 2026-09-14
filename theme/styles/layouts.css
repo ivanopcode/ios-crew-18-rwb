@@ -1,38 +1,75 @@
-/* Раскладки. Одна композиция на слайд, без построений. */
-.slidev-layout.rwb-cover h1 { font-size: 40px; margin-top: 96px; max-width: 24ch; }
+/* Раскладки. Одна композиция на слайд; поля и футер общие для всех. */
+
+/* Титул: карточка конференции на весь слайд (image) или текстовый вариант */
+.slidev-layout.rwb-cover { padding-bottom: 30px; }
+.slidev-layout.rwb-cover .cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.slidev-layout.rwb-cover.has-image > :not(.cover-img) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.slidev-layout.rwb-cover h1 { font-size: 44px; margin-top: 92px; max-width: 24ch; padding-right: 0; }
 .slidev-layout.rwb-cover .who { margin-top: 28px; color: var(--rwb-sec); font-size: 19px; line-height: 1.45; }
 .slidev-layout.rwb-cover .who .name { color: var(--rwb-txt); }
-.slidev-layout.rwb-cover .contacts { position: absolute; left: 64px; bottom: 56px; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; color: var(--rwb-sec); }
+.slidev-layout.rwb-cover .contacts { position: absolute; left: 36px; bottom: 30px; font-family: var(--rwb-mono); font-size: 14px; color: var(--rwb-sec); }
 
-.slidev-layout.rwb-section { padding-left: 64px; }
-.slidev-layout.rwb-section::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 13px; background: var(--rwb-deep); }
-.slidev-layout.rwb-section .num { font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: var(--rwb-lilac); text-transform: uppercase; }
-.slidev-layout.rwb-section h1 { font-size: 44px; margin-top: 110px; max-width: 22ch; }
-.slidev-layout.rwb-section .sub { font-size: 21px; color: var(--rwb-sec); max-width: 40ch; }
+/* Открывашка части: фиолетовый фон, крупный заголовок, 3D-иконка шаблона справа, лесенка квадратов */
+.slidev-layout.rwb-section { background: var(--rwb-purple); color: var(--rwb-txt); overflow: hidden; }
+.slidev-layout.rwb-section .num { font-family: var(--rwb-mono); font-size: 14px; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.72); margin-bottom: 30px; }
+.slidev-layout.rwb-section h1 { font-size: 64px; font-weight: 500; line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 22px 0; max-width: 640px; padding-right: 0; color: var(--rwb-txt); }
+.slidev-layout.rwb-section h1 em { color: var(--rwb-txt); }
+.slidev-layout.rwb-section .sub { font-size: 24px; line-height: 1.3; color: rgba(255, 255, 255, 0.88); max-width: 460px; }
+.slidev-layout.rwb-section .icon { position: absolute; right: 52px; top: 196px; width: 330px; height: 330px; object-fit: contain; object-position: right bottom; }
 
-.slidev-layout.rwb-statement .statement { font-size: 36px; font-weight: 700; line-height: 1.2; max-width: 28ch; margin-top: 120px; }
+/* Демо-бампер: метка, крупный заголовок, подзаголовок; квадраты по углам */
+.slidev-layout.rwb-demo { overflow: hidden; }
+.slidev-layout.rwb-demo .num { font-size: 24px; font-weight: 500; color: var(--rwb-lilac); line-height: 1.2; margin-bottom: 44px; }
+.slidev-layout.rwb-demo h1 { font-size: 64px; font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 18px 0; max-width: 760px; padding-right: 0; }
+.slidev-layout.rwb-demo p { font-size: 24px; line-height: 1.3; color: var(--rwb-txt); max-width: 760px; }
+.slidev-layout.rwb-demo p.sec { color: var(--rwb-sec); }
+
+/* Утверждение: одно высказывание крупно */
+.slidev-layout.rwb-statement { overflow: hidden; }
+.slidev-layout.rwb-statement .statement { font-size: 56px; font-weight: 500; line-height: 1.08; letter-spacing: -0.02em; max-width: 820px; margin-top: 0; }
 .slidev-layout.rwb-statement .statement p { margin: 0; }
-.slidev-layout.rwb-statement .after { font-size: 21px; color: var(--rwb-sec); margin-top: 24px; max-width: 44ch; }
+.slidev-layout.rwb-statement .statement em { font-style: normal; color: var(--rwb-lilac); }
+.slidev-layout.rwb-statement .after { font-size: 24px; line-height: 1.3; color: var(--rwb-dim); margin-top: 24px; max-width: 760px; }
 
-.slidev-layout.rwb-two-cols .cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; }
-.slidev-layout.rwb-two-cols .cols h2 { font-size: 21px; }
-.slidev-layout.rwb-two-cols .cols p, .slidev-layout.rwb-two-cols .cols li { font-size: 17px; }
+/* Две колонки: серая карточка против фиолетовой, вывод плашкой внизу */
+.slidev-layout.rwb-two-cols .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 16px 0; flex: 1 0 auto; }
+.slidev-layout.rwb-two-cols .cols > .card > :last-child { margin-bottom: 0; }
 
-.slidev-layout.rwb-code-side .grid { display: grid; grid-template-columns: 2fr 1fr; column-gap: 32px; align-items: start; }
-.slidev-layout.rwb-code-side .side h2 { font-size: 18px; }
-.slidev-layout.rwb-code-side .side p, .slidev-layout.rwb-code-side .side li { font-size: 15px; }
+/* Код и пояснение справа */
+.slidev-layout.rwb-code-side .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: stretch; margin: 0 0 16px 0; flex: 1 0 auto; }
+.slidev-layout.rwb-code-side .grid pre, .slidev-layout.rwb-code-side .grid .slidev-code { margin: 0; font-size: 14px; }
+.slidev-layout.rwb-code-side .side { font-size: 15px; }
+.slidev-layout.rwb-code-side .side li { font-size: 15px; }
+.slidev-layout.rwb-code-side .side p:last-child { margin-top: 12px; }
 
-.slidev-layout.rwb-demo .grid { display: grid; grid-template-columns: 2fr 1fr; column-gap: 32px; }
-.slidev-layout.rwb-demo .qa p { font-size: 18px; margin-bottom: 14px; }
-.slidev-layout.rwb-demo .qa .k { color: var(--rwb-sec); }
-.slidev-layout.rwb-demo .cfg { font-size: 13.5px; }
-.slidev-layout.rwb-demo .cfg h2 { font-size: 18px; }
-.slidev-layout.rwb-demo .cfg .k { color: var(--rwb-sec); font-family: 'JetBrains Mono', monospace; }
+/* Финал: фиолетовый фон, спасибо, контакты, три места под QR */
+.slidev-layout.rwb-end { background: var(--rwb-purple); color: var(--rwb-txt); overflow: hidden; }
+.slidev-layout.rwb-end h1 { font-size: 76px; font-weight: 500; line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 18px 0; padding-right: 0; }
+.slidev-layout.rwb-end p { font-size: 20px; line-height: 1.35; max-width: 640px; }
+.slidev-layout.rwb-end p.lead { font-size: 20px; }
+.slidev-layout.rwb-end p.sec, .slidev-layout.rwb-end p.small { font-size: 16px; color: var(--rwb-lilac); }
+.slidev-layout.rwb-end .contacts { position: absolute; left: 36px; bottom: 30px; font-size: 17px; line-height: 1.4; color: var(--rwb-txt); }
+.slidev-layout.rwb-end .qrs { display: flex; gap: 32px; margin-top: 20px; }
+.slidev-layout.rwb-end .qr { width: 104px; height: 104px; border: 1.5px dashed rgba(255, 255, 255, 0.55); border-radius: 8px; display: grid; place-items: center; font-family: var(--rwb-mono); font-size: 12px; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.7); }
+.slidev-layout.rwb-end .qr-cap { font-size: 15px; color: var(--rwb-txt); margin-top: 8px; }
 
-.slidev-layout.rwb-end h1 { font-size: 40px; margin-top: 64px; }
-/* Справа сверху стоит мотив (~130 px): текст не должен под него заходить */
-.slidev-layout.rwb-end h1, .slidev-layout.rwb-end p { max-width: 660px; }
-.slidev-layout.rwb-end .contacts { color: var(--rwb-sec); font-size: 17px; margin-top: 18px; }
-.slidev-layout.rwb-end .qrs { display: flex; gap: 40px; margin-top: 40px; }
-.slidev-layout.rwb-end .qr { width: 88px; height: 88px; border: 1px dashed var(--rwb-dim); border-radius: 4px; display: grid; place-items: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--rwb-ph); }
-.slidev-layout.rwb-end .qr-cap { font-size: 12.5px; color: var(--rwb-sec); margin-top: 6px; }
+/* Лесенка квадратов — пиксельный мотив шаблона в масштабе слайда */
+.rwb-squares { position: absolute; inset: 0; pointer-events: none; }
+.rwb-squares span { position: absolute; display: block; }
+.rwb-squares .sq-lilac { background: var(--rwb-lilac); }
+.rwb-squares .sq-orange { background: var(--rwb-orange); }
+.rwb-squares .sq-purple { background: var(--rwb-purple); }
+.rwb-squares .sq-light { background: rgba(255, 255, 255, 0.55); }
+
+/* Футер и логотип (global-bottom / global-top) */
+.rwb-footer { position: absolute; left: 36px; right: 36px; bottom: 26px; display: flex; justify-content: space-between; align-items: baseline; gap: 24px; font-family: var(--rwb-sans); font-size: 13px; line-height: 1.2; color: var(--rwb-dim); pointer-events: none; }
+.rwb-footer .ft-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rwb-footer .ft-right { display: flex; align-items: baseline; gap: 14px; white-space: nowrap; }
+.rwb-footer .ft-tag { font-family: var(--rwb-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+.rwb-footer .ft-page { font-family: var(--rwb-mono); font-size: 13px; }
+.rwb-footer.on-purple { color: rgba(255, 255, 255, 0.72); }
+.rwb-logo-corner { position: absolute; right: 36px; top: 30px; height: 26px; width: auto; pointer-events: none; }
+.rwb-logo-corner.dim { opacity: 0.38; }
+
+/* Источник / метка измерения — строкой над футером */
+.rwb-source { position: absolute; left: 36px; right: 36px; bottom: 50px; font-size: 13px; color: var(--rwb-dim); line-height: 1.3; }

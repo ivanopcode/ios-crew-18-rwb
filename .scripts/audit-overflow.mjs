@@ -43,10 +43,17 @@ for (let n = 1; n <= total; n++) {
     const scale = L.width / 980
     let contentBottom = 0
     let widest = 0
+    // Anything positioned out of the flow (or nested in such an element) is chrome, not content.
+    const outOfFlow = (el) => {
+      for (let n = el; n && n !== lay; n = n.parentElement) {
+        const p = getComputedStyle(n).position
+        if (p === 'absolute' || p === 'fixed') return true
+      }
+      return false
+    }
     for (const el of lay.querySelectorAll('*')) {
-      const cs = getComputedStyle(el)
-      if (cs.position === 'absolute' || cs.position === 'fixed') continue
-      if (el.closest('.rwb-source, .rwb-pagenum')) continue
+      if (outOfFlow(el)) continue
+      if (el.closest('.rwb-source, .rwb-pagenum, .rwb-squares, .rwb-footer')) continue
       const b = el.getBoundingClientRect()
       if (b.height === 0) continue
       contentBottom = Math.max(contentBottom, (b.bottom - L.top) / scale)
@@ -71,7 +78,8 @@ for (let n = 1; n <= total; n++) {
     const layoutName = [...lay.classList].find(c => c.startsWith('rwb-')) || ''
     return { contentBottom: Math.round(contentBottom), widest: Math.round(widest), hasSource, h1, layoutName, tight }
   })
-  const limit = r?.hasSource ? 498 : 536
+  // Content box ends at 494 px (padding-bottom 58 reserves the footer); a source line sits above it.
+  const limit = r?.hasSource ? 480 : 494
   const over = r ? r.contentBottom - limit : 0
   rows.push({ n, ...r, limit, over: Math.round(over), overflow: over > 0 })
   await page.screenshot({ path: path.join(out, `slide-${String(n).padStart(2, '0')}.png`) })

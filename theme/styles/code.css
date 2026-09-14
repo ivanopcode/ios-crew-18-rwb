@@ -1,6 +1,6 @@
-/* Код: одно поле цвета --rwb-code, без рамок и теней. 16–18 px, до ~14 строк. */
-.slidev-layout pre, .slidev-layout .slidev-code { background: var(--rwb-code) !important; border-radius: 4px; padding: 16px 20px !important; font-size: 16px; line-height: 1.5; }
-.slidev-layout pre code { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+/* Код: тёмная карточка той же формы, что и остальные. 15 px, до ~14 строк. */
+.slidev-layout pre, .slidev-layout .slidev-code { background: var(--rwb-card-dark) !important; border-radius: var(--rwb-radius); padding: 16px 20px !important; font-size: 15px; line-height: 1.45; margin: 0 0 12px 0; }
+.slidev-layout pre code { font-family: var(--rwb-mono); }
 /* Подсветка активной строки (```bash {2,4}) — фон, не только цвет */
 .slidev-layout .slidev-code .highlighted, .slidev-layout .shiki .line.highlighted { background: var(--rwb-hl); display: inline-block; width: 100%; }
 .slidev-layout .slidev-code.has-highlighted .line:not(.highlighted) { opacity: 0.55; }

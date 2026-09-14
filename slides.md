@@ -11,6 +11,7 @@ role:
   - 'Старший программный инженер, RWB'
   - 'Relux Works — соавтор open-source экосистемы агентской разработки'
 contacts: t.me/ivanopcode · github.com/ivanopcode
+image: /media/cover-podlodka.webp
 ---
 
 # Интегрируем локальные LLM в рабочие процессы разработки
@@ -26,24 +27,20 @@ layout: default
 tag: ВСТУПЛЕНИЕ
 ---
 
-# Так мы делаем сегодня
+# Так мы *делаем сегодня*
 
-<PixelMotif pattern="cross" :cell="14" :gap="3" class="absolute right-16 top-8" />
+<PixelMotif pattern="cross" :cell="10" :gap="2" class="absolute top-9" style="right: 132px" />
 
-<v-clicks>
+<div class="cards cols-2 grow">
+<div v-click="1" class="card big">Архитектурный вопрос → самая сильная модель</div>
+<div v-click="2" class="card big">Правка одного условия → самая сильная модель</div>
+<div v-click="3" class="card big">Разбор лога → самая сильная модель</div>
+<div v-click="4" class="card big">Очередная попытка после упавшего теста → самая сильная модель</div>
+</div>
 
-- Архитектурный вопрос → самая сильная модель
-- Правка одного условия → самая сильная модель
-- Разбор лога → самая сильная модель
-- Очередная попытка после упавшего теста → самая сильная модель
+<p v-click="5" class="lead">Подключаем максимальную модель и отправляем ей всё подряд — забиваем молотом даже маленькие гвозди. Кажется, что так будет всегда.</p>
 
-</v-clicks>
-
-<div class="rule" />
-
-<p v-click class="lead">Подключаем максимальную модель и отправляем ей всё подряд — забиваем молотом даже маленькие гвозди. Кажется, что так будет всегда.</p>
-
-<p class="absolute left-16 bottom-9 mono sec" style="font-size: 13px">кавычки-«ёлочки» и длинные тире дальше — осознанно :)</p>
+<p class="note">Кавычки-«ёлочки» и длинные тире дальше — осознанно :)</p>
 
 <!--
 Сегодня средняя по больнице картина такая: подключили Opus или Fable — и все баги, все фичи, всё остальное идёт туда. В ус не дуем. Отдельные компании уже поняли, что это не работает экономически, но в среднем ощущение — «так будет всегда».
@@ -58,9 +55,9 @@ layout: default
 tag: ВСТУПЛЕНИЕ
 ---
 
-# Так будем делать
+# Так *будем делать*
 
-<PixelMotif pattern="tick" :cell="14" :gap="3" class="absolute right-16 top-8" />
+<PixelMotif pattern="tick" :cell="10" :gap="2" class="absolute top-9" style="right: 132px" />
 
 | Задача | Исполнитель |
 | --- | --- |
@@ -81,20 +78,18 @@ layout: default
 tag: ВСТУПЛЕНИЕ
 ---
 
-# Эпоха изобилия заканчивается
+# Эпоха изобилия *заканчивается*
 
-<BigNum value="$1 000" caption="столько стоил бы один день активной работы с фронтир-моделью по API-тарифу" />
-<BigNum v-click value="1/5" caption="от токенов, которые входили в $200-подписку три месяца назад" />
+<div class="cards cols-2">
+<BigNum value="$1 000" caption="столько стоил бы один день активной работы с фронтир-моделью по API-тарифу" />
+<BigNum v-click="1" value="1/5" caption="от токенов, которые входили в $200-подписку три месяца назад" />
+</div>
 
-<div class="rule" />
-
-<v-clicks>
-
-- Подписки радикально субсидированы: по счётчику платят компании в США и Европе — для них это единственный официальный способ
-- Субсидия воспитывает лень: любая задача — на максимальную модель
-- Доступ к фронтир-интеллекту за копейки — временное свойство рынка, не технологии
-
-</v-clicks>
+<div class="cards cols-3">
+<div v-click="2" class="card">Подписки радикально субсидированы: по счётчику платят компании в США и Европе — для них это единственный официальный способ</div>
+<div v-click="3" class="card">Субсидия воспитывает лень: любая задача — на максимальную модель</div>
+<div v-click="4" class="card">Доступ к фронтир-интеллекту за копейки — временное свойство рынка, не технологии</div>
+</div>
 
 <!--
 Прямо сейчас мы живём в эпоху изобилия: манна небесная. Мы пользуемся невероятно продвинутыми моделями за копейки. Даже с еженедельным лимитом Fable или Astra можно получить очень много компьюта. Кто смотрел на счётчик — за один день работы легко нажечь тысячу долларов, если бы это стоило по API-токенам. И это не эфемерные токены: компании, которые работают по счётчику, — а в США и Европе это большая часть компаний, для них это единственный официальный способ — платят именно эти деньги.
@@ -109,15 +104,15 @@ layout: default
 tag: ВСТУПЛЕНИЕ
 ---
 
-# Сегодня сто процентов токенов уходят в облако
+# Сегодня сто процентов токенов *уходят в облако*
 
-<BigNum value="100%" caption="токенов в агентских циклах большинства команд мира сегодня — облачные" />
-
-<div class="rule" />
-
-<p v-click class="lead">Завтра эта доля начнёт падать — до экономического равновесия. Где оно — не знаю. Точно не на ста процентах.</p>
-
-<p v-click class="lead lilac">Локальный инференс завтра будет важен. Значит, компетенцию берём сегодня.</p>
+<div class="cards cols-2 grow">
+<BigNum value="100%" size="xl" caption="токенов в агентских циклах большинства команд мира сегодня — облачные" />
+<div class="cards" style="margin: 0; grid-template-rows: 1fr 1fr">
+<div v-click="1" class="card">Завтра эта доля начнёт падать — до экономического равновесия. Где оно — не знаю. Точно не на ста процентах.</div>
+<div v-click="2" class="card lilac">Локальный инференс завтра будет важен. Значит, компетенцию берём сегодня.</div>
+</div>
+</div>
 
 <!--
 Аксиома, от которой я отталкиваюсь. Сейчас, когда вы работаете с языковой моделью в агентском цикле, вы на сто процентов обращаетесь к облаку. Сто процентов токенов — облачные.
@@ -132,13 +127,13 @@ layout: default
 tag: ПЛАН
 ---
 
-# Четыре вопроса
+# Четыре *вопроса*
 
-<div class="grid grid-cols-2 gap-x-10 gap-y-6 mt-2">
-<div v-click="1"><div class="mono lilac">01</div><h2 class="mt-1">Что такое локальная LLM</h2><p class="sec">Термины, базовые понятия и симптомы багов инференса</p></div>
-<div v-click="2"><div class="mono lilac">02</div><h2 class="mt-1">Зачем, если есть облако</h2><p class="sec">Экономика, контроль среды, задачи, которым облако закрыто</p></div>
-<div v-click="3"><div class="mono lilac">03</div><h2 class="mt-1">Как запустить на своём Mac</h2><p class="sec">Слои под API, память, контексты, квантизация, скорость</p></div>
-<div v-click="4"><div class="mono lilac">04</div><h2 class="mt-1">Какие задачи отдавать</h2><p class="sec">Скоуп, обвязки, архитектура с рельсами, графы, демо</p></div>
+<div class="cards cols-2 grow">
+<div v-click="1" class="card num" data-num="01"><h2>Что такое локальная LLM</h2><p>Термины, базовые понятия и симптомы багов инференса</p></div>
+<div v-click="2" class="card num" data-num="02"><h2>Зачем, если есть облако</h2><p>Экономика, контроль среды, задачи, которым облако закрыто</p></div>
+<div v-click="3" class="card num" data-num="03"><h2>Как запустить на своём Mac</h2><p>Слои под API, память, контексты, квантизация, скорость</p></div>
+<div v-click="4" class="card num" data-num="04"><h2>Какие задачи отдавать</h2><p>Скоуп, обвязки, архитектура с рельсами, графы, демо</p></div>
 </div>
 
 <!--
@@ -157,8 +152,8 @@ tag: ПЛАН
 layout: section
 num: '01'
 sub: Термины и базовые понятия
-motif: check
 transition: slide-left
+icon: server
 ---
 
 # Что такое локальная LLM
@@ -172,15 +167,13 @@ layout: default
 tag: '01 · ЧТО ТАКОЕ ЛОКАЛЬНАЯ LLM'
 ---
 
-# Три термина и один в широком смысле
+# Три термина и один *в широком смысле*
 
 | Термин | Что означает |
 | --- | --- |
 | Открытые веса | Модель можно скачать и запустить самому на условиях лицензии |
 | Локальный инференс | Ответ вычисляется на потребительском или prosumer-железе: MacBook Pro с 32 GB — уже участник |
 | Агент | Модель + инструменты + управляющий цикл |
-
-<div class="rule" />
 
 <p class="lead"><span class="lilac">Агент в широком смысле</span> — веса, инференс, инструменты, управляющий цикл. Всё, кроме последних двух, обычно скрыто за API.</p>
 
@@ -195,11 +188,11 @@ layout: default
 tag: '01 · ЧТО ТАКОЕ ЛОКАЛЬНАЯ LLM'
 ---
 
-# Понятия, без которых дальше нельзя
+# Понятия, без которых *дальше нельзя*
 
 <Stack reveal :layers="[['Веса и их квантизация', 'сколько бит на число — размер, скорость, качество', 'lilac'], ['Латентный кэш и его квантизация', 'скомпилированное представление переписки в пространстве модели', 'lilac'], ['Движок инференса', 'llama.cpp, MLX — исполняет модель и управляет кэшем', 'lilac'], ['Протокол', 'chat completions, responses, messages — как среда говорит с движком', 'lilac']]" />
 
-<p class="sec">Это уход в кроличью нору, и мы себя ограничим. Но без этих четырёх понятий корректный агентский цикл на локальной модели не собрать.</p>
+<p class="lead">Это уход в кроличью нору, и мы себя ограничим. Но без этих четырёх понятий корректный агентский цикл на локальной модели не собрать.</p>
 
 <!--
 Четыре понятия, которые мы будем разбирать в третьем разделе. Квантизация весов — сколько бит на число, от этого размер, скорость и качество. Латентный кэш — скомпилированное представление переписки в пространстве модели; его тоже квантизуют. Движок — то, что исполняет модель и управляет кэшем. Протокол — как агентская среда разговаривает с движком, и форматов несколько.
@@ -212,13 +205,13 @@ layout: default
 tag: '01 · ЧТО ТАКОЕ ЛОКАЛЬНАЯ LLM'
 ---
 
-# Симптомы, которые принимают за потолок модели
+# Симптомы, которые принимают *за потолок модели*
 
 <Stack reveal :layers="[['Уходит в цикл', 'повторяет один и тот же шаг, пока не упрётся в лимит', 'orange'], ['Встаёт посреди работы', 'блокеров нет, задача не закончена, ответа нет', 'orange'], ['«Ленится»', 'отвечает вполсилы, бросает на середине, пропускает проверку', 'orange'], ['Ломается на инструментах', 'зовёт инструмент неправильно или теряет его результат', 'orange']]" />
 
 <p v-click class="lead">Всё это — симптомы багов конфигурации: неподходящая квантизация модели, неверные параметры квантизации кэша и рантайма. Потолок модели тут ни при чём.</p>
 
-<p v-click class="sec">Ровно так же выглядят сбои на деплоях крупных провайдеров — там это тоже видно. И именно эти симптомы чаще всего создают ложное впечатление о реальных способностях локальных моделей.</p>
+<p v-click class="note">Ровно так же выглядят сбои на деплоях крупных провайдеров — там это тоже видно. И именно эти симптомы чаще всего создают ложное впечатление о реальных способностях локальных моделей.</p>
 
 <!--
 Логическое продолжение предыдущего слайда. Если не разобраться в тонкостях инференса, вы будете наблюдать вот это.
@@ -236,8 +229,8 @@ tag: '01 · ЧТО ТАКОЕ ЛОКАЛЬНАЯ LLM'
 layout: section
 num: '02'
 sub: Экономика, контроль и закрытые задачи
-motif: check
 transition: slide-left
+icon: cubes
 ---
 
 # Зачем локальные модели, если есть облачные
@@ -251,13 +244,13 @@ layout: default
 tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
 ---
 
-# Четыре причины
+# Четыре *причины*
 
-<div class="grid grid-cols-2 gap-x-10 gap-y-5 mt-2">
-<div v-click="1"><div class="mono lilac">01</div><h2 class="mt-1">Экономика</h2><p>Токены дорожают, Mac уже куплен и простаивает 16 часов в сутки.</p></div>
-<div v-click="2"><div class="mono lilac">02</div><h2 class="mt-1">Контроль среды исполнения</h2><p>Свой код, своё железо, никакой зависимости от доступности внешнего сервиса.</p></div>
-<div v-click="3"><div class="mono lilac">03</div><h2 class="mt-1">Чувствительные задачи</h2><p>Код и данные, которые нельзя выносить за контур. Внутри VPN облачных моделей может не быть вовсе.</p></div>
-<div v-click="4"><div class="mono lilac">04</div><h2 class="mt-1">Закрытые политиками задачи</h2><p>Реверс-инжиниринг протокола, исследование — облачная модель откажет, локальная сделает.</p></div>
+<div class="cards cols-2 grow">
+<div v-click="1" class="card num" data-num="01"><h2>Экономика</h2><p>Токены дорожают, Mac уже куплен и простаивает 16 часов в сутки.</p></div>
+<div v-click="2" class="card num" data-num="02"><h2>Контроль среды исполнения</h2><p>Свой код, своё железо, никакой зависимости от доступности внешнего сервиса.</p></div>
+<div v-click="3" class="card num" data-num="03"><h2>Чувствительные задачи</h2><p>Код и данные, которые нельзя выносить за контур. Внутри VPN облачных моделей может не быть вовсе.</p></div>
+<div v-click="4" class="card num" data-num="04"><h2>Закрытые политиками задачи</h2><p>Реверс-инжиниринг протокола, исследование — облачная модель откажет, локальная сделает.</p></div>
 </div>
 
 <!--
@@ -269,18 +262,18 @@ layout: default
 tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
 ---
 
-# Отставание сжалось с лет до месяцев
+# Отставание сжалось *с лет до месяцев*
 
-<div class="grid gap-y-3 mt-1" style="grid-template-columns: 76px 1fr">
-<div v-click="1" class="mono lilac text-right pr-4">2023</div>
+<div class="timeline">
+<div v-click="1" class="y">2023</div>
 <div v-click="1">LLaMA, Mistral — эксперименты и игрушки. Отставание от проприетарных моделей — годы.</div>
-<div v-click="2" class="mono lilac text-right pr-4">2025</div>
+<div v-click="2" class="y">2025</div>
 <div v-click="2"><strong>Точка прорыва.</strong> DeepSeek-V3 приносит reasoning в открытые веса и дышит в спину o1; дистилляция DeepSeek поверх LLaMA запускается на Mac. Стало ясно: локальные модели на что-то способны — и дальше рост только ускоряется. Отставание — полгода, потом три месяца.</div>
-<div v-click="3" class="mono lilac text-right pr-4">07.26</div>
+<div v-click="3" class="y">07.26</div>
 <div v-click="3">Мой тезис на Podlodka AI Engineers Club: не хватает одного поколения, чтобы prosumer-железо тянуло широкий спектр задач.</div>
-<div v-click="4" class="mono lilac text-right pr-4">08.26</div>
+<div v-click="4" class="y">08.26</div>
 <div v-click="4">Muse Glimmer — новая команда в локальном инференсе, но уровень весеннего Qwen.</div>
-<div v-click="5" class="mono lilac text-right pr-4">09.26</div>
+<div v-click="5" class="y">09.26</div>
 <div v-click="5"><strong>Поколение вышло.</strong> Qwen 3.8 на 27B — уровень фронтир-моделей начала года. Помните восторг от Opus 4.5? Близко к этому — на вашем MacBook.</div>
 </div>
 
@@ -299,37 +292,37 @@ layout: default
 tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
 ---
 
-# Открытые модели по Intelligence Index
+# Открытые модели *по Intelligence Index*
 
-<svg width="852" height="314" viewBox="0 0 852 314" aria-hidden="true">
-  <text x="0" y="12" fill="var(--rwb-lilac)">ПОМЕЩАЕТСЯ В MAC</text>
-  <text x="290" y="38" text-anchor="end" fill="var(--rwb-txt)">Qwen 3.8-27B · dense 27B</text>
-  <rect x="310" y="20" width="321" height="24" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" />
-  <text x="641" y="38" fill="var(--rwb-lilac)">34</text>
-  <text x="290" y="68" text-anchor="end" fill="var(--rwb-sec)">Muse Glimmer · dense 30B</text>
-  <rect x="310" y="50" width="170" height="24" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" />
-  <text x="490" y="68" fill="var(--rwb-sec)">18</text>
-  <text x="290" y="98" text-anchor="end" fill="var(--rwb-sec)">gpt-oss-120b · MoE 117B / 5,1B</text>
-  <rect x="310" y="80" width="113" height="24" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-orange)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="433" y="98" fill="var(--rwb-orange)">12</text>
-  <text x="470" y="98" fill="var(--rwb-orange)">← год назад это был потолок на одну машину</text>
-  <text x="0" y="128" fill="var(--rwb-sec)">В MAC НЕ ПОМЕЩАЕТСЯ</text>
-  <text x="290" y="154" text-anchor="end" fill="var(--rwb-txt)">GLM-5.3-Flash · MoE 320B / 18B</text>
-  <rect x="310" y="136" width="396" height="24" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="716" y="154" fill="var(--rwb-lime)">42</text>
-  <text x="290" y="184" text-anchor="end" fill="var(--rwb-txt)">DeepSeek V4.1 Flash · MoE 552B / 16B</text>
-  <rect x="310" y="166" width="377" height="24" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="697" y="184" fill="var(--rwb-lime)">40</text>
-  <text x="290" y="214" text-anchor="end" fill="var(--rwb-txt)">GLM-5.3 · MoE 753B / 40B</text>
-  <rect x="310" y="196" width="424" height="24" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.5" />
-  <text x="744" y="214" fill="var(--rwb-lime)">45</text>
-  <text x="0" y="244" fill="var(--rwb-sec)">ФРОНТИР · ЗАКРЫТЫЕ ВЕСА</text>
-  <text x="290" y="270" text-anchor="end" fill="var(--rwb-txt)">Claude Opus 5</text>
-  <rect x="310" y="252" width="481" height="24" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" />
-  <text x="801" y="270" fill="var(--rwb-sec)">51</text>
-  <text x="290" y="300" text-anchor="end" fill="var(--rwb-txt)">Claude Fable 5.1</text>
-  <rect x="310" y="282" width="500" height="24" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-txt)" stroke-width="1.5" />
-  <text x="820" y="300" fill="var(--rwb-txt)">53</text>
+<svg width="908" height="314" viewBox="0 0 908 314" aria-hidden="true">
+  <text x="0" y="12" class="t-lilac t-head">ПОМЕЩАЕТСЯ В MAC</text>
+  <text x="290" y="38" text-anchor="end">Qwen 3.8-27B · dense 27B</text>
+  <rect x="310" y="20" width="321" height="24" rx="4" class="n-lilac" />
+  <text x="641" y="38" class="t-lilac">34</text>
+  <text x="290" y="68" text-anchor="end" class="t-sec">Muse Glimmer · dense 30B</text>
+  <rect x="310" y="50" width="170" height="24" rx="4" class="n" />
+  <text x="490" y="68" class="t-sec">18</text>
+  <text x="290" y="98" text-anchor="end" class="t-sec">gpt-oss-120b · MoE 117B / 5,1B</text>
+  <rect x="310" y="80" width="113" height="24" rx="4" class="n-orange" />
+  <text x="433" y="98" class="t-orange">12</text>
+  <text x="470" y="98" class="t-orange">← год назад это был потолок на одну машину</text>
+  <text x="0" y="128" class="t-sec t-head">В MAC НЕ ПОМЕЩАЕТСЯ</text>
+  <text x="290" y="154" text-anchor="end">GLM-5.3-Flash · MoE 320B / 18B</text>
+  <rect x="310" y="136" width="396" height="24" rx="4" class="n" />
+  <text x="716" y="154">42</text>
+  <text x="290" y="184" text-anchor="end">DeepSeek V4.1 Flash · MoE 552B / 16B</text>
+  <rect x="310" y="166" width="377" height="24" rx="4" class="n" />
+  <text x="697" y="184">40</text>
+  <text x="290" y="214" text-anchor="end">GLM-5.3 · MoE 753B / 40B</text>
+  <rect x="310" y="196" width="424" height="24" rx="4" class="n" />
+  <text x="744" y="214">45</text>
+  <text x="0" y="244" class="t-sec t-head">ФРОНТИР · ЗАКРЫТЫЕ ВЕСА</text>
+  <text x="290" y="270" text-anchor="end">Claude Opus 5</text>
+  <rect x="310" y="252" width="481" height="24" rx="4" class="n" />
+  <text x="801" y="270">51</text>
+  <text x="290" y="300" text-anchor="end">Claude Fable 5.1</text>
+  <rect x="310" y="282" width="500" height="24" rx="4" class="n" />
+  <text x="820" y="300">53</text>
 </svg>
 
 <p class="lead">27 миллиардов в вашем MacBook дают <strong>34</strong> — почти втрое больше прошлогоднего потолка. До лучшей открытой сегодня 11 пунктов, до фронтира 19.</p>
@@ -347,15 +340,15 @@ layout: default
 tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
 ---
 
-# Кто есть кто в локальном инференсе
+# *Кто есть кто* в локальном инференсе
 
-<div class="grid grid-cols-3 gap-x-8 mt-2">
-<div><h2 class="lilac">Новое поколение</h2><p><strong>Qwen 3.8-27B</strong> — пока единственный представитель. Terminal-Bench 2.1: 63,4 → <strong>73,0</strong>, SWE-bench Pro: 53,5 → <strong>61,7</strong> к весеннему Qwen 3.6.</p></div>
-<div><h2 class="sec">Предыдущее поколение</h2><p><strong>Muse Glimmer</strong>, август. Наравне с весенним Qwen — значит, поколение назад. Следующий релиз может выйти на уровень.</p></div>
-<div><h2 class="sec">Тяжёлая категория</h2><p><strong>GLM-5.3-Flash</strong>, <strong>DeepSeek V4.1 Flash</strong> — 320–552 миллиарда. В 128 GB невпихуемое впихнуть можно: агрессивный квант и offload на SSD, но с потерями. Либо переходить на Mac Studio с 256 GB.</p></div>
+<div class="cards cols-3 grow">
+<div class="card purple"><h2>Новое поколение</h2><p><strong>Qwen 3.8-27B</strong> — пока единственный представитель. Terminal-Bench 2.1: 63,4 → <strong>73,0</strong>, SWE-bench Pro: 53,5 → <strong>61,7</strong> к весеннему Qwen 3.6.</p></div>
+<div class="card"><h2>Предыдущее поколение</h2><p><strong>Muse Glimmer</strong>, август. Наравне с весенним Qwen — значит, поколение назад. Следующий релиз может выйти на уровень.</p></div>
+<div class="card"><h2>Тяжёлая категория</h2><p><strong>GLM-5.3-Flash</strong>, <strong>DeepSeek V4.1 Flash</strong> — 320–552 миллиарда. В 128 GB невпихуемое впихнуть можно: агрессивный квант и offload на SSD, но с потерями. Либо переходить на Mac Studio с 256 GB.</p></div>
 </div>
 
-<p class="sec mt-4">Дальше я опираюсь на Qwen 3.8-27B. Отставание фронтира от рабочего железа теперь — месяцы.</p>
+<p class="lead">Дальше я опираюсь на Qwen 3.8-27B. Отставание фронтира от рабочего железа теперь — месяцы.</p>
 
 <!--
 Лидер локального инференса — Qwen 3.8 на 27 миллиардов параметров. Пока единственный представитель нового поколения этого лета; всё остальное — весенние наработки, которые по способностям уже сильно уступают. Цифры авторов: Terminal-Bench вырос с 63 до 73, SWE-bench Pro — с 53 до 61. Качество кванта на нашем Swift-проекте предстоит установить отдельно.
@@ -372,13 +365,13 @@ layout: default
 tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
 ---
 
-# Железо уже куплено
+# Железо *уже куплено*
 
 <Boxes :items="['Mac — капитальные вложения, которые уже сделаны', 'Лучшее железо по цене для небольших локальных моделей', 'Загружен 12 часов из 24 — экономика уже сошлась']" :arrows="false" />
 
-<p class="lead">iOS-разработка происходит на Mac. Более оптимизированного железа за эти деньги для локальных моделей не существует: дешевле — медленнее и с меньшей пропускной способностью памяти, быстрее — за пределами рабочего парка.</p>
+<p>iOS-разработка происходит на Mac. Более оптимизированного железа за эти деньги для локальных моделей не существует: дешевле — медленнее и с меньшей пропускной способностью памяти, быстрее — за пределами рабочего парка.</p>
 
-<p v-click class="lead lilac">Апгрейд памяти MacBook Pro с 36 до 64 GB — около $700, окупается за два-три месяца такой работы. Не использовать это — нерационально.</p>
+<p v-click class="lead">Апгрейд памяти MacBook Pro с 36 до 64 GB — около $700, окупается за два-три месяца такой работы. Не использовать это — нерационально.</p>
 
 <!--
 Отдельно для тех, кто ближе к топ-менеджменту. Локальные модели становятся частью экономики разработки просто потому, что уже работают и доводят задачу до конца на железе, которое существует в капитальных вложениях компании. Не использовать это железо — экономически нерационально.
@@ -393,10 +386,10 @@ layout: default
 tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
 ---
 
-# Что даёт год работы одного Mac
+# Что даёт *год работы* одного Mac
 
-<div class="grid grid-cols-2 gap-x-10 mt-1">
-<div>
+<div class="cards cols-2">
+<div class="card">
 
 | M5 Max 64 GB · Qwen3.8-27B Q4 | |
 | --- | ---: |
@@ -406,7 +399,7 @@ tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
 | **За 4 380 часов** | **≈ 394 млн** |
 
 </div>
-<div>
+<div class="card">
 
 | Те же задачи по API · Alibaba Cloud | |
 | --- | ---: |
@@ -420,7 +413,7 @@ tag: '02 · ЗАЧЕМ, ЕСЛИ ЕСТЬ ОБЛАКО'
 
 <p v-click class="lead">MacBook Pro 14″ с M5 Max и 64 GB — около <strong>$4 300</strong>: при таком счёте окупается за <strong>пятнадцать месяцев</strong>. Но его покупают и так, а память с 36 до 64 GB стоит ≈ $700 — это два-три месяца.</p>
 
-<p v-click class="sec">KV-кэш учтён с обеих сторон, prefill съедает три четверти времени машины. Оговорка: по API те же токены придут на порядок быстрее — время тоже ресурс; локально выгодна работа, которая может подождать.</p>
+<p v-click class="note">KV-кэш учтён с обеих сторон, prefill съедает три четверти времени машины. Оговорка: по API те же токены придут на порядок быстрее — время тоже ресурс; локально выгодна работа, которая может подождать.</p>
 
 <!--
 Посчитаем на конкретном железе, честно — с prefill и кэшем.
@@ -440,8 +433,8 @@ M5 Max с 64 гигабайтами, Qwen3.8-27B в четырёхбитном �
 layout: section
 num: '03'
 sub: Слои под API, память, контексты, квантизация, скорость
-motif: check
 transition: slide-left
+icon: computer
 ---
 
 # Как запустить на своём Mac
@@ -456,17 +449,17 @@ tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 ---
 
 ::title::
-# Из чего на самом деле строится агентский цикл
+# Из чего на самом деле *строится агентский цикл*
 
 ::default::
-## <span class="sec">С облаком видно два слоя</span>
+<h2>С облаком видно два слоя</h2>
 
-<Stack :layers="[['Агентская среда', 'цикл, инструменты, skills, MCP, промпты', 'sec'], ['API', 'чёрный ящик', 'sec']]" />
+<Stack :layers="[['Агентская среда', 'цикл, инструменты, skills, MCP, промпты'], ['API', 'чёрный ящик']]" />
 
 ::right::
-## <span class="lilac">Локально — весь стек</span>
+<h2>Локально — весь стек</h2>
 
-<Stack reveal :layers="[['Агентская среда', 'та же обвязка', 'lilac'], ['Протокол', 'completions · responses · messages', 'lilac'], ['Движок', 'исполняет модель, управляет кэшем', 'lilac'], ['Латентный кэш', 'и его квантизация', 'lilac'], ['Веса', 'и их квантизация', 'lilac']]" />
+<Stack reveal :layers="[['Агентская среда', 'та же обвязка'], ['Протокол', 'completions · responses · messages'], ['Движок', 'исполняет модель, управляет кэшем'], ['Латентный кэш', 'и его квантизация'], ['Веса', 'и их квантизация']]" />
 
 <!--
 Когда мы пользуемся облачной моделью, мы работаем на двух уровнях: агентская среда и обвязка вокруг неё — skills, MCP-серверы, промпты. Дальше API, и кажется, что на этом всё.
@@ -481,32 +474,32 @@ layout: default
 tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 ---
 
-# Что занимает память
+# Что занимает *память*
 
-<svg width="852" height="96" viewBox="0 0 852 96" aria-hidden="true">
-  <g v-click>
-    <rect x="0" y="8" width="440" height="60" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-    <text x="220" y="35" text-anchor="middle" fill="var(--rwb-txt)">Веса модели · 16,5 GB</text>
-    <text x="220" y="54" text-anchor="middle" fill="var(--rwb-sec)">загружаются один раз</text>
+<svg width="908" height="96" viewBox="0 0 908 96" aria-hidden="true">
+  <g v-click="1">
+    <rect x="0" y="0" width="470" height="68" rx="10" class="n-lilac" />
+    <text x="235" y="31" text-anchor="middle" class="t-ink t-big">Веса модели · 16,5 GB</text>
+    <text x="235" y="52" text-anchor="middle" class="t-ink-sec">загружаются один раз</text>
   </g>
-  <g v-click>
-    <rect x="450" y="8" width="200" height="60" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-    <text x="550" y="35" text-anchor="middle" fill="var(--rwb-txt)">Контекст агента</text>
-    <text x="550" y="54" text-anchor="middle" fill="var(--rwb-sec)">латентный кэш</text>
+  <g v-click="2">
+    <rect x="486" y="0" width="214" height="68" rx="10" class="n-lime" />
+    <text x="593" y="31" text-anchor="middle" class="t-ink t-big">Контекст агента</text>
+    <text x="593" y="52" text-anchor="middle" class="t-ink-sec">латентный кэш</text>
   </g>
-  <g v-click>
-    <rect x="660" y="8" width="192" height="60" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
-    <text x="756" y="35" text-anchor="middle" fill="var(--rwb-txt)">macOS · тулчейны</text>
-    <text x="756" y="54" text-anchor="middle" fill="var(--rwb-sec)">симулятор</text>
+  <g v-click="3">
+    <rect x="716" y="0" width="192" height="68" rx="10" class="n" />
+    <text x="812" y="31" text-anchor="middle" class="t-big">macOS · тулчейны</text>
+    <text x="812" y="52" text-anchor="middle" class="t-sec">симулятор</text>
   </g>
-  <text x="0" y="92" fill="var(--rwb-sec)">Unified Memory: всё это должно поместиться, и ещё остаться место</text>
+  <text x="0" y="92" class="t-dim">Unified Memory: всё это должно поместиться, и ещё остаться место</text>
 </svg>
 
-<p v-click><strong>Латентный контекст</strong> — наша переписка с моделью, «скомпилированная» в её пространство. Распространённый термин «KV cache» ничего не объясняет, поэтому я говорю «латентный контекст».</p>
+<p v-click="4"><strong>Латентный контекст</strong> — наша переписка с моделью, «скомпилированная» в её пространство. Распространённый термин «KV cache» ничего не объясняет, поэтому я говорю «латентный контекст».</p>
 
-<p v-click>«Компиляция» (prefill) дорогая и растёт с размером переписки — как сборка проекта: 30 секунд или два часа. Отдельная тема оптимизации; сейчас достаточно понимать, что она есть.</p>
+<p v-click="5">«Компиляция» (prefill) дорогая и растёт с размером переписки — как сборка проекта: 30 секунд или два часа. Отдельная тема оптимизации; сейчас достаточно понимать, что она есть.</p>
 
-<p v-click class="lilac">Один агент — один контекст. Мультиагентный цикл контексты умножает.</p>
+<p v-click="6" class="lead">Один агент — один контекст. Мультиагентный цикл контексты умножает.</p>
 
 <!--
 Базовый вопрос: какие ресурсы нужны, чтобы запустить модель. В Unified Memory должны поместиться веса, контексты агентов и всё окружение — macOS, Xcode, симулятор. Веса Qwen 3.8 в четырёхбитном кванте — 16,5 гигабайт, и загружаются они один раз.
@@ -523,38 +516,38 @@ layout: default
 tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 ---
 
-# Веса один раз, контексты — на каждого агента
+# Веса один раз, *контексты — на каждого агента*
 
-<svg width="852" height="216" viewBox="0 0 852 216" aria-hidden="true">
-  <text x="0" y="28" fill="var(--rwb-sec)">32 GB</text>
-  <rect x="70" y="0" width="98" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="119" y="28" text-anchor="middle" fill="var(--rwb-txt)">16,5 GB</text>
-  <rect x="168" y="0" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="190" y="28" text-anchor="middle" fill="var(--rwb-txt)">×1</text>
-  <rect x="212" y="0" width="48" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="0" y="92" fill="var(--rwb-sec)">64 GB</text>
-  <rect x="70" y="64" width="98" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="119" y="92" text-anchor="middle" fill="var(--rwb-txt)">16,5 GB</text>
-  <rect x="168" y="64" width="234" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="285" y="92" text-anchor="middle" fill="var(--rwb-txt)">×5…8</text>
-  <rect x="402" y="64" width="48" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="0" y="156" fill="var(--rwb-sec)">128 GB</text>
-  <rect x="70" y="128" width="98" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="119" y="156" text-anchor="middle" fill="var(--rwb-txt)">16,5 GB</text>
-  <rect x="168" y="128" width="614" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="475" y="156" text-anchor="middle" fill="var(--rwb-txt)">×10…20 — или одна огромная модель и ×1…2</text>
-  <rect x="782" y="128" width="48" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <rect x="0" y="196" width="12" height="12" rx="2" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="20" y="206" fill="var(--rwb-sec)">веса 16,5 GB</text>
-  <rect x="134" y="196" width="12" height="12" rx="2" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="154" y="206" fill="var(--rwb-sec)">контексты агентов</text>
-  <rect x="307" y="196" width="12" height="12" rx="2" fill="var(--rwb-node)" stroke="var(--rwb-sec)" stroke-width="1.25" stroke-dasharray="4 3" />
-  <text x="327" y="206" fill="var(--rwb-sec)">macOS + тулчейны</text>
+<svg width="908" height="216" viewBox="0 0 908 216" aria-hidden="true">
+  <text x="0" y="28" class="t-dim">32 GB</text>
+  <rect x="70" y="0" width="98" height="44" rx="8" class="n-lilac" />
+  <text x="119" y="27" text-anchor="middle" class="t-ink">16,5 GB</text>
+  <rect x="176" y="0" width="44" height="44" rx="8" class="n-lime" />
+  <text x="198" y="27" text-anchor="middle" class="t-ink">×1</text>
+  <rect x="228" y="0" width="48" height="44" rx="8" class="n" />
+  <text x="0" y="92" class="t-dim">64 GB</text>
+  <rect x="70" y="64" width="98" height="44" rx="8" class="n-lilac" />
+  <text x="119" y="91" text-anchor="middle" class="t-ink">16,5 GB</text>
+  <rect x="176" y="64" width="234" height="44" rx="8" class="n-lime" />
+  <text x="293" y="91" text-anchor="middle" class="t-ink">×5…8</text>
+  <rect x="418" y="64" width="48" height="44" rx="8" class="n" />
+  <text x="0" y="156" class="t-dim">128 GB</text>
+  <rect x="70" y="128" width="98" height="44" rx="8" class="n-lilac" />
+  <text x="119" y="155" text-anchor="middle" class="t-ink">16,5 GB</text>
+  <rect x="176" y="128" width="614" height="44" rx="8" class="n-lime" />
+  <text x="483" y="155" text-anchor="middle" class="t-ink">×10…20 — или одна огромная модель и ×1…2</text>
+  <rect x="798" y="128" width="48" height="44" rx="8" class="n" />
+  <rect x="0" y="196" width="12" height="12" rx="3" class="n-lilac" />
+  <text x="20" y="206" class="t-dim">веса 16,5 GB</text>
+  <rect x="134" y="196" width="12" height="12" rx="3" class="n-lime" />
+  <text x="154" y="206" class="t-dim">контексты агентов</text>
+  <rect x="307" y="196" width="12" height="12" rx="3" class="n" />
+  <text x="327" y="206" class="t-dim">macOS + тулчейны</text>
 </svg>
 
 <p class="lead">Веса и место под систему одни и те же; растут только контексты.</p>
 
-<p class="sec">Контекст — дорогая по резидентству в памяти сущность. Управление контекстами — терра инкогнита и открытое поле для инженера.</p>
+<p class="note">Контекст — дорогая по резидентству в памяти сущность. Управление контекстами — терра инкогнита и открытое поле для инженера.</p>
 
 <!--
 Считаем на трёх машинах. 32 гигабайта: веса 16,5, один полный контекст, и остаётся на macOS с Xcode. Этого достаточно, чтобы запустить модель — но это один агент.
@@ -571,16 +564,16 @@ layout: default
 tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 ---
 
-# Скорость одной сессии — не та метрика
+# Скорость одной сессии — *не та метрика*
 
-<BigNum value="10 t/s" caption="одна сессия на M3 Max. «В десять раз медленнее API, зачем это?»" />
-<BigNum v-click value="~35 t/s" caption="суммарно на восьми параллельных контекстах на тех же весах: не ×8, но ×3–4" />
-
-<div class="rule" />
+<div class="cards cols-2">
+<BigNum tone="neutral" value="10 t/s" caption="одна сессия на M3 Max. «В десять раз медленнее API, зачем это?»" />
+<BigNum v-click="1" tone="neutral" value="~35 t/s" caption="суммарно на восьми параллельных контекстах на тех же весах: не ×8, но ×3–4" />
+</div>
 
 <p class="lead">Это мышление оператора агентского цикла. Проектировщик автономных циклов считает суммарную скорость: decode упирается в пропускную способность памяти, а параллельные контексты её амортизируют — веса читаются один раз на несколько токенов.</p>
 
-<p v-click class="sec">Вам это знакомо: параллельные контексты — та же задача, что параллельность внутри процесса. Декомпозиция по доменам, изоляция рабочих директорий, shared mutable state. Инженерная практика никуда не делась — изменилось её применение.</p>
+<p v-click="2" class="note">Вам это знакомо: параллельные контексты — та же задача, что параллельность внутри процесса. Декомпозиция по доменам, изоляция рабочих директорий, shared mutable state. Инженерная практика никуда не делась — изменилось её применение.</p>
 
 <!--
 Очень частая ошибка: замерили скорость на одной сессии — получили 10 токенов в секунду — и решили: в десять раз медленнее API, зачем это надо.
@@ -597,7 +590,7 @@ layout: default
 tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 ---
 
-# Квантизация: сколько бит на число
+# Квантизация: *сколько бит на число*
 
 | Квант Qwen 3.8-27B | Размер | Что получаем |
 | --- | ---: | --- |
@@ -608,7 +601,7 @@ tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 | Q3 · Q2 | `≈ 13 · 10 GB` | Заметная деградация, только под проверку задачами |
 | 1.58-bit и ниже | `≈ 6 GB` | Эксперименты: работают, но каждую задачу проверять |
 
-<p class="sec">Латентный кэш квантизуется так же — отдельно K и V. <span class="lilac">Подбор квантизации весов и латентного кэша под конкретную задачу — это искусство.</span></p>
+<p class="lead">Латентный кэш квантизуется так же — отдельно K и V. <span class="lilac">Подбор квантизации весов и латентного кэша под конкретную задачу — это искусство.</span></p>
 
 <!--
 Квантизация — сколько бит тратим на каждое число в весах. Заводское качество — BF16, 54 гигабайта для 27 миллиардов. Восемь бит — практически без потерь, 29 гигабайт. Шесть — близко к исходной точности, 22. Четыре — рабочий компромисс, 16,5, и это наш вариант. Три и два бита — заметная деградация, только под проверку конкретными задачами. Ниже — 1.58 бита и экспериментальные схемы: работают, но каждую задачу надо проверять.
@@ -622,10 +615,10 @@ tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 ---
 
 ::title::
-# Квантизация как кодек звука
+# Квантизация *как кодек звука*
 
 ::default::
-## <span class="sec">Аудио</span>
+<h2>Аудио</h2>
 
 <ul>
 <li v-click="1">Lossless — студийный мастер</li>
@@ -635,7 +628,7 @@ tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 </ul>
 
 ::right::
-## <span class="lilac">Модель</span>
+<h2>Модель</h2>
 
 <ul>
 <li v-click="1">BF16 — заводское качество</li>
@@ -658,16 +651,16 @@ layout: default
 tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 ---
 
-# Dense и MoE — разные весовые категории
+# Dense и MoE — *разные весовые категории*
 
-<svg width="852" height="150" viewBox="0 0 852 150" aria-hidden="true">
-  <text x="0" y="14" fill="var(--rwb-txt)">Dense 27B — каждый токен проходит через все блоки</text>
-  <rect x="0" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" /><rect x="52" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" /><rect x="104" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" /><rect x="156" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" /><rect x="208" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" /><rect x="260" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" /><rect x="312" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" /><rect x="364" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" />
-  <text x="0" y="100" fill="var(--rwb-sec)">максимум интеллекта на гигабайт · медленнее на токен</text>
-  <text x="450" y="14" fill="var(--rwb-txt)">MoE 30B · 4B активных — роутер выбирает экспертов</text>
-  <rect x="450" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.5" /><rect x="502" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" /><rect x="554" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.5" /><rect x="606" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.5" /><rect x="658" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.5" /><rect x="710" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" /><rect x="762" y="28" width="44" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.5" /><rect x="814" y="28" width="38" height="44" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.5" />
-  <text x="450" y="100" fill="var(--rwb-sec)">быстрее на токен · все веса всё равно надо хранить</text>
-  <text x="0" y="138" fill="var(--rwb-sec)">30B dense и 30B-A4B MoE — не одна и та же модель, даже если число в названии совпадает</text>
+<svg width="908" height="150" viewBox="0 0 908 150" aria-hidden="true">
+  <text x="0" y="14" class="t-big">Dense 27B — каждый токен проходит через все блоки</text>
+  <rect x="0" y="28" width="44" height="44" rx="6" class="n-lilac" /><rect x="52" y="28" width="44" height="44" rx="6" class="n-lilac" /><rect x="104" y="28" width="44" height="44" rx="6" class="n-lilac" /><rect x="156" y="28" width="44" height="44" rx="6" class="n-lilac" /><rect x="208" y="28" width="44" height="44" rx="6" class="n-lilac" /><rect x="260" y="28" width="44" height="44" rx="6" class="n-lilac" /><rect x="312" y="28" width="44" height="44" rx="6" class="n-lilac" /><rect x="364" y="28" width="44" height="44" rx="6" class="n-lilac" />
+  <text x="0" y="100" class="t-sec">максимум интеллекта на гигабайт · медленнее на токен</text>
+  <text x="480" y="14" class="t-big">MoE 30B · 4B активных — роутер выбирает экспертов</text>
+  <rect x="480" y="28" width="44" height="44" rx="6" class="n" /><rect x="532" y="28" width="44" height="44" rx="6" class="n-lilac" /><rect x="584" y="28" width="44" height="44" rx="6" class="n" /><rect x="636" y="28" width="44" height="44" rx="6" class="n" /><rect x="688" y="28" width="44" height="44" rx="6" class="n" /><rect x="740" y="28" width="44" height="44" rx="6" class="n-lilac" /><rect x="792" y="28" width="44" height="44" rx="6" class="n" /><rect x="844" y="28" width="44" height="44" rx="6" class="n" />
+  <text x="480" y="100" class="t-sec">быстрее на токен · все веса всё равно надо хранить</text>
+  <text x="0" y="138" class="t-dim">30B dense и 30B-A4B MoE — не одна и та же модель, даже если число в названии совпадает</text>
 </svg>
 
 <p class="lead">Максимум интеллекта в один Mac — dense: этим путём идут команды Qwen, Gemma и Muse. Облачный фронтир — всегда MoE: экспертов имеет смысл делать от триллиона параметров. Десять экспертов по триллиону — это Astra.</p>
@@ -687,28 +680,28 @@ layout: default
 tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 ---
 
-# Память Mac: что дают 24, 32, 64 и 128 GB
+# Память Mac: *что дают 24, 32, 64 и 128 GB*
 
-<svg width="852" height="232" viewBox="0 0 852 232" aria-hidden="true">
-  <text x="0" y="18" fill="var(--rwb-orange)">24 GB</text>
-  <rect x="70" y="0" width="94" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-orange)" stroke-width="1.5" />
-  <text x="176" y="18" fill="var(--rwb-orange)">красная зона</text>
-  <text x="70" y="46" fill="var(--rwb-sec)">один урезанный контекст, всё впритык к Xcode</text>
-  <text x="0" y="76" fill="var(--rwb-txt)">32 GB</text>
-  <rect x="70" y="58" width="125" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-txt)" stroke-width="1.5" />
-  <text x="207" y="76" fill="var(--rwb-txt)">оптимальный старт</text>
-  <text x="70" y="104" fill="var(--rwb-sec)">модель и один полноценный агент</text>
-  <text x="0" y="134" fill="var(--rwb-lilac)">64 GB</text>
-  <rect x="70" y="116" width="250" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.5" />
-  <text x="332" y="134" fill="var(--rwb-lilac)">sweet spot</text>
-  <text x="70" y="162" fill="var(--rwb-sec)">более точный квант или несколько параллельных агентов</text>
-  <text x="0" y="192" fill="var(--rwb-lime)">128 GB</text>
-  <rect x="70" y="174" width="500" height="26" rx="3" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.5" />
-  <text x="582" y="192" fill="var(--rwb-lime)">зелёная зона</text>
-  <text x="70" y="220" fill="var(--rwb-sec)">десятки контекстов или тяжёлый MoE</text>
+<svg width="908" height="232" viewBox="0 0 908 232" aria-hidden="true">
+  <text x="0" y="21" class="t-dim">24 GB</text>
+  <rect x="70" y="0" width="94" height="34" rx="8" class="n-orange" />
+  <text x="178" y="14" class="t-lab t-orange">Красная зона</text>
+  <text x="178" y="32" class="t-cap t-sec">один урезанный контекст, всё впритык к Xcode</text>
+  <text x="0" y="79" class="t-dim">32 GB</text>
+  <rect x="70" y="58" width="130" height="34" rx="8" class="n" />
+  <text x="214" y="72" class="t-lab">Оптимальный старт</text>
+  <text x="214" y="90" class="t-cap t-sec">модель и один полноценный агент</text>
+  <text x="0" y="137" class="t-dim">64 GB</text>
+  <rect x="70" y="116" width="250" height="34" rx="8" class="n-lilac" />
+  <text x="334" y="130" class="t-lab t-lilac">Sweet spot</text>
+  <text x="334" y="148" class="t-cap t-sec">более точный квант или несколько параллельных агентов</text>
+  <text x="0" y="195" class="t-dim">128 GB</text>
+  <rect x="70" y="174" width="500" height="34" rx="8" class="n-lime" />
+  <text x="584" y="188" class="t-lab t-lime">Зелёная зона</text>
+  <text x="584" y="206" class="t-cap t-sec">десятки контекстов или тяжёлый MoE</text>
 </svg>
 
-<p class="sec">Границы на сегодня. С новым поколением моделей и движков они сдвинутся.</p>
+<p class="lead">Границы на сегодня. С новым поколением моделей и движков они сдвинутся.</p>
 
 <!--
 Диапазон на сегодня. 24 гигабайта — красная зона: Qwen 27B в четырёх битах помещается, но один урезанный контекст и всё впритык к Xcode и симулятору. 32 — оптимальный старт: модель и один полноценный агент. 64 — sweet spot: более точный квант или несколько параллельных агентов. 128 — зелёная зона: десятки контекстов или тяжёлый MoE. Границы условные и сегодняшние — с новым поколением моделей и движков они сдвинутся.
@@ -717,11 +710,12 @@ tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 ---
 layout: default
 tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
+class: dense
 ---
 
-# Запускаем: llama.cpp и Pi — три вставки
+# Запускаем: llama.cpp и Pi — *три вставки*
 
-<div class="grid gap-x-5" style="grid-template-columns: 1fr 1fr">
+<div class="grid gap-x-4" style="grid-template-columns: 1fr 1fr">
 <div style="min-width: 0">
 
 ```bash
@@ -762,7 +756,7 @@ cmake --build build -j 4 --target llama-server
 } } }
 ```
 
-<p class="small sec">→ <code>~/.pi/agent/models.json</code>. Ключ любой непустой. Рассуждения: сервер отдаёт их в <code>reasoning_content</code> и сохраняет между ходами; Pi передаёт <code>reasoning_effort</code>. На 64–128 GB: <code>-c 65536 -np 4</code>.</p>
+<p class="note">→ <code>~/.pi/agent/models.json</code>. Ключ любой непустой. Рассуждения: сервер отдаёт их в <code>reasoning_content</code> и сохраняет между ходами; Pi передаёт <code>reasoning_effort</code>. На 64–128 GB: <code>-c 65536 -np 4</code>.</p>
 
 </div>
 </div>
@@ -776,19 +770,16 @@ cmake --build build -j 4 --target llama-server
 -->
 
 ---
-layout: default
+layout: demo
 tag: '03 · ДЕМО'
+num: Демо 1
 ---
 
-<div class="absolute inset-0 grid place-items-center text-center">
-<div>
-<div class="mono lilac" style="font-size: 16px; letter-spacing: .12em">ДЕМО 1</div>
-<div style="font-size: 64px; font-weight: 700; line-height: 1.1; margin-top: 12px">Hello World</div>
-<p class="sec" style="font-size: 19px; margin-top: 18px">Pi → localhost → Qwen отвечает</p>
-</div>
-</div>
+# Hello World
 
-<p class="absolute left-16 bottom-9" style="color: var(--rwb-bg); user-select: all; font-size: 13px">Привет, Qwen! Поздоровайся со слушателями Podlodka iOS Crew, сентябрь 2026 года.</p>
+<p class="sec">Pi → localhost → Qwen отвечает</p>
+
+<p class="absolute left-9 bottom-14" style="color: var(--rwb-bg); user-select: all; font-size: 13px">Привет, Qwen! Поздоровайся со слушателями Podlodka iOS Crew, сентябрь 2026 года.</p>
 
 <!--
 Живое демо, без записи. Сервер поднят, Pi настроен. Внизу слайда невидимый промпт — выделяется одним кликом, копирую, переключаюсь в Pi, вставляю: «Привет, Qwen! Поздоровайся со слушателями Podlodka iOS Crew, сентябрь 2026 года».
@@ -800,8 +791,8 @@ tag: '03 · ДЕМО'
 layout: section
 num: '04'
 sub: Скоуп, обвязки, архитектура с рельсами, графы
-motif: check
 transition: slide-left
+icon: notepad
 ---
 
 # Какие задачи отдавать локальной модели
@@ -816,10 +807,10 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 ---
 
 ::title::
-# Закрытый скоуп против открытого
+# Закрытый скоуп *против открытого*
 
 ::default::
-<h2 v-click="1"><span class="lime">Закрытый скоуп — отдаём</span></h2>
+<h2 v-click="1">Закрытый скоуп — отдаём</h2>
 
 <ul>
 <li v-click="2">Понятный definition of done</li>
@@ -829,7 +820,7 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 </ul>
 
 ::right::
-<h2 v-click="6"><span class="orange">Открытый скоуп — пока нет</span></h2>
+<h2 v-click="6">Открытый скоуп — пока нет</h2>
 
 <ul>
 <li v-click="7">Фича тянет рефакторинг через бизнес-слой, view, presentation</li>
@@ -854,13 +845,15 @@ layout: default
 tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 ---
 
-# Обвязка: научить агента вашему домену
+# Обвязка: *научить агента вашему домену*
 
-<div class="grid grid-cols-4 gap-x-4 mt-1">
-<div v-click="1"><Boxes :items="['Skills']" :arrows="false" /><p class="small sec">архитектурные паттерны проекта, миграция на Liquid Glass</p></div>
-<div v-click="2"><Boxes :items="['MCP']" :arrows="false" /><p class="small sec">доступ к внутренней инфраструктуре компании</p></div>
-<div v-click="3"><Boxes :items="['Контексты']" :arrows="false" /><p class="small sec">договорённости команд в больших проектах</p></div>
-<div v-click="4"><Boxes :items="['Инструменты домена']" :arrows="false" /><p class="small sec">работа со средой сборки — или отказ от неё</p></div>
+<Boxes reveal :items="['Skills', 'MCP', 'Контексты', 'Инструменты домена']" :arrows="false" :colors="['orange', 'neutral', 'lilac', 'lime']" />
+
+<div class="cards cols-4" style="margin-top: -4px">
+<p v-click="1" class="note">архитектурные паттерны проекта, миграция на Liquid Glass</p>
+<p v-click="2" class="note">доступ к внутренней инфраструктуре компании</p>
+<p v-click="3" class="note">договорённости команд в больших проектах</p>
+<p v-click="4" class="note">работа со средой сборки — или отказ от неё</p>
 </div>
 
 <p v-click="5" class="lead">Xcode двадцать лет был неподходящей средой для человека — для агента тем более. Приложение уже можно разрабатывать, не открывая Xcode; следующий шаг — iOS-разработка без Mac. Компетенцию по Tuist, XcodeGen и Bazel переносим в skills и MCP.</p>
@@ -880,11 +873,11 @@ layout: default
 tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 ---
 
-# Контекст дешевеет, обвязка — нет
+# Контекст дешевеет, *обвязка — нет*
 
-<div class="grid grid-cols-2 gap-x-10 mt-2">
-<div v-click="1"><h2 class="sec">Куда идёт фронтир</h2><p>Для моделей уровня Fable и Astra ценность контекста постепенно снижается: они сами извлекают нужное из кодовой базы и окружения.</p></div>
-<div v-click="2"><h2 class="lilac">Куда идут локальные</h2><p>Тенденция — что-то вроде <strong>core-LLM</strong>: очень способная модель, но с небольшим знанием о мире, которое она должна получать извне.</p></div>
+<div class="cards cols-2 grow">
+<div v-click="1" class="card"><h2>Куда идёт фронтир</h2><p>Для моделей уровня Fable и Astra ценность контекста постепенно снижается: они сами извлекают нужное из кодовой базы и окружения.</p></div>
+<div v-click="2" class="card purple"><h2>Куда идут локальные</h2><p>Тенденция — что-то вроде <strong>core-LLM</strong>: очень способная модель, но с небольшим знанием о мире, которое она должна получать извне.</p></div>
 </div>
 
 <p v-click="3" class="lead">Десять триллионов параметров не всегда будут под рукой. Поэтому harness'ы и обвязки никуда не денутся — в их построение продолжаем инвестировать.</p>
@@ -898,13 +891,14 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 ---
 layout: two-cols
 tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
+class: dense
 ---
 
 ::title::
-# Архитектура: развилка
+# Архитектура: *развилка*
 
 ::default::
-<h2 v-click="1"><span class="orange">Проект, которому много лет</span></h2>
+<h2 v-click="1">Проект, которому много лет</h2>
 
 <ul>
 <li v-click="2">Поколения разработчиков, языков, фреймворков, мёртвый и legacy-код</li>
@@ -914,7 +908,7 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 </ul>
 
 ::right::
-<h2 v-click="6"><span class="lime">Проект с нуля на агентских рельсах</span></h2>
+<h2 v-click="6">Проект с нуля на агентских рельсах</h2>
 
 <ul>
 <li v-click="7">Архитектура важна как никогда</li>
@@ -940,10 +934,10 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 ---
 
 ::title::
-# Гайдлайн — не рельсы
+# Гайдлайн — *не рельсы*
 
 ::default::
-<h2 v-click="1"><span class="sec">Как обычно растёт MVVM</span></h2>
+<h2 v-click="1">Как обычно растёт MVVM</h2>
 
 <ul>
 <li v-click="2">Продавался как «простой для людей»</li>
@@ -954,7 +948,7 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 </ul>
 
 ::right::
-<h2 v-click="7"><span class="lilac">Что такое рельсы</span></h2>
+<h2 v-click="7">Что такое рельсы</h2>
 
 <ul>
 <li v-click="8">Архитектурный паттерн проверяет компилятор</li>
@@ -978,40 +972,40 @@ layout: default
 tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 ---
 
-# Рельсы на примере Relux
+# Рельсы на *примере Relux*
 
-<svg width="852" height="200" viewBox="0 0 852 200" aria-hidden="true">
-  <defs><marker id="arr-relux" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--rwb-sec)" /></marker>
-  <marker id="arr-saga" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--rwb-lime)" /></marker></defs>
+<svg width="908" height="200" viewBox="0 0 908 200" aria-hidden="true">
+  <defs><marker id="arr-relux" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="m" /></marker>
+  <marker id="arr-saga" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="m-lime" /></marker></defs>
   <g v-click="1">
-    <rect x="0" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-    <text x="90" y="84" text-anchor="middle" fill="var(--rwb-txt)">Action</text>
-    <text x="90" y="102" text-anchor="middle" fill="var(--rwb-sec)">enum · закрытый набор</text>
+    <rect x="0" y="60" width="194" height="56" rx="10" class="n" />
+    <text x="97" y="84" text-anchor="middle" class="t-big">Action</text>
+    <text x="97" y="103" text-anchor="middle" class="t-sec">enum · закрытый набор</text>
   </g>
   <g v-click="2">
-    <line x1="180" y1="88" x2="220" y2="88" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
-    <rect x="224" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-    <text x="314" y="84" text-anchor="middle" fill="var(--rwb-txt)">Reducer</text>
-    <text x="314" y="102" text-anchor="middle" fill="var(--rwb-sec)">switch без default</text>
+    <line x1="194" y1="88" x2="234" y2="88" class="e" marker-end="url(#arr-relux)" />
+    <rect x="238" y="60" width="194" height="56" rx="10" class="n" />
+    <text x="335" y="84" text-anchor="middle" class="t-big">Reducer</text>
+    <text x="335" y="103" text-anchor="middle" class="t-sec">switch без default</text>
   </g>
   <g v-click="3">
-    <line x1="404" y1="88" x2="444" y2="88" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
-    <rect x="448" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-    <text x="538" y="84" text-anchor="middle" fill="var(--rwb-txt)">State</text>
-    <text x="538" y="102" text-anchor="middle" fill="var(--rwb-sec)">actor · один источник</text>
+    <line x1="432" y1="88" x2="472" y2="88" class="e" marker-end="url(#arr-relux)" />
+    <rect x="476" y="60" width="194" height="56" rx="10" class="n" />
+    <text x="573" y="84" text-anchor="middle" class="t-big">State</text>
+    <text x="573" y="103" text-anchor="middle" class="t-sec">actor · один источник</text>
   </g>
   <g v-click="4">
-    <line x1="628" y1="88" x2="668" y2="88" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
-    <rect x="672" y="60" width="180" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" />
-    <text x="762" y="84" text-anchor="middle" fill="var(--rwb-txt)">View</text>
-    <text x="762" y="102" text-anchor="middle" fill="var(--rwb-sec)">подписка на state</text>
-    <path d="M762,116 L762,160 L90,160 L90,120" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-relux)" />
+    <line x1="670" y1="88" x2="710" y2="88" class="e" marker-end="url(#arr-relux)" />
+    <rect x="714" y="60" width="194" height="56" rx="10" class="n" />
+    <text x="811" y="84" text-anchor="middle" class="t-big">View</text>
+    <text x="811" y="103" text-anchor="middle" class="t-sec">подписка на state</text>
+    <path d="M811,116 L811,160 L97,160 L97,120" class="e" marker-end="url(#arr-relux)" />
   </g>
   <g v-click="5">
-    <rect x="0" y="0" width="470" height="40" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-    <text x="235" y="25" text-anchor="middle" fill="var(--rwb-txt)">Effect → Saga — сервисы и внешний мир, сюда входит энтропия</text>
-    <line x1="90" y1="40" x2="90" y2="56" stroke="var(--rwb-lime)" stroke-width="1.25" marker-end="url(#arr-saga)" />
-    <text x="426" y="186" text-anchor="middle" fill="var(--rwb-sec)">фичу нельзя добавить иначе, чем через effect + action + reducer + state</text>
+    <rect x="0" y="0" width="500" height="40" rx="10" class="n-lime" />
+    <text x="250" y="25" text-anchor="middle" class="t-ink t-big">Effect → Saga — сервисы и внешний мир, сюда входит энтропия</text>
+    <line x1="97" y1="40" x2="97" y2="56" class="e-lime" marker-end="url(#arr-saga)" />
+    <text x="454" y="186" text-anchor="middle" class="t-sec">фичу нельзя добавить иначе, чем через effect + action + reducer + state</text>
   </g>
 </svg>
 
@@ -1031,7 +1025,7 @@ tag: '04 · КАКИЕ ЗАДАЧИ ОТДАВАТЬ'
 ---
 
 ::title::
-# Compile-time safety коротко
+# Compile-time safety *коротко*
 
 ::default::
 <div style="display: grid">
@@ -1166,17 +1160,14 @@ struct Container: Relux.UI.Container {
 -->
 
 ---
-layout: default
+layout: demo
 tag: '04 · ДЕМО'
+num: Демо 2
 ---
 
-<div class="absolute inset-0 grid place-items-center text-center">
-<div>
-<div class="mono lilac" style="font-size: 16px; letter-spacing: .12em">ДЕМО 2</div>
-<div style="font-size: 64px; font-weight: 700; line-height: 1.1; margin-top: 12px">Новая фича в Notes</div>
-<p class="sec" style="font-size: 19px; margin-top: 18px">закрытый скоуп · один агент · один слот на 8K</p>
-</div>
-</div>
+# Новая фича в Notes
+
+<p class="sec">закрытый скоуп · один агент · один слот на 8K</p>
 
 <!--
 Закрытый скоуп в чистом виде: фича по документации в модуле Notes, один агент, один слот. Смотрим чтение кода, изменения по рельсам — action, reducer, state, effect — запуск теста, итоговый diff. Выход один из двух: кандидат на приёмку или объяснимый блокер.
@@ -1187,61 +1178,61 @@ layout: default
 tag: '04 · ГРАФ ЗАДАЧ'
 ---
 
-# Фича как граф: реальный пример
+# Фича как граф: *реальный пример*
 
-<svg width="852" height="226" viewBox="0 0 852 226" aria-hidden="true">
-  <defs><marker id="arr-hg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--rwb-sec)" /></marker></defs>
-  <rect x="0" y="96" width="176" height="56" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="88" y="120" text-anchor="middle" fill="var(--rwb-txt)">Ход соперника</text>
-  <text x="88" y="138" text-anchor="middle" fill="var(--rwb-sec)">story · SharePlay</text>
-  <path d="M176,110 L206,110 L206,22 L236,22" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
-  <path d="M176,118 L206,118 L206,80 L236,80" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
-  <path d="M176,126 L206,126 L206,138 L236,138" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
-  <path d="M176,134 L206,134 L206,196 L236,196" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
-  <rect x="240" y="0" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="340" y="27" text-anchor="middle" fill="var(--rwb-txt)">автозум на ход соперника</text>
-  <rect x="240" y="58" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="340" y="85" text-anchor="middle" fill="var(--rwb-txt)">баннер «соперник думает»</text>
-  <rect x="240" y="116" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="340" y="143" text-anchor="middle" fill="var(--rwb-txt)">скрыть чужие оверлеи</text>
-  <rect x="240" y="174" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lilac)" stroke-width="1.25" />
-  <text x="340" y="201" text-anchor="middle" fill="var(--rwb-txt)">разобрать заикание зума</text>
-  <line x1="440" y1="22" x2="486" y2="22" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
-  <rect x="490" y="0" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="590" y="27" text-anchor="middle" fill="var(--rwb-txt)">лист мипла после зума</text>
-  <line x1="440" y1="80" x2="486" y2="80" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
-  <rect x="490" y="58" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="590" y="85" text-anchor="middle" fill="var(--rwb-txt)">длительность баннера</text>
-  <line x1="440" y1="196" x2="486" y2="196" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
-  <rect x="490" y="174" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="590" y="201" text-anchor="middle" fill="var(--rwb-txt)">дешевле кадр канваса</text>
-  <path d="M690,22 L720,22 L720,110 L746,110" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-hg)" />
-  <path d="M690,80 L720,80 L720,110" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" />
-  <path d="M690,196 L720,196 L720,110" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" />
-  <path d="M440,138 L720,138 L720,110" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" />
-  <rect x="750" y="88" width="102" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-dim)" stroke-width="1.25" stroke-dasharray="5 4" />
-  <text x="801" y="115" text-anchor="middle" fill="var(--rwb-txt)">приёмка</text>
+<svg width="908" height="226" viewBox="0 0 908 226" aria-hidden="true">
+  <defs><marker id="arr-hg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="m" /></marker></defs>
+  <rect x="0" y="96" width="176" height="56" rx="10" class="n-lilac" />
+  <text x="88" y="120" text-anchor="middle" class="t-ink t-big">Ход соперника</text>
+  <text x="88" y="139" text-anchor="middle" class="t-ink-sec">story · SharePlay</text>
+  <path d="M176,110 L206,110 L206,22 L236,22" class="e" marker-end="url(#arr-hg)" />
+  <path d="M176,118 L206,118 L206,80 L236,80" class="e" marker-end="url(#arr-hg)" />
+  <path d="M176,126 L206,126 L206,138 L236,138" class="e" marker-end="url(#arr-hg)" />
+  <path d="M176,134 L206,134 L206,196 L236,196" class="e" marker-end="url(#arr-hg)" />
+  <rect x="240" y="0" width="210" height="44" rx="10" class="n-lime" />
+  <text x="345" y="27" text-anchor="middle" class="t-ink">автозум на ход соперника</text>
+  <rect x="240" y="58" width="210" height="44" rx="10" class="n-lime" />
+  <text x="345" y="85" text-anchor="middle" class="t-ink">баннер «соперник думает»</text>
+  <rect x="240" y="116" width="210" height="44" rx="10" class="n-lime" />
+  <text x="345" y="143" text-anchor="middle" class="t-ink">скрыть чужие оверлеи</text>
+  <rect x="240" y="174" width="210" height="44" rx="10" class="n-lilac" />
+  <text x="345" y="201" text-anchor="middle" class="t-ink">разобрать заикание зума</text>
+  <line x1="450" y1="22" x2="496" y2="22" class="e" marker-end="url(#arr-hg)" />
+  <rect x="500" y="0" width="210" height="44" rx="10" class="n" />
+  <text x="605" y="27" text-anchor="middle">лист мипла после зума</text>
+  <line x1="450" y1="80" x2="496" y2="80" class="e" marker-end="url(#arr-hg)" />
+  <rect x="500" y="58" width="210" height="44" rx="10" class="n" />
+  <text x="605" y="85" text-anchor="middle">длительность баннера</text>
+  <line x1="450" y1="196" x2="496" y2="196" class="e" marker-end="url(#arr-hg)" />
+  <rect x="500" y="174" width="210" height="44" rx="10" class="n" />
+  <text x="605" y="201" text-anchor="middle">дешевле кадр канваса</text>
+  <path d="M710,22 L740,22 L740,110 L766,110" class="e" marker-end="url(#arr-hg)" />
+  <path d="M710,80 L740,80 L740,110" class="e" />
+  <path d="M710,196 L740,196 L740,110" class="e" />
+  <path d="M450,138 L740,138 L740,110" class="e" />
+  <rect x="770" y="88" width="138" height="44" rx="10" class="n" />
+  <text x="839" y="115" text-anchor="middle">приёмка</text>
 </svg>
 
-<svg v-click width="852" height="100" viewBox="0 0 852 100" aria-hidden="true">
-  <defs><marker id="arr-cycle" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--rwb-sec)" /></marker></defs>
-  <text x="0" y="12" fill="var(--rwb-sec)">и каждый зелёный узел внутри — тоже цикл</text>
-  <rect x="0" y="22" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="100" y="42" text-anchor="middle" fill="var(--rwb-txt)">Продьюсер</text>
-  <text x="100" y="60" text-anchor="middle" fill="var(--rwb-sec)">пишет изменение</text>
-  <line x1="200" y1="44" x2="236" y2="44" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-cycle)" />
-  <rect x="240" y="22" width="200" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="340" y="42" text-anchor="middle" fill="var(--rwb-txt)">Ревьюер</text>
-  <text x="340" y="60" text-anchor="middle" fill="var(--rwb-sec)">проверяет по контракту</text>
-  <line x1="440" y1="44" x2="476" y2="44" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-cycle)" />
-  <rect x="480" y="22" width="180" height="44" rx="4" fill="var(--rwb-node)" stroke="var(--rwb-lime)" stroke-width="1.25" />
-  <text x="570" y="42" text-anchor="middle" fill="var(--rwb-txt)">Узел закрыт</text>
-  <text x="570" y="60" text-anchor="middle" fill="var(--rwb-sec)">кандидат на приёмку</text>
-  <path d="M340,66 L340,88 L100,88 L100,70" fill="none" stroke="var(--rwb-sec)" stroke-width="1.25" marker-end="url(#arr-cycle)" />
-  <text x="360" y="92" fill="var(--rwb-sec)">не принято — доработка, в пределах бюджета попыток</text>
+<svg v-click width="908" height="100" viewBox="0 0 908 100" aria-hidden="true">
+  <defs><marker id="arr-cycle" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="m" /></marker></defs>
+  <text x="0" y="12" class="t-sec">и каждый зелёный узел внутри — тоже цикл</text>
+  <rect x="0" y="22" width="210" height="44" rx="10" class="n-lime" />
+  <text x="105" y="42" text-anchor="middle" class="t-ink t-big">Продьюсер</text>
+  <text x="105" y="60" text-anchor="middle" class="t-ink-sec">пишет изменение</text>
+  <line x1="210" y1="44" x2="246" y2="44" class="e" marker-end="url(#arr-cycle)" />
+  <rect x="250" y="22" width="210" height="44" rx="10" class="n-lime" />
+  <text x="355" y="42" text-anchor="middle" class="t-ink t-big">Ревьюер</text>
+  <text x="355" y="60" text-anchor="middle" class="t-ink-sec">проверяет по контракту</text>
+  <line x1="460" y1="44" x2="496" y2="44" class="e" marker-end="url(#arr-cycle)" />
+  <rect x="500" y="22" width="190" height="44" rx="10" class="n-lime" />
+  <text x="595" y="42" text-anchor="middle" class="t-ink t-big">Узел закрыт</text>
+  <text x="595" y="60" text-anchor="middle" class="t-ink-sec">кандидат на приёмку</text>
+  <path d="M355,66 L355,88 L105,88 L105,70" class="e" marker-end="url(#arr-cycle)" />
+  <text x="375" y="92" class="t-sec">не принято — доработка, в пределах бюджета попыток</text>
 </svg>
 
-<p class="sec"><span class="lime">■</span> готово&ensp;<span class="lilac">■</span> в работе&ensp;<span class="dim">■</span> ждёт&emsp;·&emsp;«Ход соперника» из моего pet-проекта Hunter Gatherers: четыре задачи стартуют сразу, три ждут предшественников, приёмка ждёт всех.</p>
+<p class="note"><span class="lime">■</span> готово&ensp;<span class="lilac">■</span> в работе&ensp;<span style="color: var(--rwb-card)">■</span> ждёт&emsp;·&emsp;«Ход соперника» из моего pet-проекта Hunter Gatherers: четыре задачи стартуют сразу, три ждут предшественников, приёмка ждёт всех.</p>
 
 <!--
 А так выглядит реальная история из моего pet-проекта — настольная игра Hunter Gatherers с мультиплеером через SharePlay. История «ход соперника»: четыре задачи независимы и стартуют сразу, параллельно — на четырёх слотах. Три задачи ждут предшественников: лист мипла — после автозума, длительность баннера — после самого баннера, удешевление кадра — после того, как разобрано заикание зума. Приёмка ждёт всех.
@@ -1252,17 +1243,14 @@ tag: '04 · ГРАФ ЗАДАЧ'
 -->
 
 ---
-layout: default
+layout: demo
 tag: '04 · ДЕМО'
+num: Демо 3
 ---
 
-<div class="absolute inset-0 grid place-items-center text-center">
-<div>
-<div class="mono lilac" style="font-size: 16px; letter-spacing: .12em">ДЕМО 3</div>
-<div style="font-size: 64px; font-weight: 700; line-height: 1.1; margin-top: 12px">Фича через граф</div>
-<p class="sec" style="font-size: 19px; margin-top: 18px">контракт → две ветки → интеграция · четыре слота по 16K</p>
-</div>
-</div>
+# Фича через граф
+
+<p class="sec">контракт → две ветки → интеграция · четыре слота по 16K</p>
 
 <!--
 Фича с понятным скоупом, но из нескольких задач: закрепление заметок, порядок, сохранение. Контракт первым, потом две ветки в своих рабочих копиях со своими проверками, интеграция ждёт обе. Здесь работают четыре слота — те самые параллельные контексты на одних весах.
@@ -1271,13 +1259,14 @@ tag: '04 · ДЕМО'
 ---
 layout: two-cols
 tag: ЭПИЛОГ
+class: dense
 ---
 
 ::title::
-# У трансформации, которая идёт сейчас, есть прецедент
+# У трансформации, *которая идёт сейчас*, есть прецедент
 
 ::default::
-<h2 v-click="1"><span class="sec">Перфокарты и мейнфрейм</span></h2>
+<h2 v-click="1">Перфокарты и мейнфрейм</h2>
 
 <ul>
 <li v-click="2">Человек составляет программу, несёт её процессору, ждёт, интегрирует ответ, несёт следующую</li>
@@ -1287,7 +1276,7 @@ tag: ЭПИЛОГ
 </ul>
 
 ::right::
-<h2 v-click="6"><span class="lilac">Языковая модель и агент</span></h2>
+<h2 v-click="6">Языковая модель и агент</h2>
 
 <ul>
 <li v-click="7">Человек пишет промпт, ждёт, читает, пишет следующий</li>
@@ -1299,7 +1288,7 @@ tag: ЭПИЛОГ
 ::bottom::
 <p v-click="11" class="lead">Тогда произошла трансформация: вместо писателей программ на перфокартах и операторов мейнфреймов разработчики вышли на новый уровень абстракции, а дальше — к специализации. Поэтому мы сегодня на конференции с названием iOS Crew.</p>
 
-<p v-click="12" class="sec">Нам предстоит тот же переход. Горизонт — один-два года, не исключено, что месяцы.</p>
+<p v-click="12" class="note">Нам предстоит тот же переход. Горизонт — один-два года, не исключено, что месяцы.</p>
 
 <!--
 Вернёмся к началу истории программирования. Первые компьютеры: программу на перфокартах несут центральному процессору, долго ждут, получают ответ, интегрируют в расчёты, запускают следующую. Процессор стоит безумных денег, и когда он простаивает — для бизнеса это большие потери. Поэтому инженерная мысль была направлена на то, чтобы убрать человека из цикла и мультиплексировать ресурсы. Так родились операционные системы.
@@ -1316,30 +1305,30 @@ layout: default
 tag: ЭПИЛОГ
 ---
 
-# Агентская операционная система
+# Агентская *операционная система*
 
-<div class="grid grid-cols-2 gap-x-10 mt-1">
-<div><h2 v-click="1" class="sec">О чём мы сегодня говорили</h2>
-<ul class="small">
+<div class="cards cols-2 grow">
+<div class="card"><h2 v-click="1">О чём мы сегодня говорили</h2>
+<ul>
 <li v-click="2">Что держать в памяти, а что выгрузить</li>
 <li v-click="3">Как разграничить ресурс между агентскими контекстами, чтобы один не залез к другому</li>
 <li v-click="4">Кому дать слот сейчас, а кто подождёт</li>
 <li v-click="5">Как построить граф, чтобы независимое шло параллельно</li>
 </ul></div>
-<div><h2 v-click="6" class="lilac">Куда эта задача привела однажды</h2>
-<ul class="small">
+<div class="card purple"><h2 v-click="6">Куда эта задача привела однажды</h2>
+<ul>
 <li v-click="7">Мультиплексирование ресурсов</li>
 <li v-click="8">Ядро и user space</li>
 <li v-click="9">Планировщик</li>
 <li v-click="10">Виртуальная память</li>
 </ul>
-<p v-click="11" class="small sec">Так появились операционные системы.</p>
+<p v-click="11" class="sec" style="margin-top: 10px">Так появились операционные системы.</p>
 </div>
 </div>
 
 <p v-click="12" class="lead">Ту же задачу решают заново — вокруг новой вычислительной парадигмы. То, что мы с вами строим, и есть первые штрихи агентской операционной системы.</p>
 
-<p v-click="13" class="sec">Новая компетенция — проектировать циклы, которые за $50 000 токенов собирают проект от А до Я. За это будут платить программистам.</p>
+<p v-click="13" class="note">Новая компетенция — проектировать циклы, которые за $50 000 токенов собирают проект от А до Я. За это будут платить программистам.</p>
 
 <!--
 Соберём всё вместе. Смотрите, о чём мы сегодня говорили: что держать в памяти, а что выгрузить на SSD. Как разграничить ресурс между агентскими контекстами, чтобы один не залез к другому. Кому дать слот сейчас, а кто подождёт. Как построить граф задач, чтобы независимое шло параллельно.

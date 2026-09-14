@@ -1,7 +1,7 @@
 {
   "name": "slidev-theme-rwb-tech",
   "version": "0.1.0",
-  "description": "RWB tech-talk theme: dark typographic developer-session style with RWB accents (lilac / orange / lime), vector pixel motifs, modest logo",
+  "description": "RWB tech-talk theme: corporate dark template (cards, purple accents, pixel squares) tuned for developer sessions",
   "keywords": [
     "slidev-theme",
     "slidev",
@@ -21,7 +21,7 @@
       "fonts": {
         "sans": "Inter",
         "mono": "JetBrains Mono",
-        "weights": "400,600,700"
+        "weights": "400,500,600,700"
       },
       "transition": "none",
       "lineNumbers": false

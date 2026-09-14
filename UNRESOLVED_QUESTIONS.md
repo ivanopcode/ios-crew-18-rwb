@@ -79,5 +79,12 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Bazel.** Mentioned "with an asterisk" — leave as a spoken aside or cut.
 - **Deck length.** 42 slides including 4 section openers and 4 demo bumpers. Confirm it
   fits the slot with live demos.
-- **Slide transitions.** Disabled (`transition: none`) for rehearsal; only in-slide
-  clicks animate. Decide whether to re-enable a cut/fade for the talk.
+- **Slide transitions.** `fade` between slides and `slide-left` into sections are on;
+  confirm on the venue machine that they do not stutter.
+- **QR codes on the final slide.** Three dashed placeholders (repository, July talk,
+  channel). Generate real codes once the URLs are fixed and put them into the `end`
+  layout; the corporate draft used a decorative, non-scannable QR image.
+- **Cover card.** The title slide is the conference card with the announced title
+  «Локальные модели для разработки под iOS на Apple Silicon» and the photo; the deck
+  title in the footer is «Интегрируем локальные LLM в рабочие процессы разработки».
+  Decide whether the two should match.

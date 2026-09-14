@@ -2,8 +2,8 @@
   "name": "rwb-dark",
   "type": "dark",
   "colors": {
-    "editor.background": "#121924",
-    "editor.foreground": "#EDEDF0"
+    "editor.background": "#2B2B2B",
+    "editor.foreground": "#FFFFFF"
   },
   "tokenColors": [
     {
@@ -56,7 +56,7 @@
         "variable.other"
       ],
       "settings": {
-        "foreground": "#EDEDF0"
+        "foreground": "#FFFFFF"
       }
     },
     {
@@ -88,7 +88,7 @@
         "markup.heading"
       ],
       "settings": {
-        "foreground": "#EDEDF0",
+        "foreground": "#FFFFFF",
         "fontStyle": "bold"
       }
     }
