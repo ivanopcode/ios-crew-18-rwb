@@ -37,8 +37,8 @@ final run. Slide numbers refer to the current `slides.md`.
   ×3–4 parallel-context multiplier; API prices $0.24/$0.90 per M from pricepertoken.com;
   the 1 500-in / 500-out step shape and the 16K context are assumptions about agentic
   loops. Hardware payback uses MacBook Pro 14" M5 Max: $3 599 at 36 GB and $4 099 at 48 GB
-  are published, the 64 GB configuration is estimated at ≈ $4 300 by one memory step
-  and needs checking on apple.com. The 36 → 64 GB delta of ≈ $700 is the number the
+  are published, 64 GB is +$400 over 48 GB on apple.com (checked 2026-09-14), so the
+  64 GB laptop is $4 499. The 36 → 64 GB delta of $900 is the number the
   argument actually rests on, since the laptop is bought either way. Measure throughput on the demo machine and check the step
   shape against a real session log.
 
