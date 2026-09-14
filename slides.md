@@ -12,6 +12,7 @@ role:
   - 'Relux Works — соавтор open-source экосистемы агентской разработки'
 contacts: t.me/ivanopcode · github.com/ivanopcode
 image: /media/cover-podlodka.webp
+subline: 'соавтор open source разработок агентской инфраструктуры + iOS (Relux Works)'
 ---
 
 # Интегрируем локальные LLM в рабочие процессы разработки
