@@ -74,10 +74,10 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Relux code sample.** Now three click-swapped blocks condensed from relux-sample
   (`Notes.Business.Effect/Action`, `Notes.Business.State`, `Notes.Module`). Check the
   condensation reads right to a Relux user.
-- **Demo prompts and verdicts.** Demo 2 (tags in the Notes sample) and Demo 3
-  (whole-book progress bar in Book Player) each need the prompt and a review verdict
-  (what was done / how / verdict) from Ivan after the final rehearsal; both review
-  slides carry `[вердикт после прогона]` placeholders.
+- **Demo prompts and verdicts.** Demo 2 (tags in the Notes sample) has its review
+  verdict on the slide (7/10, from Ivan's log review). Still missing: the Demo 2 and
+  Demo 3 prompts for the hidden-text trick, and the Demo 3 (Book Player) verdict —
+  that review slide still carries `[вердикт после прогона]` placeholders.
 - **llama-server launch.** The pi `models.json` and `settings.json` are now the real
   ones (pi 0.84.3, client on the MacBook Air, server on ivmbp over Tailscale). The
   `llama-server` command on the slide is still the earlier profile; Ivan's launch
