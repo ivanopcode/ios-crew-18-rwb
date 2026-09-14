@@ -4,3 +4,7 @@
 /* Подсветка активной строки (```bash {2,4}) — фон, не только цвет */
 .slidev-layout .slidev-code .highlighted, .slidev-layout .shiki .line.highlighted { background: var(--rwb-hl); display: inline-block; width: 100%; }
 .slidev-layout .slidev-code.has-highlighted .line:not(.highlighted) { opacity: 0.55; }
+
+/* Dense config column on the launch slide: long JSON must fit without clipping. */
+.slidev-layout .cfg-tight pre, .slidev-layout .cfg-tight .slidev-code, .slidev-layout .cfg-tight pre code, .slidev-layout .cfg-tight pre .line { font-size: 11px !important; line-height: 1.35 !important; }
+.slidev-layout .cfg-tight pre { padding: 12px 16px !important; }

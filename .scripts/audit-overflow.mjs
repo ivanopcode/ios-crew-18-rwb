@@ -64,6 +64,10 @@ for (let n = 1; n <= total; n++) {
     for (const el of lay.querySelectorAll('.rwb-boxes .box, .rwb-stack .label, .rwb-stack .desc')) {
       if (el.scrollWidth > el.clientWidth + 1) tight.push('box:' + el.textContent.trim().slice(0, 30))
     }
+    // Code blocks clip silently on the right: a pre wider than its box loses characters
+    for (const el of lay.querySelectorAll('pre')) {
+      if (el.scrollWidth > el.clientWidth + 1) tight.push('pre:' + (el.scrollWidth - el.clientWidth) + 'px ' + el.textContent.trim().slice(0, 24))
+    }
     for (const svg of lay.querySelectorAll('svg')) {
       const rects = [...svg.querySelectorAll('rect')].map(r => ({ x: +r.getAttribute('x'), y: +r.getAttribute('y'), w: +r.getAttribute('width'), h: +r.getAttribute('height') }))
       for (const tx of svg.querySelectorAll('text')) {

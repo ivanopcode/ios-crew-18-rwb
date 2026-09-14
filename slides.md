@@ -739,27 +739,32 @@ cmake --build build -j 4 --target llama-server
 ```
 
 </div>
-<div style="min-width: 0">
+<div class="cfg-tight" style="min-width: 0">
 
 ```json
 { "providers": { "qwen-ivmbp": {
     "baseUrl": "http://100.95.12.100:8080/v1",
     "api": "openai-completions", "apiKey": "local",
     "compat": {
-      "supportsDeveloperRole": false, "supportsReasoningEffort": true,
-      "maxTokensField": "max_tokens", "thinkingFormat": "chat-template",
+      "supportsDeveloperRole": false,
+      "supportsReasoningEffort": true,
+      "maxTokensField": "max_tokens",
+      "thinkingFormat": "chat-template",
       "chatTemplateKwargs": {
         "enable_thinking": { "$var": "thinking.enabled" },
-        "reasoning_effort": { "$var": "thinking.effort", "omitWhenOff": true },
+        "reasoning_effort": { "$var": "thinking.effort",
+                              "omitWhenOff": true },
         "preserve_thinking": true } },
-    "models": [{ "id": "qwen-local", "reasoning": true, "input": ["text"],
+    "models": [{ "id": "qwen-local", "reasoning": true,
+      "input": ["text"],
       "contextWindow": 262144, "maxTokens": 32768,
-      "thinkingLevelMap": { "off": null, "minimal": "low", "low": "low",
-        "medium": "medium", "high": "xhigh", "xhigh": "xhigh" } }]
+      "thinkingLevelMap": { "off": null, "minimal": "low",
+        "low": "low", "medium": "medium",
+        "high": "xhigh", "xhigh": "xhigh" } }]
 } } }
 ```
 
-<p class="note">→ <code>~/.pi/agent/models.json</code> на клиенте, сервер на MacBook Pro по Tailscale. Thinking через chat-template: флаги уходят в <code>chat_template_kwargs</code>. В <code>settings.json</code>: thinking <code>xhigh</code>, compaction 32K.</p>
+<p class="note">→ <code>~/.pi/agent/models.json</code> на клиенте; сервер — MacBook Pro по Tailscale. <code>settings.json</code>: thinking xhigh, compaction 32K.</p>
 
 </div>
 </div>
