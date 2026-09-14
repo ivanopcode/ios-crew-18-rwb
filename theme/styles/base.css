@@ -126,6 +126,7 @@
 .slidev-layout.dense .card h2 { font-size: 17px; margin-bottom: 8px; }
 .slidev-layout.dense p.lead { font-size: 16px; padding: 12px 18px; }
 .slidev-layout.dense h1 { margin-bottom: 18px; }
+.slidev-layout.dense .rwb-stack .layer { padding: 8px 0; }
 .slidev-layout.dense pre, .slidev-layout.dense .slidev-code { font-size: 14px; line-height: 1.4; padding: 12px 16px !important; margin-bottom: 10px; }
 
 /* Диаграммы inline SVG: подписи 13 px mono; узлы — заливки без обводок.
