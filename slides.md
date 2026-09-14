@@ -731,12 +731,14 @@ cmake --build build -j 4 --target llama-server
 
 ```bash
 ./build/bin/llama-server \
-  -hf unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_M --no-mmproj \
-  --alias qwen-local --host 127.0.0.1 --port 8080 \
-  -c 8192 -np 1 --no-kv-unified --cache-ram 0 \
-  --jinja --reasoning on --reasoning-format deepseek \
-  --reasoning-preserve --reasoning-budget -1 \
-  --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0
+  -hf ggml-org/Qwen3.8-27B-GGUF:Q4_K_M --no-mmproj \
+  --alias qwen-local --host 0.0.0.0 --port 8080 \
+  -ngl all -c 262144 -np 1 --flash-attn on \
+  --cache-type-k q8_0 --cache-type-v q8_0 \
+  -b 2048 -ub 1024 --jinja --reasoning on \
+  --reasoning-format deepseek --reasoning-preserve \
+  --reasoning-effort xhigh --reasoning-budget 16384 \
+  --reasoning-budget-message "…"
 ```
 
 </div>
@@ -771,9 +773,9 @@ cmake --build build -j 4 --target llama-server
 </div>
 
 <!--
-Три блока, каждый копируется и вставляется целиком. Первый собирает движок под Metal — команды связаны через && и выполнятся по очереди. Второй поднимает сервер: веса скачаются при первом запуске, так что это надо сделать до демо; один контекст на 8K — стартовый профиль для машины с ограниченной памятью, на 64–128 гигабайтах даём четыре слота по 16K. Третий — конфиг Pi на ноутбуке-клиенте: провайдер смотрит на MacBook Pro по Tailscale, ключ любой непустой. Существующие провайдеры остаются рядом.
+Три блока, каждый копируется и вставляется целиком. Первый собирает движок под Metal — команды связаны через && и выполнятся по очереди. Второй поднимает сервер: веса скачаются при первом запуске, так что это надо сделать до демо. Профиль боевой: один слот на полный контекст 262K, KV-кэш в q8_0, flash attention, батчи 2048/1024, слушает 0.0.0.0 — чтобы ноутбук в той же Tailscale-сети мог подключиться. Дома я запускаю это в tmux по SSH: сессия переживает закрытие терминала. Третий — конфиг Pi на ноутбуке-клиенте: провайдер смотрит на MacBook Pro по Tailscale, ключ любой непустой. Существующие провайдеры остаются рядом.
 
-Про рассуждения. На сервере: --reasoning on включает thinking-режим Qwen; --reasoning-format deepseek выносит рассуждения в отдельное поле reasoning_content, чтобы агентская среда не считала их ответом; --reasoning-preserve сохраняет цепочку рассуждений между ходами — иначе шаблон выкидывает предыдущее thinking, и модель на каждом вызове инструмента думает заново: это и время, и повторный prefill; --reasoning-budget -1 — без лимита на рассуждения. В Pi: thinkingFormat chat-template — среда кладёт enable_thinking, reasoning_effort и preserve_thinking в chat_template_kwargs, и шаблон Qwen сам включает рассуждения и сохраняет их между ходами; thinkingLevelMap переводит уровни Pi в уровни модели, high и xhigh — в xhigh; supportsDeveloperRole false — llama.cpp ждёт system, не developer. В settings.json: провайдер и модель по умолчанию, thinking xhigh, compaction с резервом 32K и 20K свежих токенов, retry до пяти раз.
+Про рассуждения. На сервере: --reasoning on включает thinking-режим Qwen; --reasoning-format deepseek выносит рассуждения в отдельное поле reasoning_content, чтобы агентская среда не считала их ответом; --reasoning-preserve сохраняет цепочку рассуждений между ходами — иначе шаблон выкидывает предыдущее thinking, и модель на каждом вызове инструмента думает заново: это и время, и повторный prefill; --reasoning-effort xhigh — уровень по умолчанию на сервере; --reasoning-budget 16384 — потолок на рассуждения за ход, а --reasoning-budget-message подсовывает модели фразу «хватит думать, действуй: вызови инструмент или дай ответ» — против зацикливания в reasoning. Полный текст сообщения — в приложении к статье. В Pi: thinkingFormat chat-template — среда кладёт enable_thinking, reasoning_effort и preserve_thinking в chat_template_kwargs, и шаблон Qwen сам включает рассуждения и сохраняет их между ходами; thinkingLevelMap переводит уровни Pi в уровни модели, high и xhigh — в xhigh; supportsDeveloperRole false — llama.cpp ждёт system, не developer. В settings.json: провайдер и модель по умолчанию, thinking xhigh, compaction с резервом 32K и 20K свежих токенов, retry до пяти раз.
 
 Проверяем: /health отдаёт 200. Запускаем pi, выбираем qwen-local — и переходим к первому демо.
 -->

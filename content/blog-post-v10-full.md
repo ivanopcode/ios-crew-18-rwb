@@ -206,33 +206,34 @@ git rev-parse HEAD && ./build/bin/llama-server --version
 
 Последние две команды фиксируют версию для протокола репетиции. [Сборка llama.cpp](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md).
 
-### 2. Ограниченная память: один контекст
+### 2. Боевой профиль: один слот на полный контекст
 
-Из директории `llama.cpp`. Первый запуск скачает квант — завершить до демо. `--no-mmproj` оставляет текстовый сценарий без vision-проектора.
+Из директории `llama.cpp`. Первый запуск скачает квант — завершить до демо. `--no-mmproj` оставляет текстовый сценарий без vision-проектора. `--host 0.0.0.0` — чтобы клиент в той же Tailscale-сети мог подключиться; на MacBook Pro команда живёт в tmux-сессии по SSH и переживает закрытие терминала.
 
 ```bash
 ./build/bin/llama-server \
-  -hf unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_M --no-mmproj \
-  --alias qwen-local --host 127.0.0.1 --port 8080 \
-  -ngl 99 --fit off \
-  -c 8192 -np 1 --no-kv-unified --cache-ram 0 -b 256 -ub 128 \
+  -hf ggml-org/Qwen3.8-27B-GGUF:Q4_K_M --no-mmproj \
+  --alias qwen-local --host 0.0.0.0 --port 8080 \
+  -ngl all -c 262144 -np 1 --flash-attn on \
+  --cache-type-k q8_0 --cache-type-v q8_0 -b 2048 -ub 1024 \
   --jinja --reasoning on --reasoning-format deepseek \
-  --reasoning-preserve --reasoning-budget -1 \
-  --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0
+  --reasoning-preserve --reasoning-effort xhigh \
+  --reasoning-budget 16384 \
+  --reasoning-budget-message "I have reasoned enough. I should now take the next concrete action. If more evidence is needed, use the available tools to inspect the code, run a command, or gather the missing information. Otherwise, provide the best final answer or implementation now."
 ```
 
-8K — общий бюджет входа и продолжения одной последовательности. RAM-кеш snapshots отключён, KV текущей последовательности работает. `--fit off` делает лимиты явными. Флаги `--reasoning-*`: thinking включён, рассуждения уходят в `reasoning_content`, цепочка сохраняется между ходами, лимита на размер нет; `--reasoning-preserve` действует только с шаблоном, объявляющим `supports_preserve_reasoning`, — проверяем по логу старта. На 24 GB проверяем memory pressure и запас для Xcode/симулятора. Sampling соответствует рекомендации Qwen для thinking. [Параметры сервера](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md), [рекомендации Qwen](https://huggingface.co/Qwen/Qwen3.8-27B).
+262K — полный контекст модели одним слотом; KV-кэш в `q8_0` с flash attention держит его в памяти 64 GB. Флаги `--reasoning-*`: thinking включён, рассуждения уходят в `reasoning_content`, цепочка сохраняется между ходами, уровень по умолчанию `xhigh`; `--reasoning-budget 16384` ограничивает рассуждения за ход, а `--reasoning-budget-message` подставляет модели фразу «хватит думать, действуй» — против зацикливания в reasoning. `--reasoning-preserve` действует только с шаблоном, объявляющим `supports_preserve_reasoning`, — проверяем по логу старта. [Параметры сервера](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md), [рекомендации Qwen](https://huggingface.co/Qwen/Qwen3.8-27B).
 
 ### 3. Большой запас памяти: четыре контекста
 
-Остановите предыдущий сервер и из той же директории запустите профиль для 64–128 GB — та же команда с `-c 65536 -np 4 -b 1024 -ub 256`. При `--no-kv-unified` получаются четыре последовательности по 16 384 токена; у unified KV распределение устроено иначе.
+Для параллельных агентов — та же команда с `-c 65536 -np 4`: четыре слота по 16 384 токена на одних весах.
 
 | Параметр | Один контекст | Четыре контекста |
 |---|---:|---:|
 | Веса | Один экземпляр Qwen27 Q4 | Один экземпляр Qwen27 Q4 |
-| `-c`, бюджет контекста сервера | 8 192 | 65 536 |
+| `-c`, бюджет контекста сервера | 262 144 | 65 536 |
 | `-np`, слоты | 1 | 4 |
-| Лимит одной последовательности | 8 192 | 16 384 |
+| Лимит одной последовательности | 262 144 | 16 384 |
 | `-b` / `-ub` | 256 / 128 | 1 024 / 256 |
 | RAM-кеш snapshots | Отключён | Отключён для первого сравнения |
 

@@ -78,12 +78,12 @@ final run. Slide numbers refer to the current `slides.md`.
   verdict on the slide (7/10, from Ivan's log review). Still missing: the Demo 2 and
   Demo 3 prompts for the hidden-text trick, and the Demo 3 (Book Player) verdict —
   that review slide still carries `[вердикт после прогона]` placeholders.
-- **llama-server launch.** The pi `models.json` and `settings.json` are now the real
-  ones (pi 0.84.3, client on the MacBook Air, server on ivmbp over Tailscale). The
-  `llama-server` command on the slide is still the earlier profile; Ivan's launch
-  script has not arrived — rewrite it as a terminal invocation when it does, and check
-  that `--reasoning-preserve` / `--reasoning-format` do not conflict with
-  `preserve_thinking` passed through `chat_template_kwargs`.
+- **llama-server profile.** The slide and appendix now carry the real launch command
+  from `~/Developer/ioscrew/start-llama.sh` (ggml-org Q4_K_M, 262K single slot, KV q8_0,
+  reasoning budget 16384 with a budget message). Two things to confirm on the venue
+  machine: that `--reasoning-preserve` and `preserve_thinking` via `chat_template_kwargs`
+  do not double-apply, and the GGUF size — the quantization table still shows 16.5 GB
+  measured for unsloth UD-Q4_K_M, the ggml-org Q4_K_M file may differ slightly.
 - **Tailscale address on the slide.** `100.95.12.100` is a private tailnet IP; decide
   whether to show it or replace with a hostname before publishing the deck.
 - **Bazel.** Mentioned "with an asterisk" — leave as a spoken aside or cut.
