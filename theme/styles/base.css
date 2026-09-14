@@ -101,6 +101,8 @@
 .slidev-layout .card table { margin: 0; font-size: 15px; }
 .slidev-layout .card th { font-size: 16px; padding: 0 8px 10px 0; border-color: var(--rwb-rule-card); }
 .slidev-layout .card td { padding: 7px 8px 7px 0; border-color: var(--rwb-rule-card); }
+.slidev-layout .card td:last-child, .slidev-layout .card th:last-child { padding-right: 0; }
+.slidev-layout .card td[align=right], .slidev-layout .card td[style*='text-align:right'], .slidev-layout .card td[style*='text-align: right'] { white-space: nowrap; }
 .slidev-layout .card td code:not(pre code) { color: var(--rwb-sec-card); }
 .slidev-layout .card.purple th { color: var(--rwb-txt); }
 .slidev-layout .card.purple td, .slidev-layout .card.purple th { border-color: rgba(255, 255, 255, 0.28); }
@@ -122,6 +124,7 @@
 
 /* Плотный вариант для слайдов с длинными колонками и кодом: `class: dense` во frontmatter */
 .slidev-layout.dense .card { font-size: 15px; padding: 14px 18px; }
+.slidev-layout.dense .card td, .slidev-layout.dense .card th { padding-top: 6px; padding-bottom: 6px; }
 .slidev-layout.dense .card li { margin-bottom: 6px; }
 .slidev-layout.dense .card h2 { font-size: 17px; margin-bottom: 8px; }
 .slidev-layout.dense p.lead { font-size: 16px; padding: 12px 18px; }
