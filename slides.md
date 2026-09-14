@@ -1182,8 +1182,6 @@ struct Container: Relux.UI.Container {
 </div>
 
 ::side::
-## Шесть кликов — весь контур
-
 - **Effect / Action** — намерение и факт
 - **State** — actor, мутация в редьюсере
 - **Saga** — эффект через сервис, действие с данными
