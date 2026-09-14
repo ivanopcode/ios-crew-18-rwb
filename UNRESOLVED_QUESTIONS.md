@@ -74,14 +74,21 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Relux code sample.** Now three click-swapped blocks condensed from relux-sample
   (`Notes.Business.Effect/Action`, `Notes.Business.State`, `Notes.Module`). Check the
   condensation reads right to a Relux user.
-- **Demo 2 — Book Player.** The prompt for the "progress bar for the whole book"
-  feature and the review verdict (what was done / how / verdict) come from Ivan after
-  the final rehearsal; the review slide carries `[вердикт после прогона]` placeholders.
-- **llama-server and pi configs.** Ivan will send updated `llama-server` flags and
-  `models.json`; the "три вставки" slide and the appendix must be replaced verbatim.
+- **Demo prompts and verdicts.** Demo 2 (tags in the Notes sample) and Demo 3
+  (whole-book progress bar in Book Player) each need the prompt and a review verdict
+  (what was done / how / verdict) from Ivan after the final rehearsal; both review
+  slides carry `[вердикт после прогона]` placeholders.
+- **llama-server launch.** The pi `models.json` and `settings.json` are now the real
+  ones (pi 0.84.3, client on the MacBook Air, server on ivmbp over Tailscale). The
+  `llama-server` command on the slide is still the earlier profile; Ivan's launch
+  script has not arrived — rewrite it as a terminal invocation when it does, and check
+  that `--reasoning-preserve` / `--reasoning-format` do not conflict with
+  `preserve_thinking` passed through `chat_template_kwargs`.
+- **Tailscale address on the slide.** `100.95.12.100` is a private tailnet IP; decide
+  whether to show it or replace with a hostname before publishing the deck.
 - **Bazel.** Mentioned "with an asterisk" — leave as a spoken aside or cut.
-- **Deck length.** 42 slides including 4 section openers and 2 demo bumpers plus a
-  review slide. The 14.09 rehearsal spent over half the time on sections 00–02;
+- **Deck length.** 44 slides including 4 section openers, 3 demo bumpers and two
+  review slides. The 14.09 rehearsal spent over half the time on sections 00–02;
   sections 03–04 and the epilogue were rushed. Confirm it
   fits the slot with live demos.
 - **Slide transitions.** `fade` between slides and `slide-left` into sections are on;

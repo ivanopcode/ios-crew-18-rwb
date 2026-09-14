@@ -146,9 +146,11 @@ Harness в широком смысле — весь стек от весов д�
 
 Без рельсов потолок агентской системы низкий. С рельсами предела сложности нет. Всё лучшее из enterprise-разработки — покрытие тестами, поиск мёртвого кода, строгие контракты — раньше стоило человеко-часов; теперь это делает модель на вашем компьютере, и оправданий не делать этого больше нет. Проверка замыкает цикл: у процесса есть бюджет и выход — кандидат на приёмку либо объяснимый блокер; зелёный тест подтверждает поведение в границах своей проверки, смысл изменения и достаточность покрытия остаются частью приёмки. [Практики построения агентов](https://www.anthropic.com/engineering/building-effective-agents).
 
-Второе демо — новая фича в Book Player, open source плеере аудиокниг: полоса прогресса по всей книге, а не по текущему файлу. Закрытый скоуп, один агент. Живой гибридный прогон: запускаем среду, отдаём промпт, видим, что работа пошла, и пока модель работает — разбираем логи: что прочитала, какие инструменты вызвала, где остановилась подумать.
+Второе демо — теги в сэмпле Notes на Relux, который только что разобрали: закрытый скоуп, один агент, компилятор проверяет, что Effect, Action и State подключены. Смотрим чтение кода, изменения по рельсам, запуск теста, итоговый diff — и ревью: что сделано, как, вердикт.
 
-После прогона — ревью: что сделано, как сделано — по рельсам или в обход — и вердикт. Выход всегда один из двух: кандидат на приёмку или объяснимый блокер. И то и другое — результат, с которым можно работать.
+Третье демо — новая фича в Book Player, open source плеере аудиокниг: полоса прогресса по всей книге, а не по текущему файлу. Чужой проект без наших рельсов. Живой гибридный прогон, Pi на ноутбуке и модель на MacBook Pro по сети: запускаем среду, отдаём промпт, видим, что работа пошла, и пока модель работает — разбираем логи: что прочитала, какие инструменты вызвала, где остановилась подумать.
+
+После прогона — ревью: что сделано, как сделано, и вердикт. Выход всегда один из двух: кандидат на приёмку или объяснимый блокер. И то и другое — результат, с которым можно работать.
 
 ### Граф связывает задачи и доступное железо
 
@@ -260,23 +262,35 @@ curl --fail --silent --show-error \
 `~/.pi/agent/models.json`:
 
 ```json
-{ "providers": { "llama-local": {
-    "baseUrl": "http://127.0.0.1:8080/v1",
+{ "providers": { "qwen-ivmbp": {
+    "baseUrl": "http://100.95.12.100:8080/v1",
     "api": "openai-completions", "apiKey": "local",
     "compat": {
-      "supportsReasoningEffort": true,
-      "thinkingFormat": "reasoning_effort",
-      "supportsDeveloperRole": false,
-      "maxTokensField": "max_tokens" },
-    "models": [{
-      "id": "qwen-local",
-      "name": "Qwen3.8-27B UD-Q4_K_M",
+      "supportsDeveloperRole": false, "supportsReasoningEffort": true,
+      "maxTokensField": "max_tokens", "thinkingFormat": "chat-template",
+      "chatTemplateKwargs": {
+        "enable_thinking": { "$var": "thinking.enabled" },
+        "reasoning_effort": { "$var": "thinking.effort", "omitWhenOff": true },
+        "preserve_thinking": true } },
+    "models": [{ "id": "qwen-local", "name": "Qwen3.8 27B on ivmbp",
       "reasoning": true, "input": ["text"],
-      "contextWindow": 8192, "maxTokens": 2048
-    }]
+      "contextWindow": 262144, "maxTokens": 32768,
+      "thinkingLevelMap": { "off": null, "minimal": "low", "low": "low",
+        "medium": "medium", "high": "xhigh", "xhigh": "xhigh" },
+      "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 } }]
 } } }
 ```
 
-Ключ любой непустой — сервер на loopback без авторизации. `contextWindow` — на одну сессию: 8 192 или 16 384 по профилю. `thinkingFormat: reasoning_effort` — среда передаёт `reasoning_effort` в запросе; `supportsDeveloperRole: false` — llama.cpp ждёт роль `system`. Формат блока взят из документации pi (`docs/models.md`); сверить с установленной версией. [pi-mono](https://github.com/badlogic/pi-mono).
+`~/.pi/agent/settings.json` на том же клиенте:
+
+```json
+{ "defaultProvider": "qwen-ivmbp", "defaultModel": "qwen-local",
+  "defaultThinkingLevel": "xhigh",
+  "packages": ["npm:pi-speedometer"],
+  "compaction": { "enabled": true, "reserveTokens": 32768, "keepRecentTokens": 20000 },
+  "retry": { "enabled": true, "maxRetries": 5 } }
+```
+
+Конфиг лежит на ноутбуке-клиенте, сервер — на MacBook Pro в той же Tailscale-сети; существующие провайдеры остаются рядом. Ключ любой непустой — сервер без авторизации. `thinkingFormat: chat-template` — среда кладёт `enable_thinking`, `reasoning_effort` и `preserve_thinking` в `chat_template_kwargs`, и шаблон Qwen сам включает рассуждения и сохраняет их между ходами; `thinkingLevelMap` переводит уровни Pi в уровни модели, `high` и `xhigh` — в `xhigh`; `supportsDeveloperRole: false` — llama.cpp ждёт роль `system`. В `settings.json` — провайдер и модель по умолчанию, thinking `xhigh`, compaction с резервом 32K и 20K свежих токенов, retry до пяти раз. Проверено на pi 0.84.3.
 
 До показа проверяем один tool round trip: запрос модели на чтение файла → выполнение harness → tool result с тем же идентификатором → продолжение модели, и что в многоходовом обмене `reasoning_content` возвращается, а не пересчитывается. Save/restore слотов, RAM-кеш, квантизацию KV и speculative decoding вводим отдельными изменениями после рабочего базового прогона; для гибридной архитектуры совместимость каждого механизма подтверждаем на закреплённой версии движка. [Function calling](https://github.com/ggml-org/llama.cpp/blob/master/docs/function-calling.md).
