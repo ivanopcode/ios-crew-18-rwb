@@ -74,10 +74,15 @@ final run. Slide numbers refer to the current `slides.md`.
 - **Relux code sample.** Now three click-swapped blocks condensed from relux-sample
   (`Notes.Business.Effect/Action`, `Notes.Business.State`, `Notes.Module`). Check the
   condensation reads right to a Relux user.
-- **Demo 4 scope.** Project from scratch with a cloud orchestrator is marked as an
-  experiment. Decide whether to record it or show a table of expected measurements.
+- **Demo 2 — Book Player.** The prompt for the "progress bar for the whole book"
+  feature and the review verdict (what was done / how / verdict) come from Ivan after
+  the final rehearsal; the review slide carries `[вердикт после прогона]` placeholders.
+- **llama-server and pi configs.** Ivan will send updated `llama-server` flags and
+  `models.json`; the "три вставки" slide and the appendix must be replaced verbatim.
 - **Bazel.** Mentioned "with an asterisk" — leave as a spoken aside or cut.
-- **Deck length.** 42 slides including 4 section openers and 4 demo bumpers. Confirm it
+- **Deck length.** 42 slides including 4 section openers and 2 demo bumpers plus a
+  review slide. The 14.09 rehearsal spent over half the time on sections 00–02;
+  sections 03–04 and the epilogue were rushed. Confirm it
   fits the slot with live demos.
 - **Slide transitions.** `fade` between slides and `slide-left` into sections are on;
   confirm on the venue machine that they do not stutter.
