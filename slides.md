@@ -528,7 +528,7 @@ layout: default
 tag: '03 · КАК ЗАПУСТИТЬ НА СВОЁМ MAC'
 ---
 
-# Веса один раз, *контексты — на каждого агента*
+# Веса один раз,<br>*контексты — на каждого агента*
 
 <svg width="908" height="216" viewBox="0 0 908 216" aria-hidden="true">
   <text x="0" y="28" class="t-dim">32 GB</text>
