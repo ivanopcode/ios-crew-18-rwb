@@ -1,6 +1,6 @@
 # Design: presentation-as-code kit with pluggable styles
 
-Status: proposal, 2026-09-15. Research inputs: `.temp/research-curator.md` (curator-spec
+Status: proposal, 2026-09-15; Curator behaviour verified on curator v0.14.1 with a probe skill (see «Verified on curator»). Research inputs: `.temp/research-curator.md` (curator-spec
 1.0.0-rc.9, curator Go impl), Slidev 52.19.1 sources (`resolver`, `addons`, `roots`).
 
 ## Verified facts the design rests on
@@ -21,24 +21,47 @@ Status: proposal, 2026-09-15. Research inputs: `.temp/research-curator.md` (cura
   components (11 sites). The two existing styles differ in composition rules, not only
   colours (rwb-minimal forbids cards and page-wide fills; rwb-tech is built on them).
 
+## Verified on curator v0.14.1 (probe skill, `curator init/add/install/status`)
+
+- `agent-skill.json` schema 2 with `runtime_roots` and a `type: script` command
+  (`unix_path: scripts/deck`, node shebang, no interpreter field) installs a shim at
+  `.agents/bin/deck`. The shim prepends `.agents/bin` to PATH and `exec`s the script
+  from the **runtime copy under `~/.curator/runtime/<skill>/<commit>/`**, with the
+  project as cwd. The enforced `script-worker-v1` policy is not needed.
+- The runtime copy contains only the declared `runtime_roots`. The context copy under
+  `.agents/skills/<skill>/` contains `SKILL.md`, `references/`, `examples/` — and
+  nothing that is not on the context allowlist. So `templates/` must be declared as a
+  runtime root to reach the script, and code must never assume it sits inside the
+  project: Node's upward `node_modules` lookup from the script fails; resolve from
+  `process.cwd()` instead (`createRequire(join(cwd, 'package.json'))` works).
+- `SKILL.md` must document command resolution (project `.agents/bin` first, then the
+  global bin, then a validated bare command) or install emits
+  `skill.command_resolution_contract_missing`.
+- Sources are cached in `~/.curator/sources/<skill>`; a new tag needs `curator update`
+  before `curator add … --tag`. `curator init` writes a managed gitignore block that
+  ignores `.agents/` and the agent mirror directories.
+- Skillfile pins exactly one of `tag|branch|revision`; `curator status --check` reports
+  drift.
+
 ## Principles
 
-1. **Curator carries markdown, npm carries code, git carries the talk.** No Curator
-   shims, no interpreters, no scaffolded scripts. The agent reads context from
-   `.agents/skills/`, Slidev runs code from `node_modules`, the deck repo holds content
-   and pins.
+1. **Curator carries markdown and the agent's commands; npm carries what Slidev runs;
+   git carries the talk.** The kit exports one command, `deck`, through Curator; the
+   agent has it right after `curator install`, before any npm state exists. Slidev-side
+   code (rehearsal addon, themes) is installed by `deck init` through npm.
 2. **Every building block is one git repo, tagged once, read by both channels.** Curator
-   reads its `SKILL.md`/`references/`/`examples/`; npm reads its `package.json` and code.
-   The kit and every RWB theme have the same shape. Third-party Slidev themes lack the
-   markdown half and still work, with the kit's generic rules as fallback.
+   reads `SKILL.md`/`references/`/`examples/` and shims the declared commands; npm reads
+   `package.json` and code. The kit and every RWB theme have the same shape. Third-party
+   Slidev themes lack the markdown half and still work, with the kit's generic rules as
+   fallback.
 3. **Nothing is both copied and maintained upstream.** Templates are copied once by
    `deck init` and become the deck's own files. Code is installed, never copied.
 4. **Tools are theme-agnostic by construction.** The audit measures each layout's real
    content box (height minus padding) instead of hardcoded theme numbers; lint and
    rehearsal do not know what a theme is.
-5. **One pin per concern.** `Skillfile.json` pins what the agent reads, `package.json`
-   pins what Slidev runs, git tags pin what was said. `deck doctor` checks that the
-   Skillfile tag and the npm tag of the same repo are equal.
+5. **One pin per concern.** `Skillfile.json` pins what the agent reads and runs,
+   `package.json` pins what Slidev runs, git tags pin what was said. `deck doctor` checks
+   that the Skillfile tag and the npm tag of the same repo are equal.
 
 ## Repositories
 
@@ -53,11 +76,13 @@ relux-works/slidev-deck                 the kit — npm slidev-addon-deck · Cur
   examples/contract.md                  conformance deck: core vocabulary only
   templates/deck/                       scaffold copied by `deck init` (README.deck.md, slides.md,
                                         package.json, .github/workflows, docs/HOW_TO_RUN.md,
-                                        UNRESOLVED_QUESTIONS.md, .gitignore)
-  setup/transformers.ts, main.ts, shortcuts.ts   rehearsal mode (FLAT=1), badge
+                                        UNRESOLVED_QUESTIONS.md, .gitignore) — a runtime root
+  scripts/deck · scripts/lib/*.mjs      the agent's CLI: init, theme, lint, audit, doctor — a runtime root;
+                                        resolves Slidev/Playwright from the project's node_modules by cwd
+  agent-skill.json                      schema 2: runtime_roots [scripts, templates], commands { deck }
+  setup/transformers.ts, main.ts, shortcuts.ts   rehearsal mode (FLAT=1), badge — the Slidev addon half
   styles/index.ts                       badge styles
-  bin/deck.mjs · lib/audit.mjs · lib/lint.mjs · lib/sheet.mjs
-  package.json                          name slidev-addon-deck, bin { deck }, peer slidev
+  package.json                          name slidev-addon-deck, peer slidev; no bin
 
 relux-works/slidev-theme-rwb-tech       look #1: corporate cards (current theme/)
 relux-works/slidev-theme-rwb-minimal    look #2: dark typographic (git 43e4de6:theme, the first kit)
@@ -77,7 +102,7 @@ relux-works/slidev-theme-rwb-minimal    look #2: dark typographic (git 43e4de6:t
 
 Gone from the deck repo: `theme/`, `.scripts/`, `setup/`, `style.css`, `docs/style-guide.md`.
 
-## Commands (npm bin `deck`, run as `npx deck …` or via npm scripts)
+## Commands (Curator shim `.agents/bin/deck`; npm scripts in the scaffold call the same shim)
 
 | Command | Does |
 | --- | --- |
@@ -117,15 +142,15 @@ are style-specific); the agent re-lays it out, guided by the target theme's `SKI
 
 ## Curator specifics
 
-- Both the kit and the themes are pure context skills: no `agent-skill.json` commands,
-  so no interpreter or shim constraints. Optional `agent-skill.json` only for
-  `dependencies.commands` (node ≥ 20, npm, git, gh) so a missing runtime fails early
-  with a hint.
+- Themes are pure context skills (no commands). The kit exports `deck` as a plain
+  schema-2 script command; `dependencies.commands` declares node ≥ 20, npm, git, gh so a
+  missing runtime fails early with a hint.
 - Curator strips `README*` everywhere it finds them, so the scaffold's README is
   `templates/deck/README.deck.md` and `deck init` renames it.
-- The agent's flow: `curator add deck --git …/slidev-deck --tag vK && curator install`
-  → reads `SKILL.md` → `npx github:relux-works/slidev-deck#vK init --theme rwb-tech`
-  → `npm run dev`. Environment bootstrap is `npm install`; nothing else.
+- The agent's flow: `curator add deck --git …/slidev-deck --tag vK` → reads `SKILL.md`
+  → `.agents/bin/deck init --theme rwb-tech` (scaffold, pins at the kit's own tag,
+  `npm install`) → `npm run dev`. Environment bootstrap is `npm install`; nothing else,
+  and no `npx` from a git URL.
 - Third-party themes never enter the Skillfile (no `SKILL.md`); `deck theme use` just
   installs them and the kit's generic rules apply.
 - Nice-to-have for curator-spec later: a `dependencies.resources` kind for git repos
@@ -154,3 +179,6 @@ are style-specific); the agent re-lays it out, guided by the target theme's `SKI
   (current corporate) and `rwb-minimal` (the first, typographic one).
 - Whether the kit keeps `deck theme use` writing the Skillfile, or themes stay
   npm-only and the agent reads the guide from `node_modules`.
+- Whether `deck audit`/`deck lint` live in the kit's `scripts/` (agent commands via
+  Curator, recommended) or in the npm half; the probe shows the Curator side can reach
+  the project's Playwright through cwd-based resolution, so nothing forces npm.
